@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabica - Cà Phê Đậm Đà</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background-color: #3c2f2f;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #d4a373;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3c2f2f;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #d4a373;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Products Section */
+        .products {
+            max-width: 1200px;
+            margin: 100px auto 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .products h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #3c2f2f;
+        }
+        .filter {
+            margin-bottom: 20px;
+        }
+        .filter select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #3c2f2f;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fffaf0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .product-card.hidden {
+            display: none;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .product-card h3 {
+            margin: 10px 0;
+            color: #3c2f2f;
+        }
+        .product-card p {
+            color: #555;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #a0522d;
+        }
+
+        /* Pagination */
+        .pagination {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            background-color: #3c2f2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pagination button:hover {
+            background-color: #d4a373;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #3c2f2f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: #d4a373;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            .nav-links {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Cà Phê Đậm Đà</div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <div class="dropdown">
+                    <a href="products.html">Sản phẩm</a>
+                    <div class="dropdown-content">
+                        <a href="products.html">Tất cả</a>
+                        <a href="arabica.html">Arabica</a>
+                        <a href="robusta.html">Robusta</a>
+                        <a href="chon.html">Chồn</a>
+                    </div>
+                </div>
+                <a href="#about">Giới thiệu</a>
+                <a href="#contact">Liên hệ</a>
+                <a href="#cart">Giỏ hàng</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2>Cà phê Arabica</h2>
+        <div class="product-grid" id="productGrid">
+            <div class="product-card">
+                <img src="https://lh6.googleusercontent.com/proxy/ULqvKQ2UCFsMhYAqAbJE1VXiCR4I6IDe6dtj5t5h7qBXzhy4bqhlzOC3FlzOXHrOcvWBb_oiCQRi0U4ZXBOK3vA" alt="Cà phê Arabica">
+                <h3>Cà phê Arabica</h3>
+                <p>150.000 VNĐ / 500g</p>
+                <a href="#" class="btn" onclick="addToCart('Cà phê Arabica', 150000)">Thêm vào giỏ</a>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a4b?auto=format&fit=crop&w=600" alt="Cà phê Arabica Đặc Biệt">
+                <h3>Cà phê Arabica Đặc Biệt</h3>
+                <p>200.000 VNĐ / 500g</p>
+                <a href="#" class="btn" onclick="addToCart('Cà phê Arabica Đặc Biệt', 200000)">Thêm vào giỏ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>Liên hệ: info@caphedamda.com | 0909 123 456</p>
+        <p>Theo dõi chúng tôi: <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let cart = [];
+
+        window.onload = function() {
+            if (localStorage.getItem("cart")) {
+                cart = JSON.parse(localStorage.getItem("cart"));
+                console.log("Giỏ hàng đã tải:", cart);
+            }
+        };
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            alert(`${name} đã được thêm vào giỏ hàng!`);
+            console.log("Giỏ hàng hiện tại:", cart);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    </script>
+</body>
+</html>

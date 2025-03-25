@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - Cà Phê Đậm Đà</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Roboto', sans-serif; 
+        }
+        body { 
+            padding-top: 80px; }
+        header { 
+            background-color: #3c2f2f; 
+            color: white; 
+            padding: 1rem; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8em; 
+        }
+        .nav-links { 
+            display: flex; 
+            align-items: center; 
+        }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-weight: bold; 
+        }
+        nav a:hover { 
+            color: #d4a373; 
+        }
+        h1, h2 { 
+            font-family: 'Playfair Display', serif; 
+            color: #3c2f2f; 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        .btn { 
+            padding: 10px 20px; 
+            background-color: #d4a373; 
+            color: white; text-decoration: none; 
+            border: none; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            display: inline-block; 
+        }
+        .btn:hover { 
+            background-color: #8b4513; 
+            transform: scale(1.05); 
+        }
+        .checkout-container { 
+            max-width: 1200px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            gap: 30px; 
+        }
+        .form-section, .order-summary { 
+            width: 48%; 
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 5px; 
+            color: #3c2f2f; 
+        }
+        .form-group input, .form-group select { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+        .order-summary { 
+            background-color: #f9f9f9; 
+            padding: 20px; 
+            border-radius: 10px; 
+        }
+        .summary-item { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 10px; 
+        }
+        .total { 
+            font-weight: bold; 
+            border-top: 1px solid #ddd; 
+            padding-top: 10px; 
+            margin-top: 10px; 
+        }
+        @media (max-width: 768px) { 
+            nav { flex-direction: column; 
+            } 
+            .nav-links { 
+                flex-direction: column; 
+                margin-top: 10px; 
+            } 
+            nav a { 
+                margin: 5px 0; 
+            } 
+            .checkout-container { 
+                flex-direction: column; 
+            } .form-section, .order-summary { 
+                width: 100%; 
+            } 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cà Phê Đậm Đà</div>
+            <div class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="#about">Giới thiệu</a>
+                <a href="#contact">Liên hệ</a>
+                <a href="cart.html">Giỏ hàng</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="checkout-container">
+        <div class="form-section">
+            <h1>Thanh Toán</h1>
+            <form onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label for="name">Họ và Tên</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số Điện Thoại</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa Chỉ Giao Hàng</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="payment">Phương Thức Thanh Toán</label>
+                    <select id="payment" name="payment" required>
+                        <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="bank">Chuyển khoản ngân hàng</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Xác Nhận Đặt Hàng</button>
+            </form>
+        </div>
+        <div class="order-summary">
+            <h2>Tóm Tắt Đơn Hàng</h2>
+            <div id="summaryItems"></div>
+            <div class="total" id="summaryTotal">Tổng cộng: 0 VNĐ</div>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function renderSummary() {
+            const summaryItems = document.getElementById("summaryItems");
+            summaryItems.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                summaryItems.innerHTML += `
+                    <div class="summary-item">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>${itemTotal.toLocaleString()} VNĐ</span>
+                    </div>
+                `;
+            });
+
+            document.getElementById("summaryTotal").innerHTML = `Tổng cộng: ${total.toLocaleString()} VNĐ`;
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            if (cart.length === 0) {
+                alert("Giỏ hàng trống! Vui lòng thêm sản phẩm trước khi thanh toán.");
+                return;
+            }
+            alert("Đơn hàng đã được xác nhận!");
+            localStorage.removeItem("cart"); // Xóa giỏ hàng sau khi đặt hàng
+            window.location.href = "index.html"; // Chuyển hướng về trang chủ
+        }
+
+        window.onload = renderSummary;
+    </script>
+</body>
+</html>
