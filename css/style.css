@@ -1,0 +1,210 @@
+ /* Thêm hoặc cập nhật style cho footer */
+footer {
+    background-color: #3c2f2f;
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: 60px;
+    border-top: 5px solid #d4a373;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+}
+
+.footer-section h3 {
+    color: #d4a373;
+    margin-bottom: 20px;
+    font-size: 20px;
+    position: relative;
+    padding-bottom: 12px;
+    font-weight: 600;
+}
+
+.footer-section h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #d4a373;
+}
+
+.footer-section p {
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #f1f1f1;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s;
+    font-size: 18px;
+}
+
+.social-links a:hover {
+    background-color: #d4a373;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 15px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #d4a373;
+}
+
+.newsletter-form button {
+    padding: 12px 20px;
+    background-color: #d4a373;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.newsletter-form button:hover {
+    background-color: #c1864a;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        margin-bottom: 30px;
+    }
+}
+
+/* Thêm animation cho icons */
+.footer-section i {
+    margin-right: 8px;
+    color: #d4a373;
+}
+
+/* Thêm vào cuối file CSS của bạn */
+header nav .dropdown {
+    position: relative;
+}
+
+header nav .dropdown-toggle {
+    cursor: pointer;
+}
+
+header nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 180px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    right: 0;
+    top: 100%;
+    padding: 10px 0;
+}
+
+header nav .dropdown-menu li {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+header nav .dropdown-menu a {
+    padding: 10px 15px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+
+header nav .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+}
+
+header nav .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Thêm style cho thông báo đăng nhập */
+.login-status {
+    background-color: #3c2f2f;
+    padding: 8px 0;
+    border-bottom: 1px solid #d4a373;
+    text-align: right;
+    font-size: 14px;
+    color: #fff;
+}
+
+.login-status p {
+    margin: 0;
+}
+
+.login-status a {
+    color: #d4a373;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-status a:hover {
+    color: #e9c496;
+    text-decoration: underline;
+}
+
+/* Style rõ hơn cho dropdown khi đăng nhập */
+.user-logged-in .dropdown-toggle {
+    color: #d4a373 !important;
+    font-weight: bold;
+}

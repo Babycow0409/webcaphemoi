@@ -1,0 +1,229 @@
+2025-04-19 13:35:32 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => test-product-1
+            [name] => Cà phê Arabica Cầu Đất
+            [price] => 150000
+            [image] => images/arabica-caudat.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => test-product-1
+            [name] => Cà phê Arabica Cầu Đất
+            [price] => 150000
+            [image] => images/arabica-caudat.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:35:32 - Product data: ID: test-product-1, Name: Cà phê Arabica Cầu Đất, Price: 150000, Image: images/arabica-caudat.jpg, Quantity: 1
+2025-04-19 13:35:32 - Cart before: Array
+(
+)
+
+2025-04-19 13:35:32 - Cart after: Array
+(
+    [0] => Array
+        (
+            [id] => test-product-1
+            [name] => Cà phê Arabica Cầu Đất
+            [price] => 150000
+            [image] => images/arabica-caudat.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:39:40 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:39:40 - Product data: ID: 12, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_680378a955472.jpg, Quantity: 1
+2025-04-19 13:39:40 - Cart before: Array
+(
+)
+
+2025-04-19 13:39:40 - Cart after: Array
+(
+    [0] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => images/robusta.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:42:17 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:42:17 - Product data: ID: 12, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_680378a955472.jpg, Quantity: 1
+2025-04-19 13:42:17 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => images/robusta.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:42:17 - Cart after: Array
+(
+    [0] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => images/robusta.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-04-19 13:42:25 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 13
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_68037a47a781e.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 13
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_68037a47a781e.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-19 13:42:25 - Product data: ID: 13, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_68037a47a781e.jpg, Quantity: 1
+2025-04-19 13:42:25 - Cart before: Array
+(
+)
+
+2025-04-19 13:42:25 - Cart after: Array
+(
+    [0] => Array
+        (
+            [id] => 13
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => images/robusta.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-20 06:49:27 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_680378a955472.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-04-20 06:49:27 - Product data: ID: 12, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_680378a955472.jpg, Quantity: 1
+2025-04-20 06:49:27 - Cart before: Array
+(
+)
+
+2025-04-20 06:49:27 - Cart after: Array
+(
+    [0] => Array
+        (
+            [id] => 12
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => images/robusta.jpg
+            [quantity] => 1
+        )
+
+)
+
