@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Lấy địa chỉ của người dùng
+/*
 $stmt = $conn->prepare("SELECT * FROM addresses WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -77,6 +78,9 @@ $addresses = [];
 while ($row = $result->fetch_assoc()) {
     $addresses[] = $row;
 }
+*/
+// Khởi tạo mảng addresses trống
+$addresses = [];
 ?>
 
 <!DOCTYPE html>

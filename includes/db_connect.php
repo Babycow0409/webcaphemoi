@@ -1,17 +1,18 @@
 <?php
-$servername = "localhost";
-$username = "root";
+// Kết nối database
+   $servername = "localhost";
+   $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+   // Tạo kết nối
+   $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
+   // Kiểm tra kết nối
+   if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
-}
+   }
 
-// Set charset
-$conn->set_charset("utf8mb4");
-?> 
+// Đặt charset là utf8mb4
+   $conn->set_charset("utf8mb4");
+   ?>

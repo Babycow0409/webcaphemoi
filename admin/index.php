@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,46 +22,50 @@ if ($conn->connect_error) {
 }
 
 // Lấy thông tin admin hiện tại
-$admin_id = $_SESSION["admin_id"];
-$sql = "SELECT * FROM admin_users WHERE id = $admin_id";
-$result = $conn->query($sql);
-$admin = $result->fetch_assoc();
+$admin = $_SESSION["admin"];
 
 // Thống kê tổng quan
 $totalProducts = $conn->query("SELECT COUNT(*) as count FROM products")->fetch_assoc()['count'];
 $totalUsers = $conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc()['count'];
-$totalOrders = $conn->query("SELECT COUNT(*) as count FROM orders")->fetch_assoc()['count'];
+$totalOrders = $conn->query("SELECT COUNT(*) as count FROM orders")->fetch_assoc()['count'] ?? 0;
 $totalRevenue = $conn->query("SELECT SUM(total_amount) as total FROM orders WHERE status = 'completed'")->fetch_assoc()['total'] ?? 0;
 
 // Đơn hàng gần đây
-$recentOrders = $conn->query("SELECT o.*, u.fullname FROM orders o 
-                             JOIN users u ON o.user_id = u.id 
-                             ORDER BY o.created_at DESC LIMIT 5");
-
-// Sản phẩm mới nhất thay vì sản phẩm bán chạy
-$checkTable = $conn->query("SHOW TABLES LIKE 'order_items'");
-if ($checkTable->num_rows > 0) {
-    // Kiểm tra cấu trúc bảng order_items
-    $checkColumn = $conn->query("SHOW COLUMNS FROM order_items LIKE 'product_id'");
-    if ($checkColumn->num_rows > 0) {
-        // Nếu bảng và cột tồn tại, thực hiện truy vấn gốc
-        $topProducts = $conn->query("SELECT p.id, p.name, p.price, COUNT(oi.id) as order_count 
-                                    FROM products p 
-                                    LEFT JOIN order_items oi ON p.id = oi.product_id 
-                                    GROUP BY p.id 
-                                    ORDER BY order_count DESC LIMIT 5");
-    } else {
-        // Nếu không có cột product_id, sử dụng sản phẩm mới nhất
-        $topProducts = $conn->query("SELECT id, name, price, 0 as order_count 
-                                    FROM products 
-                                    ORDER BY id DESC LIMIT 5");
+$recentOrders = [];
+$ordersQuery = $conn->query("SHOW TABLES LIKE 'orders'");
+if ($ordersQuery->num_rows > 0) {
+    // Kiểm tra cấu trúc bảng orders để biết các cột có sẵn
+    $orders_columns = $conn->query("SHOW COLUMNS FROM orders");
+    $has_created_at = false;
+    $order_column = "id"; // Mặc định sắp xếp theo id
+    
+    if ($orders_columns) {
+        while ($col = $orders_columns->fetch_assoc()) {
+            if ($col['Field'] == 'created_at') {
+                $has_created_at = true;
+                break;
+            }
+            if ($col['Field'] == 'order_date') {
+                $order_column = "order_date";
+            }
+        }
     }
-} else {
-    // Nếu không có bảng order_items, sử dụng sản phẩm mới nhất
-    $topProducts = $conn->query("SELECT id, name, price, 0 as order_count 
-                                FROM products 
-                                ORDER BY id DESC LIMIT 5");
+    
+    // Sử dụng created_at nếu có, nếu không dùng order_date hoặc id
+    $order_by = $has_created_at ? "o.created_at" : "o.$order_column";
+    
+    $recentOrdersQuery = $conn->query("SELECT o.*, u.fullname FROM orders o 
+                                      LEFT JOIN users u ON o.user_id = u.id 
+                                      ORDER BY $order_by DESC LIMIT 5");
+    if ($recentOrdersQuery) {
+        $recentOrders = $recentOrdersQuery;
+    }
 }
+
+// Sản phẩm mới nhất
+$topProducts = $conn->query("SELECT id, name, price, 0 as order_count 
+                            FROM products 
+                            ORDER BY id DESC LIMIT 5");
 ?>
 
 <!DOCTYPE html>

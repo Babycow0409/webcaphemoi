@@ -1,88 +1,57 @@
 <?php
 session_start();
 include 'includes/db_connect.php';
+require_once 'includes/cart_functions.php';
 
-// Kiểm tra xem giỏ hàng có trống không
-$cart_empty = true;
-$total = 0;
-$cart_items = [];
+// Kiểm tra đăng nhập
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
 
-// JavaScript sẽ đọc từ localStorage nên chỉ cần xử lý khi submit
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Xử lý đặt hàng
-    $full_name = $_POST['full_name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $district = $_POST['district'];
-    $city = $_POST['city'];
-    $payment_method = $_POST['payment_method'];
-    $total_amount = $_POST['total_amount'];
-    $user_id = isset($_SESSION['user']) ? $_SESSION['user']['id'] : null;
-    
-    // Tạo mã đơn hàng
-    $order_number = 'ORD-' . time() . '-' . rand(1000, 9999);
-    
-    // Thêm đơn hàng vào database
-    $combined_address = $address . ', ' . $district . ', ' . $city;
+$user_id = $_SESSION['user_id'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
 
-    // Thêm đơn hàng vào database với cấu trúc bảng orders
-    if ($user_id === null) {
-        $sql = "INSERT INTO orders (order_number, total_amount, status, shipping_name, 
-                shipping_email, shipping_phone, shipping_address, shipping_city, payment_method, created_at) 
-                VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, NOW())";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sdssssss", 
-            $order_number, 
-            $total_amount, 
-            $full_name, 
-            $email, 
-            $phone, 
-            $combined_address, 
-            $city, 
-            $payment_method
-        );
-    } else {
-        $sql = "INSERT INTO orders (order_number, user_id, total_amount, status, shipping_name, 
-                shipping_email, shipping_phone, shipping_address, shipping_city, payment_method, created_at) 
-                VALUES (?, ?, ?, 'pending', ?, ?, ?, ?, ?, ?, NOW())";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sidsssss", 
-            $order_number, 
-            $user_id, 
-            $total_amount, 
-            $full_name, 
-            $email, 
-            $phone, 
-            $combined_address, 
-            $city, 
-            $payment_method
-        );
+// Chuyển hướng về trang giỏ hàng nếu không có sản phẩm
+if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    $_SESSION['message'] = "Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi thanh toán.";
+    header("Location: cart.php");
+    exit;
+}
+
+// Lấy dữ liệu giỏ hàng
+$cart = $_SESSION['cart'];
+$totalAmount = calculateCartTotal($cart);
+
+// Lấy thông tin người dùng nếu đã đăng nhập
+$user = [
+    'fullname' => '',
+    'email' => '',
+    'phone' => '',
+    'address' => ''
+];
+
+if(isset($_SESSION['user_id'])) {
+    $stmt = $conn->prepare("SELECT fullname, email, phone, address FROM users WHERE id = ?");
+    $stmt->bind_param("i", $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0) {
+        $user_data = $result->fetch_assoc();
+        $user['fullname'] = $user_data['fullname'] ?? '';
+        $user['email'] = $user_data['email'] ?? '';
+        $user['phone'] = $user_data['phone'] ?? '';
+        $user['address'] = $user_data['address'] ?? '';
     }
-    
-    if ($stmt->execute()) {
-        $order_id = $conn->insert_id;
-        
-        // Thêm chi tiết đơn hàng
-        $cart_items = json_decode($_POST['cart_items'], true);
-        foreach ($cart_items as $item) {
-            $product_name = $item['name'];
-            $price = $item['price'];
-            $quantity = $item['quantity'];
-            
-            $sql_item = "INSERT INTO order_items (order_id, product_name, price, quantity) 
-                        VALUES (?, ?, ?, ?)";
-            $stmt_item = $conn->prepare($sql_item);
-            $stmt_item->bind_param("isdi", $order_id, $product_name, $price, $quantity);
-            $stmt_item->execute();
-        }
-        
-        // Chuyển hướng đến trang xác nhận đơn hàng
-        header("Location: order-success.php?order_id=" . $order_id);
-        exit();
-    } else {
-        $error = "Có lỗi xảy ra khi đặt hàng: " . $conn->error;
-    }
+}
+
+// Hiển thị thông báo lỗi nếu có
+if(isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
 }
 ?>
 
@@ -92,17 +61,169 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh toán - Cà Phê Đậm Đà</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         /* Sử dụng cùng style với trang chủ */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-        body { padding-top: 100px; line-height: 1.6; }
-        header { background-color: #3c2f2f; color: white; padding: 1rem; position: fixed; width: 100%; top: 0; z-index: 1000; }
-        nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.8em; padding: 10px; }
-        .nav-links { display: flex; flex-wrap: wrap; align-items: center; padding: 10px; }
-        nav a { color: white; text-decoration: none; margin: 10px 15px; font-weight: bold; }
-        nav a:hover { color: #d4a373; }
+        body { padding-top: 100px; line-height: 1.6; background-color: #f9f9f9; color: #333; }
+        
+        /* Header cải tiến */
+        header {
+            background-color: #3c2f2f;
+            color: white;
+            padding: 0.8rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        /* Khi cuộn, header sẽ nhỏ hơn */
+        header.scrolled {
+            padding: 0.5rem;
+        }
+        
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            padding: 10px;
+            letter-spacing: 1px;
+            color: #f8f4e3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #d4a373;
+        }
+        
+        /* Đường gạch chân khi hover */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Dropdown cải tiến */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            opacity: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .dropdown-content a {
+            color: #3c2f2f;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin: 0;
+            border-bottom: 1px solid #f1f1f1;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8f4e3;
+        }
+        
+        .dropdown-content a::after {
+            display: none;
+        }
+        
+        /* Icon cho menu */
+        .nav-icon {
+            margin-right: 8px;
+            color: #d4a373;
+        }
+        
+        .user-greeting {
+            color: #d4a373;
+            margin-right: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-greeting i {
+            margin-right: 8px;
+        }
+        
+        /* Cart icon với số lượng */
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #d4a373;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
         h1, h2 { font-family: 'Playfair Display', serif; color: #3c2f2f; text-align: center; margin: 40px 0 20px; }
         .btn { 
             padding: 10px 20px; 
@@ -124,71 +245,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-        }
-        
-        .checkout-steps {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 15px;
-        }
-        
-        .step {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            position: relative;
-        }
-        
-        .step.active {
-            font-weight: bold;
-            color: #d4a373;
-        }
-        
-        .step.active::after {
-            content: '';
-            position: absolute;
-            bottom: -17px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 3px;
-            background-color: #d4a373;
-        }
-        
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            flex-wrap: wrap;
             gap: 30px;
         }
         
-        @media (max-width: 768px) {
-            .checkout-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         .checkout-form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 300px;
         }
         
-        .checkout-summary {
-            background-color: #f9f9f9;
-            padding: 30px;
+        .order-summary {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            color: #3c2f2f;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #d4a373;
         }
         
         .form-group {
@@ -199,65 +271,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: #3c2f2f;
+            color: #5d4037;
         }
         
-        .form-control {
+        .form-group input, 
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ced4da;
+            padding: 12px;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 15px;
+            background-color: #f8f9fa;
+        }
+        
+        .btn {
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
             font-size: 16px;
-        }
-        
-        .form-control:focus {
-            border-color: #d4a373;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
-        }
-        
-        .payment-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .payment-option {
-            border: 2px solid #e9ecef;
-            border-radius: 5px;
-            padding: 15px;
-            text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            width: 100%;
+            transition: background-color 0.3s;
         }
         
-        .payment-option:hover {
-            border-color: #d4a373;
-        }
-        
-        .payment-option.selected {
-            border-color: #d4a373;
-            background-color: rgba(212, 163, 115, 0.1);
-        }
-        
-        .payment-option img {
-            height: 50px;
-            margin-bottom: 10px;
-            display: block;
-            margin: 0 auto 10px;
-        }
-        
-        .cart-items {
-            margin-top: 20px;
+        .btn:hover {
+            background-color: #3e2723;
         }
         
         .cart-item {
             display: flex;
-            align-items: center;
             margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid #ddd;
         }
         
         .cart-item img {
@@ -268,84 +316,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-right: 15px;
         }
         
-        .cart-item-details {
+        .item-details {
             flex-grow: 1;
         }
         
-        .cart-item-name {
+        .item-name {
             font-weight: bold;
             margin-bottom: 5px;
         }
         
-        .cart-item-price {
+        .item-price {
             color: #6c757d;
             font-size: 0.9em;
         }
         
-        .cart-item-total {
+        .item-total {
             font-weight: bold;
             color: #3c2f2f;
             text-align: right;
         }
         
-        .order-totals {
-            margin-top: 30px;
-            border-top: 2px dashed #e9ecef;
-            padding-top: 20px;
-        }
-        
-        .order-total-row {
+        .summary-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
         }
         
-        .order-total-row.grand-total {
+        .summary-row.total {
             font-weight: bold;
             font-size: 1.2em;
-            color: #3c2f2f;
-            margin-top: 15px;
+            border-top: 2px solid #d4a373;
+            border-bottom: none;
             padding-top: 15px;
-            border-top: 1px solid #e9ecef;
+            margin-top: 15px;
         }
         
-        .place-order-btn {
-            background-color: #28a745;
-            padding: 15px;
-            font-size: 1.1em;
-            border-radius: 50px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        
-        .place-order-btn:hover {
-            background-color: #218838;
-        }
-        
-        /* Dropdown menu style */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #3c2f2f;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #d4a373;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
+        @media (max-width: 768px) {
+            .checkout-container {
+                flex-direction: column;
+            }
         }
         
         /* Footer styles */
@@ -369,6 +380,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #d4a373;
             margin-bottom: 20px;
         }
+        
+        /* Style for error message */
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body>
@@ -376,50 +397,139 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav>
             <div class="logo">Cà Phê Đậm Đà</div>
             <div class="nav-links">
-                <a href="index.php">Trang chủ</a>
+                <a href="index.php"><i class="fas fa-home nav-icon"></i>Trang chủ</a>
                 <div class="dropdown">
-                    <a href="products.php">Sản phẩm</a>
+                    <a href="products.php"><i class="fas fa-coffee nav-icon"></i>Sản phẩm</a>
                     <div class="dropdown-content">
-                        <a href="products.php">Tất cả</a>
-                        <a href="arabica.php">Arabica</a>
-                        <a href="robusta.php">Robusta</a>
-                        <a href="chon.php">Chồn</a>
-                        <a href="Khac.php">Khác</a>
+                        <a href="products.php">Tất cả sản phẩm</a>
+                        <a href="products.php?category=arabica">Arabica</a>
+                        <a href="products.php?category=robusta">Robusta</a>
+                        <a href="products.php?category=chon">Chồn</a>
+                        <a href="products.php?category=other">Khác</a>
                     </div>
                 </div>
-                <a href="#about">Giới thiệu</a>
-                <a href="#contact">Liên hệ</a>
-                <a href="cart.php">Giỏ hàng</a>
+                <a href="about.php"><i class="fas fa-info-circle nav-icon"></i>Giới thiệu</a>
+                <a href="contact.php"><i class="fas fa-envelope nav-icon"></i>Liên hệ</a>
+                <a href="cart.php" class="cart-icon">
+                    <i class="fas fa-shopping-cart nav-icon"></i>Giỏ hàng
+                    <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                    <span class="cart-count"><?php echo count($_SESSION['cart']); ?></span>
+                    <?php endif; ?>
+                </a>
                 <?php
-                if(isset($_SESSION['user'])) {
+                if(isset($_SESSION['user_id'])) {
+                    // Hiển thị tên người dùng nếu đã đăng nhập
+                    echo '<span class="user-greeting"><i class="fas fa-user"></i>Xin chào, ' . (isset($_SESSION['fullname']) ? htmlspecialchars($_SESSION['fullname']) : 'Khách hàng') . '</span>';
+                    
                     echo '<div class="dropdown">
-                        <a href="#">Tài khoản</a>
+                        <a href="#"><i class="fas fa-user-circle nav-icon"></i>Tài khoản</a>
                         <div class="dropdown-content">
-                            <a href="profile.php">Thông tin cá nhân</a>
-                            <a href="orders.php">Đơn hàng</a>
-                            <a href="logout.php">Đăng xuất</a>
+                            <a href="profile.php"><i class="fas fa-id-card"></i> Thông tin cá nhân</a>
+                            <a href="orders.php"><i class="fas fa-shopping-bag"></i> Đơn hàng</a>
+                            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                         </div>
                     </div>';
                 } else {
-                    echo '<a href="login.php">Đăng nhập</a>';
-                    echo '<a href="register.php">Đăng ký</a>';
+                    echo '<a href="login.php"><i class="fas fa-sign-in-alt nav-icon"></i>Đăng nhập</a>';
+                    echo '<a href="register.php"><i class="fas fa-user-plus nav-icon"></i>Đăng ký</a>';
                 }
                 ?>
             </div>
         </nav>
     </header>
 
+    <!-- JavaScript cho header -->
+    <script>
+        // Header thu nhỏ khi cuộn
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
     <div class="checkout-container">
-        <h1>Thanh toán đơn hàng</h1>
-        
-        <div class="checkout-steps">
-            <div class="step">1. Giỏ hàng</div>
-            <div class="step active">2. Thanh toán</div>
-            <div class="step">3. Hoàn tất</div>
+        <div class="checkout-form">
+            <h2>Thông tin thanh toán</h2>
+            
+            <?php if(isset($error)): ?>
+            <div class="error-message">
+                <?php echo $error; ?>
+            </div>
+            <?php endif; ?>
+            
+            <form action="place-order.php" method="post">
+                <div class="form-group">
+                    <label for="fullname">Họ tên*</label>
+                    <input type="text" id="fullname" name="fullname" required value="<?php echo $user['fullname']; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required value="<?php echo $user['email']; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Số điện thoại*</label>
+                    <input type="tel" id="phone" name="phone" required value="<?php echo $user['phone']; ?>">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Địa chỉ*</label>
+                    <textarea id="address" name="address" rows="3" required><?php echo $user['address']; ?></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="payment">Phương thức thanh toán*</label>
+                    <select id="payment" name="payment" required>
+                        <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="bank">Chuyển khoản ngân hàng</option>
+                        <option value="momo">Ví điện tử MoMo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="note">Ghi chú</label>
+                    <textarea id="note" name="note" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Đặt hàng</button>
+            </form>
         </div>
         
-        <div id="checkout-content">
-            <!-- Nội dung thanh toán sẽ được thêm bằng JavaScript -->
+        <div class="order-summary">
+            <h2>Đơn hàng của bạn</h2>
+            
+            <?php foreach($cart as $item): ?>
+            <div class="cart-item">
+                <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" onerror="this.src='images/default-product.jpg'">
+                <div class="item-details">
+                    <div class="item-name"><?php echo htmlspecialchars($item['name']); ?></div>
+                    <div class="item-price"><?php echo number_format($item['price'], 0, ',', '.'); ?> VNĐ x <?php echo $item['quantity']; ?></div>
+                    <div class="item-total"><?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?> VNĐ</div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            
+            <div class="summary-row">
+                <span>Tạm tính:</span>
+                <span><?php echo number_format($totalAmount, 0, ',', '.'); ?> VNĐ</span>
+            </div>
+            
+            <div class="summary-row">
+                <span>Phí vận chuyển:</span>
+                <span>Miễn phí</span>
+            </div>
+            
+            <div class="summary-row total">
+                <span>Tổng cộng:</span>
+                <span><?php echo number_format($totalAmount, 0, ',', '.'); ?> VNĐ</span>
+            </div>
+            
+            <a href="cart.php" style="display: block; text-align: center; margin-top: 20px; color: #5d4037; text-decoration: none;">« Quay lại giỏ hàng</a>
         </div>
     </div>
 
@@ -441,158 +551,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            initCheckout();
-        });
-
-        function initCheckout() {
-            const checkoutContent = document.getElementById('checkout-content');
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            if (cart.length === 0) {
-                checkoutContent.innerHTML = `
-                    <div class="empty-cart-message">
-                        <i>🛒</i>
-                        <h3>Giỏ hàng của bạn đang trống</h3>
-                        <p>Vui lòng thêm sản phẩm vào giỏ hàng trước khi thanh toán.</p>
-                        <a href="products.php" class="btn">Mua sắm ngay</a>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Tính tổng tiền
-            let total = 0;
-            cart.forEach(item => {
-                total += item.price * item.quantity;
-            });
-            
-            // Lấy thông tin người dùng nếu đã đăng nhập
-            const userInfo = <?php echo isset($_SESSION['user']) ? json_encode($_SESSION['user']) : 'null'; ?>;
-            
-            checkoutContent.innerHTML = `
-                <form id="checkout-form" method="post" action="checkout.php">
-                    <div class="checkout-grid">
-                        <div class="checkout-form">
-                            <h3 class="section-title">Thông tin nhận hàng</h3>
-                            
-                            <div class="form-group">
-                                <label for="full_name">Họ tên người nhận <span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="full_name" name="full_name" required
-                                    value="${userInfo ? userInfo.name || '' : ''}">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email <span style="color: red">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" required
-                                    value="${userInfo ? userInfo.email || '' : ''}">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Số điện thoại <span style="color: red">*</span></label>
-                                <input type="tel" class="form-control" id="phone" name="phone" required
-                                    value="${userInfo ? userInfo.phone || '' : ''}">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="address">Địa chỉ <span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="address" name="address" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="district">Quận/Huyện <span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="district" name="district" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="city">Tỉnh/Thành phố <span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="city" name="city" required>
-                            </div>
-                            
-                            <h3 class="section-title">Phương thức thanh toán</h3>
-                            
-                            <input type="hidden" id="payment_method" name="payment_method" value="cod">
-                            
-                            <div class="payment-options">
-                                <div class="payment-option selected" onclick="selectPayment('cod', this)">
-                                    <img src="images/cod.png" alt="Thanh toán khi nhận hàng">
-                                    <div>Thanh toán khi nhận hàng</div>
-                                </div>
-                                
-                                <div class="payment-option" onclick="selectPayment('banking', this)">
-                                    <img src="images/banking.png" alt="Chuyển khoản ngân hàng">
-                                    <div>Chuyển khoản ngân hàng</div>
-                                </div>
-                                
-                                <div class="payment-option" onclick="selectPayment('momo', this)">
-                                    <img src="images/momo.png" alt="Ví MoMo">
-                                    <div>Ví MoMo</div>
-                                </div>
-                                
-                                <div class="payment-option" onclick="selectPayment('vnpay', this)">
-                                    <img src="images/vnpay.png" alt="VN Pay">
-                                    <div>VN Pay</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="checkout-summary">
-                            <h3 class="section-title">Thông tin đơn hàng</h3>
-                            
-                            <div class="cart-items">
-                                ${cart.map(item => `
-                                    <div class="cart-item">
-                                        <img src="${item.image}" alt="${item.name}">
-                                        <div class="cart-item-details">
-                                            <div class="cart-item-name">${item.name}</div>
-                                            <div class="cart-item-price">${new Intl.NumberFormat('vi-VN').format(item.price)} VNĐ x ${item.quantity}</div>
-                                        </div>
-                                        <div class="cart-item-total">${new Intl.NumberFormat('vi-VN').format(item.price * item.quantity)} VNĐ</div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <div class="order-totals">
-                                <div class="order-total-row">
-                                    <span>Tạm tính:</span>
-                                    <span>${new Intl.NumberFormat('vi-VN').format(total)} VNĐ</span>
-                                </div>
-                                
-                                <div class="order-total-row">
-                                    <span>Phí vận chuyển:</span>
-                                    <span>Miễn phí</span>
-                                </div>
-                                
-                                <div class="order-total-row grand-total">
-                                    <span>Tổng thanh toán:</span>
-                                    <span>${new Intl.NumberFormat('vi-VN').format(total)} VNĐ</span>
-                                </div>
-                            </div>
-                            
-                            <input type="hidden" name="total_amount" value="${total}">
-                            <input type="hidden" name="cart_items" value='${JSON.stringify(cart)}'>
-                            
-                            <button type="submit" class="btn place-order-btn">Đặt hàng</button>
-                        </div>
-                    </div>
-                </form>
-            `;
-        }
-        
-        function selectPayment(method, element) {
-            document.getElementById('payment_method').value = method;
-            
-            // Remove 'selected' class from all payment options
-            const options = document.querySelectorAll('.payment-option');
-            options.forEach(option => {
-                option.classList.remove('selected');
-            });
-            
-            // Add 'selected' class to the clicked option
-            element.classList.add('selected');
-        }
-    </script>
 </body>
 </html> 

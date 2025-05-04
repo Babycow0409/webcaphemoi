@@ -11,7 +11,9 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $product_id = intval($_GET['id']);
 
 // Lấy thông tin sản phẩm
-$sql = "SELECT * FROM products WHERE id = ?";
+$sql = "SELECT p.*, c.name as category_name FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $product_id);
 $stmt->execute();
@@ -24,19 +26,23 @@ if ($result->num_rows === 0) {
 } else {
     $product = $result->fetch_assoc();
     
-    // Lấy thêm sản phẩm liên quan
-    $related_category = $product['category'];
-    $sql_related = "SELECT * FROM products WHERE category = ? AND id != ? LIMIT 4";
-    $stmt_related = $conn->prepare($sql_related);
-    $stmt_related->bind_param("si", $related_category, $product_id);
-    $stmt_related->execute();
-    $result_related = $stmt_related->get_result();
-    $related_products = [];
-    
-    if ($result_related->num_rows > 0) {
-        while ($row = $result_related->fetch_assoc()) {
-            $related_products[] = $row;
+    // Lấy thêm sản phẩm liên quan dựa trên category_id
+    if (isset($product['category_id']) && !empty($product['category_id'])) {
+        $category_id = $product['category_id'];
+        $sql_related = "SELECT * FROM products WHERE category_id = ? AND id != ? LIMIT 4";
+        $stmt_related = $conn->prepare($sql_related);
+        $stmt_related->bind_param("ii", $category_id, $product_id);
+        $stmt_related->execute();
+        $result_related = $stmt_related->get_result();
+        $related_products = [];
+        
+        if ($result_related->num_rows > 0) {
+            while ($row = $result_related->fetch_assoc()) {
+                $related_products[] = $row;
+            }
         }
+    } else {
+        $related_products = [];
     }
 }
 
@@ -291,6 +297,9 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
             </div>
         </nav>
     </header>
+    
+    <!-- Thông báo thêm vào giỏ hàng -->
+    <div id="cart-message" style="display: none; background-color: #4CAF50; color: white; text-align: center; padding: 10px; position: fixed; top: 80px; left: 50%; transform: translateX(-50%); border-radius: 5px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); width: 300px;"></div>
 
     <div class="container">
         <?php if (isset($product_not_found) && $product_not_found): ?>

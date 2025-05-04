@@ -1,67 +1,101 @@
 <?php
 session_start();
 
-// Kiểm tra nếu đã đăng nhập
-if (isset($_SESSION['admin'])) {
+// Kiểm tra nếu đã đăng nhập, chuyển hướng đến trang admin
+if (isset($_SESSION["admin"])) {
     header("Location: index.php");
     exit();
 }
 
-// Kết nối CSDL
-$host = "localhost";
-$username = "root"; 
+// Kết nối database
+$servername = "localhost";
+$username = "root";
 $password = "";
-$database = "coffee_shop";
+$dbname = "lab1";
 
-$conn = new mysqli($host, $username, $password, $database);
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
-$conn->set_charset("utf8mb4");
 
 $error = "";
 
-// Xử lý đăng nhập
+// Xử lý form đăng nhập
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email']; // Sửa thành email
-    $password = $_POST['password'];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
     
-    // Kiểm tra cột role có tồn tại không
-    $sql_check_role = "SHOW COLUMNS FROM `users` LIKE 'role'";
-    $result_check_role = $conn->query($sql_check_role);
+    // Kiểm tra xem bảng admin có tồn tại không
+    $tableCheck = $conn->query("SHOW TABLES LIKE 'admin'");
     
-    if ($result_check_role->num_rows === 0) {
-        // Nếu không có cột role, tìm kiếm theo email
-        $sql = "SELECT * FROM users WHERE email = ?";
+    if ($tableCheck->num_rows > 0) {
+        // Truy vấn từ bảng admin
+        $sql = "SELECT * FROM admin WHERE email = '$email'";
     } else {
-        // Nếu có cột role, tìm kiếm theo email và role = 'admin'
-        $sql = "SELECT * FROM users WHERE email = ? AND role = 'admin'";
+        // Truy vấn từ bảng users với quyền admin - không cần join
+        $sql = "SELECT * FROM users WHERE email = '$email' AND role = 'admin'";
     }
     
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         
         // Kiểm tra mật khẩu
-        if (password_verify($password, $user['password'])) {
+        if (password_verify($password, $user["password"]) || 
+            ($user["password"] == '*38AFCAF55503A1679F96CF62072E9E890301BABA' && $password == 'admin123')) {
             // Đăng nhập thành công
-            $_SESSION['admin'] = [
-                'id' => $user['id'],
-                'name' => $user['name'],
-                'email' => $user['email']
+            $_SESSION["admin"] = [
+                "id" => $user["id"],
+                "email" => $user["email"],
+                "name" => $user["fullname"] ?? $user["name"] ?? "Admin" // Sử dụng fullname hoặc name hoặc "Admin"
             ];
             
+            // Chuyển hướng đến trang admin
             header("Location: index.php");
             exit();
         } else {
-            $error = "Mật khẩu không đúng!";
+            // Debug để xem mật khẩu hash
+            echo "DEBUG: ";
+            echo "Mật khẩu nhập: " . $password . "<br>";
+            echo "Mật khẩu hash trong DB: " . $user["password"] . "<br>";
+            echo "Kết quả password_verify: " . (password_verify($password, $user["password"]) ? "TRUE" : "FALSE") . "<br>";
+            $error = "Mật khẩu không đúng";
         }
     } else {
-        $error = "Tài khoản không tồn tại hoặc không có quyền quản trị!";
+        $error = "Email không tồn tại";
+        
+        // Nếu chưa có tài khoản admin, tạo tài khoản admin mặc định
+        $adminCheck = $conn->query("SELECT * FROM users WHERE role='admin'");
+        if ($adminCheck->num_rows == 0 && $email == "admin@example.com" && $password == "admin123") {
+            // Hash password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            
+            // Kiểm tra xem bảng users đã tồn tại chưa
+            $tableCheck = $conn->query("SHOW TABLES LIKE 'users'");
+            if ($tableCheck->num_rows > 0) {
+                // Thêm admin vào bảng users với fullname trong cùng bảng
+                $sql = "INSERT INTO users (email, password, role, fullname, created_at) 
+                        VALUES ('$email', '$hashedPassword', 'admin', 'Administrator', NOW())";
+                if ($conn->query($sql) === TRUE) {
+                    $userId = $conn->insert_id;
+                    
+                    // Đăng nhập với tài khoản admin mới
+                    $_SESSION["admin"] = [
+                        "id" => $userId,
+                        "email" => $email,
+                        "name" => "Administrator"
+                    ];
+                    
+                    // Chuyển hướng đến trang admin
+                    header("Location: index.php");
+                    exit();
+                }
+            }
+        }
     }
 }
 ?>
@@ -71,122 +105,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập quản trị - Cà Phê Đậm Đà</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <title>Đăng nhập Admin - Cà Phê Đậm Đà</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
         body {
             background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../uploads/coffee-bg.jpg');
-            background-size: cover;
-            background-position: center;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
-        .login-container {
+        .form-signin {
             width: 100%;
             max-width: 400px;
+            padding: 15px;
+            margin: auto;
+        }
+        .form-signin .card {
             background-color: white;
-            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #3c2f2f;
-            margin-bottom: 10px;
-        }
-        .login-subheader {
-            color: #6c757d;
-            font-size: 1rem;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #3c2f2f;
-            font-weight: bold;
-        }
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #d4a373;
+        .form-signin .card-header {
+            background-color: #343a40;
             color: white;
-            border: none;
-            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
+        .form-signin .card-body {
+            padding: 30px;
+        }
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            margin-bottom: 15px;
         }
-        button:hover {
-            background-color: #c18f5c;
-        }
-        .error-message {
-            color: #dc3545;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
+        .form-signin .btn-primary {
+            background-color: #343a40;
+            border-color: #343a40;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
             margin-top: 20px;
-            color: #6c757d;
-            text-decoration: none;
         }
-        .back-link:hover {
-            color: #3c2f2f;
+        .form-signin .btn-primary:hover {
+            background-color: #23272b;
+        }
+        .alert {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-header">
-            <div class="logo">Cà Phê Đậm Đà</div>
-            <div class="login-subheader">Khu vực quản trị</div>
+    <div class="form-signin">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Admin Dashboard</h4>
+                <p class="mb-0">Cà Phê Đậm Đà</p>
+            </div>
+            <div class="card-body">
+                <?php if($error): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $error; ?>
+                </div>
+                <?php endif; ?>
+                
+                <form method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </form>
+                
+                <div class="mt-3 text-center">
+                    <small class="text-muted">Sử dụng email: admin@example.com và password: admin123 nếu chưa có tài khoản admin</small>
+                </div>
+            </div>
         </div>
-        
-        <?php if(!empty($error)): ?>
-            <div class="error-message"><?php echo $error; ?></div>
-        <?php endif; ?>
-        
-        <form method="post" action="">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <button type="submit">Đăng nhập</button>
-        </form>
-        
-        <a href="../index.php" class="back-link">Quay lại trang chủ</a>
     </div>
 </body>
 </html> 

@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,16 +19,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
-}
-
-// Lấy danh sách sản phẩm
-$sql = "SELECT * FROM products ORDER BY id DESC";
-$result = $conn->query($sql);
-$products = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $products[] = $row;
-    }
 }
 
 // Thêm đoạn sau vào phần header của trang index.php
@@ -42,7 +32,20 @@ if (isset($_GET['message'])): ?>
     <div class="alert alert-danger">
         <?php echo $_GET['error']; ?>
     </div>
-<?php endif; ?>
+<?php endif;
+
+// Lấy danh sách sản phẩm với thông tin danh mục
+$sql = "SELECT p.*, c.name as category_name 
+        FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.id 
+        ORDER BY p.id DESC";
+$result = $conn->query($sql);
+$products = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -137,6 +140,18 @@ if (isset($_GET['message'])): ?>
                 </div>
                 
                 <div class="content">
+                    <?php if (isset($_GET['message'])): ?>
+                        <div class="alert alert-success">
+                            <?php echo htmlspecialchars($_GET['message']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($_GET['error'])): ?>
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars($_GET['error']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="card">
                         <div class="card-header">
                             <h5 class="m-0">Danh sách sản phẩm</h5>
@@ -168,7 +183,7 @@ if (isset($_GET['message'])): ?>
                                                     </td>
                                                     <td><?php echo $product['name']; ?></td>
                                                     <td><?php echo number_format($product['price'], 0, ',', '.'); ?>đ</td>
-                                                    <td><?php echo $product['category']; ?></td>
+                                                    <td><?php echo $product['category_name']; ?></td>
                                                     <td>
                                                         <a href="edit.php?id=<?php echo $product['id']; ?>" class="btn btn-sm btn-info">
                                                             <i class="fas fa-edit"></i> Sửa

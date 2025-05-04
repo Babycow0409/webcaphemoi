@@ -2,19 +2,59 @@
 session_start();
 require_once 'includes/db_connect.php';
 
-// Thay vì truy vấn theo featured, chỉ lấy các sản phẩm mới nhất
-$sql = "SELECT * FROM products ORDER BY id DESC LIMIT 8";
-$result = $conn->query($sql);
-$featured_products = [];
-
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $featured_products[] = $row;
+// Lấy danh mục sản phẩm từ database
+try {
+    $sql_categories = "SELECT * FROM categories ORDER BY id ASC";
+    $result_categories = $conn->query($sql_categories);
+    $categories = [];
+    
+    if ($result_categories && $result_categories->num_rows > 0) {
+        while ($row = $result_categories->fetch_assoc()) {
+            $categories[] = $row;
+        }
     }
+} catch (Exception $e) {
+    // Nếu có lỗi khi truy vấn bảng categories, dùng danh mục mặc định
+    $categories = [
+        ['id' => 1, 'name' => 'Arabica'],
+        ['id' => 2, 'name' => 'Robusta'],
+        ['id' => 3, 'name' => 'Chồn'],
+        ['id' => 4, 'name' => 'Khác']
+    ];
 }
 
-// Nếu bạn vẫn muốn thêm cột featured vào bảng, bạn có thể dùng câu lệnh SQL sau trong phpMyAdmin:
-// ALTER TABLE products ADD COLUMN featured TINYINT(1) DEFAULT 0;
+// Lấy sản phẩm nổi bật từ database
+try {
+    // Kiểm tra xem cột featured có tồn tại trong bảng products hay không
+    $checkFeaturedColumn = $conn->query("SHOW COLUMNS FROM products LIKE 'featured'");
+    
+    if ($checkFeaturedColumn && $checkFeaturedColumn->num_rows > 0) {
+        // Nếu có cột featured, ưu tiên lấy sản phẩm nổi bật
+        $sql = "SELECT * FROM products WHERE featured = 1 AND active = 1 ORDER BY id DESC LIMIT 8";
+        $result = $conn->query($sql);
+        
+        // Nếu không có sản phẩm nổi bật, lấy tất cả sản phẩm
+        if ($result && $result->num_rows == 0) {
+            $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id DESC LIMIT 8";
+            $result = $conn->query($sql);
+        }
+    } else {
+        // Nếu không có cột featured, lấy tất cả sản phẩm
+        $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id DESC LIMIT 8";
+        $result = $conn->query($sql);
+    }
+    
+    $featured_products = [];
+    
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $featured_products[] = $row;
+        }
+    }
+} catch (Exception $e) {
+    // Nếu có lỗi khi truy vấn bảng products
+    $featured_products = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -23,6 +63,7 @@ if ($result && $result->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ - Cà Phê Đậm Đà</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { padding-top: 100px; line-height: 1.6; }
@@ -109,6 +150,15 @@ if ($result && $result->num_rows > 0) {
         .product-card h3 { margin: 15px 0; color: #3c2f2f; cursor: pointer; }
         .product-card h3:hover { color: #d4a373; }
         .product-card p { color: #555; margin-bottom: 15px; }
+        .product-category {
+            display: inline-block;
+            background-color: #3c2f2f;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
         footer {
             background-color: #3c2f2f;
             color: white;
@@ -205,41 +255,18 @@ if ($result && $result->num_rows > 0) {
                     <a href="products.php">Sản phẩm</a>
                     <div class="dropdown-content">
                         <a href="products.php">Tất cả</a>
-                        <a href="arabica.php">Arabica</a>
-                        <a href="robusta.php">Robusta</a>
-                        <a href="chon.php">Chồn</a>
-                        <a href="Khac.php">Khác</a>
+                        <?php foreach($categories as $category): ?>
+                        <a href="products.php?category=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <a href="#about">Giới thiệu</a>
                 <a href="#contact">Liên hệ</a>
                 <a href="cart.php">Giỏ hàng</a>
                 <?php
-                if(isset($_SESSION['user'])) {
-                    // Kiểm tra xem có đơn hàng đang xử lý không
-                    $has_pending_orders = false; // Biến này sẽ được set true nếu có đơn hàng đang xử lý
-                    if(isset($_SESSION['orders'])) {
-                        foreach($_SESSION['orders'] as $order) {
-                            if($order['status'] != 'completed') {
-                                $has_pending_orders = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    echo '<div class="dropdown">
-                        <a href="#">Tài khoản</a>
-                        <div class="dropdown-content">
-                            <a href="profile.php">Thông tin cá nhân</a>
-                            <a href="orders.php">Đơn hàng';
-                    // Hiển thị badge nếu có đơn hàng đang xử lý
-                    if($has_pending_orders) {
-                        echo ' <span class="order-badge">!</span>';
-                    }
-                    echo '</a>
-                            <a href="logout.php">Đăng xuất</a>
-                        </div>
-                    </div>';
+                if(isset($_SESSION['user_id'])) {
+                    echo '<span style="color: #d4a373; margin-right: 15px;">Xin chào, ' . htmlspecialchars($_SESSION['fullname']) . '</span>';
+                    echo '<a href="logout.php">Đăng xuất</a>';
                 } else {
                     echo '<a href="login.php">Đăng nhập</a>';
                     echo '<a href="register.php">Đăng ký</a>';
@@ -256,47 +283,65 @@ if ($result && $result->num_rows > 0) {
             <a href="products.php" class="btn">Khám phá sản phẩm</a>
         </div>
     </section>
-
+    
     <section class="category-section">
         <h2>Danh mục sản phẩm</h2>
         <div class="category-grid">
-            <a href="arabica.php" class="category-card">
-                <img src="https://lh6.googleusercontent.com/proxy/ULqvKQ2UCFsMhYAqAbJE1VXiCR4I6IDe6dtj5t5h7qBXzhy4bqhlzOC3FlzOXHrOcvWBb_oiCQRi0U4ZXBOK3vA" alt="Arabica">
+            <?php 
+            // Hình ảnh mặc định cho các danh mục
+            $default_images = [
+                1 => 'https://lh6.googleusercontent.com/proxy/ULqvKQ2UCFsMhYAqAbJE1VXiCR4I6IDe6dtj5t5h7qBXzhy4bqhlzOC3FlzOXHrOcvWBb_oiCQRi0U4ZXBOK3vA',
+                2 => 'https://bizweb.dktcdn.net/thumb/1024x1024/100/512/697/products/r-bot-1719824345076.jpg?v=1719829974003',
+                3 => 'https://vn-live-01.slatic.net/p/cdf5f80d6feaa2e85e10968606ea4df6.jpg',
+                4 => 'https://image.made-in-china.com/2f0j00ftbUBTwEaGcq/Vietnam-Kopi-Luwak-Coffee-Bean-Civet-Coffee-Kopi-Civet-Cat-Coffee-Bean.jpg'
+            ];
+            
+            foreach($categories as $category): 
+                $cat_id = $category['id'];
+                $image = isset($category['image']) && !empty($category['image']) ? $category['image'] : (isset($default_images[$cat_id]) ? $default_images[$cat_id] : 'images/category-default.jpg');
+            ?>
+            <a href="products.php?category=<?php echo $cat_id; ?>" class="category-card">
+                <img src="<?php echo $image; ?>" alt="<?php echo $category['name']; ?>" onerror="this.src='images/category-default.jpg'">
                 <div class="category-overlay">
-                    <div class="category-title">Cà phê Arabica</div>
+                    <div class="category-title"><?php echo $category['name']; ?></div>
                 </div>
             </a>
-            <a href="robusta.php" class="category-card">
-                <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/512/697/products/r-bot-1719824345076.jpg?v=1719829974003" alt="Robusta">
-                <div class="category-overlay">
-                    <div class="category-title">Cà phê Robusta</div>
-                </div>
-            </a>
-            <a href="chon.php" class="category-card">
-                <img src="https://vn-live-01.slatic.net/p/cdf5f80d6feaa2e85e10968606ea4df6.jpg" alt="Chồn">
-                <div class="category-overlay">
-                    <div class="category-title">Cà phê Chồn</div>
-                </div>
-            </a>
+            <?php endforeach; ?>
         </div>
     </section>
-
+    
     <section class="featured" id="featured">
         <h2>Sản phẩm nổi bật</h2>
         <div class="featured-products">
-            <?php
-            foreach ($featured_products as $product) {
-                echo "
-                <div class='product-card'>
-                    <a href='product-detail.php?id={$product['id']}'>
-                        <img src='{$product['image']}' alt='{$product['name']}'>
-                    </a>
-                    <a href='product-detail.php?id={$product['id']}'><h3>{$product['name']}</h3></a>
-                    <p>" . number_format($product['price'], 0, ',', '.') . " VNĐ / {$product['weight']}</p>
-                    <a href='#' class='btn' onclick=\"addToCart('{$product['name']} - {$product['weight']}', {$product['price']})\">Thêm vào giỏ</a>
-                </div>";
-            }
-            ?>
+            <?php if (count($featured_products) > 0): ?>
+                <?php foreach ($featured_products as $product): ?>
+                    <?php
+                    // Lấy tên danh mục từ category_id nếu có
+                    $category_name = "";
+                    if (isset($product['category_id'])) {
+                        foreach ($categories as $cat) {
+                            if (isset($cat['id']) && $cat['id'] == $product['category_id']) {
+                                $category_name = $cat['name'];
+                                break;
+                            }
+                        }
+                    }
+                    ?>
+                    <div class='product-card'>
+                        <?php if (!empty($category_name)): ?>
+                        <span class='product-category'><?php echo $category_name; ?></span>
+                        <?php endif; ?>
+                        <a href='product-detail.php?id=<?php echo $product['id']; ?>'>
+                            <img src='<?php echo htmlspecialchars($product['image']); ?>' alt='<?php echo htmlspecialchars($product['name']); ?>' onerror="this.src='images/default-product.jpg'">
+                        </a>
+                        <a href='product-detail.php?id=<?php echo $product['id']; ?>'><h3><?php echo htmlspecialchars($product['name']); ?></h3></a>
+                        <p><?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ<?php echo isset($product['weight']) ? ' / ' . $product['weight'] : ''; ?></p>
+                        <a href='add-to-cart.php?id=<?php echo $product['id']; ?>&name=<?php echo urlencode($product['name']); ?>&price=<?php echo urlencode($product['price']); ?>&image=<?php echo urlencode($product['image']); ?>&quantity=1' class='btn'>Thêm vào giỏ hàng</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style='text-align: center; grid-column: 1/-1;'>Chưa có sản phẩm nào.</p>
+            <?php endif; ?>
         </div>
         <a href="products.php" class="btn" style="margin-top: 30px;">Xem tất cả sản phẩm</a>
     </section>
@@ -310,39 +355,24 @@ if ($result && $result->num_rows > 0) {
             Chúng tôi trực tiếp hợp tác với các nông trại cà phê tại Tây Nguyên, nơi sản sinh ra những hạt cà phê chất lượng nhất Việt Nam. Quy trình rang xay được kiểm soát nghiêm ngặt để đảm bảo giữ trọn hương vị đặc trưng của từng loại cà phê. Với phương châm "Từ nông trại đến tách cà phê", chúng tôi mang đến cho bạn những trải nghiệm cà phê đích thực và nguyên bản nhất.
         </p>
     </section>
-
-    <footer id="contact">
+    
+    <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <h2 style="color: white;">Liên hệ</h2>
-            <p style="margin: 20px 0;">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Liên hệ</h2>
+            <p style="margin: 20px 0; text-align: center;">
                 Địa chỉ: 123 Đường Nguyễn Huệ, Quận 1, TP.HCM<br>
                 Email: info@caphedamda.com<br>
                 Điện thoại: 0909 123 456
             </p>
-            <div style="margin: 20px 0;">
-                <a href="#" style="color: #d4a373; margin: 0 10px;">Facebook</a>
-                <a href="#" style="color: #d4a373; margin: 0 10px;">Instagram</a>
-                <a href="#" style="color: #d4a373; margin: 0 10px;">Twitter</a>
+            <div style="margin: 20px 0; text-align: center;">
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a>
             </div>
-            <p style="margin-top: 20px; font-size: 0.9em;">
+            <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #aaa;">
                 © 2023 Cà Phê Đậm Đà. Tất cả các quyền được bảo lưu.
             </p>
         </div>
     </footer>
-
-    <script>
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${name} đã được thêm vào giỏ hàng!`);
-        }
-    </script>
 </body>
 </html>

@@ -8,28 +8,54 @@ if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
     foreach($_SESSION['cart'] as &$item) {
         // Kiểm tra và sửa đường dẫn ảnh không hợp lệ
         if(!isset($item['image']) || empty($item['image']) || !file_exists($item['image'])) {
-            // Xử lý đường dẫn ảnh dựa trên tên sản phẩm
-            if(isset($item['name'])) {
-                $name = strtolower($item['name']);
-                if(strpos($name, 'arabica') !== false) {
-                    if(strpos($name, 'cầu đất') !== false || strpos($name, 'caudat') !== false) {
-                        $item['image'] = 'images/arabica-caudat.jpg';
-                    } else {
-                        $item['image'] = 'images/arabica.jpg';
+            // Trước tiên, kiểm tra xem sản phẩm có tồn tại trong cơ sở dữ liệu không
+            if(isset($item['id'])) {
+                // Truy vấn cơ sở dữ liệu để lấy thông tin sản phẩm
+                $stmt = $conn->prepare("SELECT image FROM products WHERE id = ?");
+                $stmt->bind_param("i", $item['id']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                
+                if($result && $result->num_rows > 0) {
+                    $product = $result->fetch_assoc();
+                    $imagePath = $product['image'];
+                    
+                    // Kiểm tra xem đường dẫn hình ảnh có cần thêm tiền tố 'uploads/products/' không
+                    if(!empty($imagePath)) {
+                        if(strpos($imagePath, 'uploads/') === false && strpos($imagePath, 'images/') === false) {
+                            $imagePath = 'uploads/products/' . $imagePath;
+                        }
+                        $item['image'] = $imagePath;
                     }
-                } else if(strpos($name, 'robusta') !== false) {
-                    if(strpos($name, 'đắk lắk') !== false || strpos($name, 'daklak') !== false) {
-                        $item['image'] = 'images/robusta-daklak.jpg';
-                    } else if(strpos($name, 'ấn độ') !== false || strpos($name, 'india') !== false) {
-                        $item['image'] = 'images/robusta-india.jpg';
+                }
+            }
+            
+            // Nếu vẫn không có hình ảnh hợp lệ, sử dụng hình ảnh mặc định dựa trên tên sản phẩm
+            if(!isset($item['image']) || empty($item['image']) || !file_exists($item['image'])) {
+                if(isset($item['name'])) {
+                    $name = strtolower($item['name']);
+                    if(strpos($name, 'arabica') !== false) {
+                        if(strpos($name, 'cầu đất') !== false || strpos($name, 'caudat') !== false) {
+                            $item['image'] = 'images/arabica-caudat.jpg';
+                        } else {
+                            $item['image'] = 'images/arabica.jpg';
+                        }
+                    } else if(strpos($name, 'robusta') !== false) {
+                        if(strpos($name, 'đắk lắk') !== false || strpos($name, 'daklak') !== false) {
+                            $item['image'] = 'images/robusta-daklak.jpg';
+                        } else if(strpos($name, 'ấn độ') !== false || strpos($name, 'india') !== false) {
+                            $item['image'] = 'images/robusta-india.jpg';
+                        } else {
+                            $item['image'] = 'images/robusta.jpg';
+                        }
+                    } else if(strpos($name, 'chồn') !== false || strpos($name, 'chon') !== false) {
+                        $item['image'] = 'images/coffee-chon.jpg';
                     } else {
-                        $item['image'] = 'images/robusta.jpg';
+                        $item['image'] = 'images/default-product.jpg';
                     }
                 } else {
                     $item['image'] = 'images/default-product.jpg';
                 }
-            } else {
-                $item['image'] = 'images/default-product.jpg';
             }
         }
     }
@@ -49,21 +75,29 @@ if(isset($_GET['reset'])) {
 // XỬ LÝ CÁC THAO TÁC VỚI GIỎ HÀNG
 if(isset($_GET['action']) && isset($_GET['id'])) {
     $action = $_GET['action'];
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];
     
     // Lấy giỏ hàng từ session hoặc tạo mới nếu chưa có
     $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
     
     if($action == 'remove') {
+        // Ghi log trước khi xóa sản phẩm
+        file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Removing product ID: ' . $id . " from cart\n", FILE_APPEND);
+        file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Cart before removal: ' . print_r($cart, true) . "\n", FILE_APPEND);
+        
         // Xóa sản phẩm từ giỏ hàng
         foreach($cart as $key => $item) {
-            if(isset($item['id']) && $item['id'] == $id) {
+            $itemId = isset($item['id']) ? (int)$item['id'] : 0;
+            if($itemId === $id) {
                 unset($cart[$key]);
+                file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Removed product ID: ' . $id . " from cart\n", FILE_APPEND);
                 break;
             }
         }
         // Cập nhật lại session với mảng đã xếp lại chỉ số
         $_SESSION['cart'] = array_values($cart);
+        
+        file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Cart after removal: ' . print_r($_SESSION['cart'], true) . "\n", FILE_APPEND);
         
         // Cập nhật lại localStorage và chuyển hướng
         echo '<script>
@@ -75,15 +109,30 @@ if(isset($_GET['action']) && isset($_GET['id'])) {
     else if($action == 'update' && isset($_GET['quantity'])) {
         $quantity = (int)$_GET['quantity'];
         if($quantity > 0) {
+            // Ghi log trước khi cập nhật số lượng
+            file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Updating product ID: ' . $id . ' quantity to: ' . $quantity . "\n", FILE_APPEND);
+            file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Cart before update: ' . print_r($cart, true) . "\n", FILE_APPEND);
+            
             // Cập nhật số lượng sản phẩm
+            $updated = false;
             foreach($cart as $key => $item) {
-                if(isset($item['id']) && $item['id'] == $id) {
+                $itemId = isset($item['id']) ? (int)$item['id'] : 0;
+                if($itemId === $id) {
                     $cart[$key]['quantity'] = $quantity;
+                    $updated = true;
+                    file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Updated product ID: ' . $id . ' quantity to: ' . $quantity . "\n", FILE_APPEND);
                     break;
                 }
             }
+            
+            if (!$updated) {
+                file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Could not find product ID: ' . $id . ' in cart for update' . "\n", FILE_APPEND);
+            }
+            
             // Cập nhật session
-            $_SESSION['cart'] = $cart;
+            $_SESSION['cart'] = array_values($cart);
+            
+            file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Cart after update: ' . print_r($_SESSION['cart'], true) . "\n", FILE_APPEND);
             
             // Cập nhật localStorage và chuyển hướng
             echo '<script>
@@ -114,6 +163,7 @@ if(empty($cart)) {
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.onreadystatechange = function() {
                         if(xhr.readyState === 4 && xhr.status === 200) {
+                            console.log("Đã đồng bộ giỏ hàng từ localStorage:", cart.length, "sản phẩm");
                             window.location.reload();
                         }
                     };
@@ -125,6 +175,21 @@ if(empty($cart)) {
         }
     };
     </script>';
+} else {
+    // Nếu đã có giỏ hàng trong session, đảm bảo localStorage cũng được cập nhật
+    echo '<script>
+    window.onload = function() {
+        var sessionCart = ' . json_encode($cart) . ';
+        localStorage.setItem("cart", JSON.stringify(sessionCart));
+        console.log("Đã đồng bộ giỏ hàng từ session vào localStorage:", sessionCart.length, "sản phẩm");
+        
+        // Cập nhật số lượng sản phẩm trên biểu tượng giỏ hàng
+        const cartCountElement = document.getElementById("cartCount");
+        if (cartCountElement) {
+            cartCountElement.textContent = sessionCart.length;
+        }
+    };
+    </script>';
 }
 
 // Xử lý đồng bộ từ localStorage
@@ -132,9 +197,25 @@ if(isset($_POST['sync_cart'])) {
     $cartData = $_POST['sync_cart'];
     $cartArray = json_decode($cartData, true);
     
+    // Log dữ liệu nhận được
+    file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Sync cart data: ' . $cartData . "\n", FILE_APPEND);
+    
     if(is_array($cartArray) && !empty($cartArray)) {
+        // Đảm bảo dữ liệu hợp lệ
+        $validCart = [];
+        foreach($cartArray as $item) {
+            if(isset($item['id'], $item['name'], $item['price'])) {
+                // Kiểm tra số lượng hợp lệ
+                if(!isset($item['quantity']) || $item['quantity'] < 1) {
+                    $item['quantity'] = 1;
+                }
+                $validCart[] = $item;
+            }
+        }
+        
         // Lưu vào session
-        $_SESSION['cart'] = $cartArray;
+        $_SESSION['cart'] = array_values($validCart);
+        file_put_contents('cart_log.txt', date('Y-m-d H:i:s') . ' - Synced cart count: ' . count($_SESSION['cart']) . "\n", FILE_APPEND);
         echo "OK";
     }
     exit;
@@ -425,7 +506,10 @@ foreach($cart as $item) {
                 <a href="#contact">Liên hệ</a>
                 <a href="cart.php">Giỏ hàng</a>
                 <?php
-                if(isset($_SESSION['user'])) {
+                if(isset($_SESSION['user_id'])) {
+                    // Hiển thị tên người dùng nếu đã đăng nhập
+                    echo '<span style="color: #d4a373; margin-right: 15px;">Xin chào, ' . (isset($_SESSION['fullname']) ? htmlspecialchars($_SESSION['fullname']) : 'Khách hàng') . '</span>';
+                    
                     // Kiểm tra xem có đơn hàng đang xử lý không
                     $has_pending_orders = false;
                     if(isset($_SESSION['orders'])) {
@@ -461,6 +545,27 @@ foreach($cart as $item) {
     <div class="cart-container">
         <h1>Giỏ hàng của bạn</h1>
         
+        <?php
+        // Kiểm tra xem có hình ảnh nào bị thiếu không
+        $missing_images = false;
+        if(!empty($cart)) {
+            foreach($cart as $item) {
+                if(isset($item['image']) && !file_exists($item['image'])) {
+                    $missing_images = true;
+                    break;
+                }
+            }
+        }
+        
+        // Hiển thị thông báo nếu có hình ảnh bị thiếu
+        if($missing_images) {
+            echo '<div style="background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+                <h4 style="margin-top: 0;">Lưu ý: Một số hình ảnh sản phẩm không hiển thị được</h4>
+                <p>Để xem hình ảnh sản phẩm đầy đủ, vui lòng <a href="download-images.php" style="color: #856404; font-weight: bold;">nhấn vào đây</a> để tải hình ảnh.</p>
+            </div>';
+        }
+        ?>
+        
         <div id="cart-content">
             <?php
             // Kiểm tra giỏ hàng trống
@@ -472,6 +577,9 @@ foreach($cart as $item) {
                     <a href="products.php" class="btn">Tiếp tục mua sắm</a>
                 </div>';
             } else {
+                // Hiển thị thông tin debug
+                echo '<!-- Số lượng sản phẩm trong giỏ: ' . count($cart) . ' -->';
+                
                 echo '<table class="cart-table">
                     <thead>
                         <tr>
@@ -484,8 +592,10 @@ foreach($cart as $item) {
                     </thead>
                     <tbody>';
                 
+                $total_items = 0;
+                
                 // Hiển thị từng sản phẩm
-                foreach($cart as $item) {
+                foreach($cart as $index => $item) {
                     // Kiểm tra sản phẩm hợp lệ
                     if(!isset($item['id']) || !isset($item['name']) || !isset($item['price'])) {
                         continue;
@@ -496,15 +606,12 @@ foreach($cart as $item) {
                     $price = (int)$item['price'];
                     $quantity = isset($item['quantity']) ? (int)$item['quantity'] : 1;
                     $itemTotal = $price * $quantity;
+                    $total_items++;
                     
                     // Xử lý đường dẫn ảnh
-                    $imageSrc = 'images/default-product.jpg';
-                    if(strpos($name, 'Robusta Ấn Độ') !== false) {
-                        $imageSrc = 'images/robusta-india.jpg';
-                    } elseif(isset($item['image']) && !empty($item['image'])) {
-                        $imageSrc = htmlspecialchars($item['image']);
-                    }
+                    $imageSrc = isset($item['image']) && !empty($item['image']) ? htmlspecialchars($item['image']) : 'images/default-product.jpg';
                     
+                    echo '<!-- Hiển thị sản phẩm #' . $index . ' - ' . $id . ' -->';
                     echo '<tr>
                         <td>
                             <div style="display: flex; align-items: center;">
@@ -518,9 +625,9 @@ foreach($cart as $item) {
                         <td>'.number_format($price, 0, ',', '.').' VNĐ</td>
                         <td>
                             <div class="quantity-control">
-                                <a href="cart.php?action=update&id='.$id.'&quantity='.($quantity > 1 ? $quantity - 1 : 1).'" class="quantity-btn" style="display:inline-block; text-align:center; line-height:30px; text-decoration:none;">-</a>
+                                <a href="javascript:void(0)" onclick="updateQuantity(\''.$id.'\', '.($quantity > 1 ? $quantity - 1 : 1).')" class="quantity-btn" style="display:inline-block; text-align:center; line-height:30px; text-decoration:none;">-</a>
                                 <span class="quantity-input">'.$quantity.'</span>
-                                <a href="cart.php?action=update&id='.$id.'&quantity='.($quantity + 1).'" class="quantity-btn" style="display:inline-block; text-align:center; line-height:30px; text-decoration:none;">+</a>
+                                <a href="javascript:void(0)" onclick="updateQuantity(\''.$id.'\', '.($quantity + 1).')" class="quantity-btn" style="display:inline-block; text-align:center; line-height:30px; text-decoration:none;">+</a>
                             </div>
                         </td>
                         <td>'.number_format($itemTotal, 0, ',', '.').' VNĐ</td>
@@ -533,26 +640,43 @@ foreach($cart as $item) {
                 echo '</tbody>
                 </table>';
                 
-                // Hiển thị tổng đơn hàng
-                echo '<div class="cart-summary">
-                    <h3>Tổng đơn hàng</h3>
-                    <div class="summary-row">
-                        <span>Tạm tính:</span>
-                        <span>'.number_format($totalAmount, 0, ',', '.').' VNĐ</span>
+                // Tính tổng tiền và hiển thị nút thanh toán
+                if(count($cart) > 0) {
+                    $total = array_reduce($cart, function($carry, $item) {
+                        return $carry + $item['price'] * $item['quantity'];
+                    }, 0);
+                ?>
+                    <div class="cart-summary">
+                        <h2>Tổng đơn hàng (Số lượng sản phẩm: <?= count($cart) ?>)</h2>
+                        <hr>
+                        <div class="summary-row">
+                            <span>Tạm tính:</span>
+                            <span><?= number_format($total, 0, '.', '.') ?> VND</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span>Miễn phí</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span><?= number_format($total, 0, '.', '.') ?> VND</span>
+                        </div>
+                        
+                        <a href="checkout.php" class="checkout-btn">Tiến hành thanh toán</a>
+                        
+                        <div class="continue-shopping">
+                            <a href="products.php">← Tiếp tục mua sắm</a>
+                            <a href="cart.php?reset=1" class="clear-cart">Xóa toàn bộ giỏ hàng</a>
+                        </div>
                     </div>
-                    <div class="summary-row">
-                        <span>Phí vận chuyển:</span>
-                        <span>Miễn phí</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Tổng cộng:</span>
-                        <span>'.number_format($totalAmount, 0, ',', '.').' VNĐ</span>
-                    </div>
-                    
-                    <a href="checkout.php" class="btn checkout-btn">Tiến hành thanh toán</a>
-                    <a href="products.php" class="continue-shopping">← Tiếp tục mua sắm</a>
-                    <a href="cart.php?reset=1" style="margin-top: 10px; text-align: center; display: block; color: #dc3545; text-decoration: none;" onclick="return confirm(\'Bạn có chắc muốn xóa toàn bộ giỏ hàng?\')">Xóa toàn bộ giỏ hàng</a>
-                </div>';
+                <?php
+                } else {
+                    echo '<div class="empty-cart">
+                        <h2>Giỏ hàng của bạn đang trống</h2>
+                        <p>Hãy thêm sản phẩm vào giỏ hàng để mua sắm.</p>
+                        <a href="products.php" class="btn">Tiếp tục mua sắm</a>
+                    </div>';
+                }
             }
             ?>
         </div>
@@ -583,11 +707,67 @@ foreach($cart as $item) {
         var sessionCart = <?php echo json_encode($cart); ?>;
         localStorage.setItem('cart', JSON.stringify(sessionCart));
         
+        // Tính tổng tiền
+        var totalAmount = 0;
+        sessionCart.forEach(function(item) {
+            totalAmount += (item.price * item.quantity);
+        });
+        
         // Hiển thị debug info trong console
         console.log('Giỏ hàng (session):', sessionCart);
         console.log('Giỏ hàng (localStorage):', JSON.parse(localStorage.getItem('cart') || '[]'));
-        console.log('Tổng tiền:', <?php echo $totalAmount; ?>);
+        console.log('Tổng tiền:', totalAmount);
+        console.log('Số lượng sản phẩm:', sessionCart.length);
+        
+        // Cập nhật số lượng trong badge
+        const cartCountElement = document.getElementById('cartCount');
+        if (cartCountElement) {
+            cartCountElement.textContent = sessionCart.length;
+        }
+        
+        // Kiểm tra chi tiết từng sản phẩm
+        if (sessionCart.length > 0) {
+            console.log('Chi tiết sản phẩm trong giỏ hàng:');
+            sessionCart.forEach(function(item, index) {
+                console.log(`Sản phẩm ${index + 1}:`, item);
+            });
+        }
+        
+        // Hiển thị thông báo nếu có sự không đồng bộ giữa localStorage và session
+        var localCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (JSON.stringify(localCart) !== JSON.stringify(sessionCart)) {
+            console.warn('Phát hiện sự không đồng bộ giữa localStorage và session, đang đồng bộ lại...');
+            localStorage.setItem('cart', JSON.stringify(sessionCart));
+        }
     });
+    
+    // Hàm cập nhật số lượng sản phẩm
+    function updateQuantity(id, quantity) {
+        if (quantity <= 0) return;
+        
+        // Chuyển hướng đến URL cập nhật
+        window.location.href = 'cart.php?action=update&id=' + id + '&quantity=' + quantity;
+    }
     </script>
+
+    <!-- Debug: Hiển thị thông tin giỏ hàng -->
+    <div style="margin-top: 50px; padding: 20px; background: #f5f5f5; border-radius: 5px;">
+        <h3>Debug: Thông tin giỏ hàng (<?= count($cart) ?> sản phẩm)</h3>
+        <pre style="background: #fff; padding: 10px; border-radius: 5px; overflow: auto; max-height: 300px;">
+    <?php 
+    $cart_debug = [];
+    foreach($cart as $item) {
+        $cart_debug[] = [
+            'id' => $item['id'] . ' (' . gettype($item['id']) . ')',
+            'name' => $item['name'],
+            'price' => $item['price'],
+            'quantity' => $item['quantity'],
+            'image' => $item['image']
+        ];
+    }
+    print_r($cart_debug); 
+    ?>
+        </pre>
+    </div>
 </body>
 </html> 

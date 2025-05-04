@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -161,7 +161,7 @@ if ($result && $result->num_rows > 0) {
                                     <?php foreach ($users as $user): ?>
                                         <tr>
                                             <td><?php echo $user['id']; ?></td>
-                                            <td><?php echo $user['name'] ?? 'N/A'; ?></td>
+                                            <td><?php echo isset($user['fullname']) ? $user['fullname'] : (isset($user['name']) ? $user['name'] : 'N/A'); ?></td>
                                             <td><?php echo $user['email']; ?></td>
                                             <td><?php echo $user['phone'] ?? 'N/A'; ?></td>
                                             <td><?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></td>

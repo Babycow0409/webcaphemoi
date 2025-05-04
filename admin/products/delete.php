@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,32 +29,27 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $product_id = intval($_GET['id']);
 
-// Kiểm tra xem cột active đã tồn tại trong bảng products chưa
-$check_column = "SHOW COLUMNS FROM products LIKE 'active'";
-$result = $conn->query($check_column);
+// Lấy thông tin sản phẩm trước khi xóa
+$sql_select = "SELECT * FROM products WHERE id = ?";
+$stmt_select = $conn->prepare($sql_select);
+$stmt_select->bind_param("i", $product_id);
+$stmt_select->execute();
+$result_select = $stmt_select->get_result();
+$product = $result_select->fetch_assoc();
 
-if ($result->num_rows > 0) {
-    // Cột active đã tồn tại, cập nhật trạng thái
-    $sql = "UPDATE products SET active = 0 WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id);
-    
-    if ($stmt->execute()) {
-        header("Location: index.php?message=Sản phẩm đã được ẩn thành công");
-    } else {
-        header("Location: index.php?error=Có lỗi xảy ra khi ẩn sản phẩm");
+// Xóa sản phẩm
+$sql = "DELETE FROM products WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+
+if ($stmt->execute()) {
+    // Xóa file hình ảnh nếu có
+    if (!empty($product['image']) && file_exists("../../" . $product['image'])) {
+        unlink("../../" . $product['image']);
     }
+    header("Location: index.php?message=Sản phẩm đã được xóa thành công");
 } else {
-    // Cột active chưa tồn tại, xóa sản phẩm
-    $sql = "DELETE FROM products WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $product_id);
-    
-    if ($stmt->execute()) {
-        header("Location: index.php?message=Sản phẩm đã được xóa thành công");
-    } else {
-        header("Location: index.php?error=Có lỗi xảy ra khi xóa sản phẩm");
-    }
+    header("Location: index.php?error=Có lỗi xảy ra khi xóa sản phẩm: " . $conn->error);
 }
 
 exit();

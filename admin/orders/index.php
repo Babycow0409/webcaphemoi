@@ -11,7 +11,7 @@ if (!isset($_SESSION['admin'])) {
 $host = "localhost";
 $username = "root"; 
 $password = "";
-$database = "coffee_shop";
+$database = "lab1";
 
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
@@ -40,26 +40,141 @@ if (isset($_GET['action']) && $_GET['action'] == 'update_status' && isset($_GET[
     }
 }
 
-// Kiểm tra xem bảng users có cột name không
-$sql_check_name = "SHOW COLUMNS FROM `users` LIKE 'name'";
-$result_check_name = $conn->query($sql_check_name);
-$has_name_column = ($result_check_name->num_rows > 0);
+// Kiểm tra bảng orders có tồn tại không
+$orders_exist = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows > 0;
 
-// Lấy danh sách đơn hàng
-if ($has_name_column) {
-    $sql = "SELECT o.*, u.name as customer_name 
-            FROM orders o 
-            LEFT JOIN users u ON o.user_id = u.id 
-            ORDER BY o.created_at DESC";
+if (!$orders_exist) {
+    // Tạo bảng orders nếu chưa tồn tại
+    $sql_create_orders = "CREATE TABLE `orders` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `user_id` int(11) NOT NULL,
+        `total_amount` decimal(10,2) NOT NULL,
+        `status` varchar(50) NOT NULL DEFAULT 'pending',
+        `payment_method` varchar(50) NOT NULL DEFAULT 'cash',
+        `shipping_address` text NOT NULL,
+        `order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (`id`)
+    )";
+    $conn->query($sql_create_orders);
+    
+    echo "<div class='alert alert-info'>Bảng orders vừa được tạo. Chưa có đơn hàng nào.</div>";
+    $orders = [];
 } else {
-    // Nếu không có cột name, sử dụng email hoặc id làm customer_name
-    $sql = "SELECT o.*, u.email as customer_name 
-            FROM orders o 
-            LEFT JOIN users u ON o.user_id = u.id 
-            ORDER BY o.created_at DESC";
-}
+    // Kiểm tra cấu trúc bảng orders để biết các cột có sẵn
+    $orders_columns = $conn->query("SHOW COLUMNS FROM orders");
+    $has_order_date = false;
+    $order_column = "id"; // Mặc định sắp xếp theo id
+    
+    if ($orders_columns) {
+        while ($col = $orders_columns->fetch_assoc()) {
+            if ($col['Field'] == 'order_date') {
+                $has_order_date = true;
+                break;
+            }
+            if ($col['Field'] == 'created_at') {
+                $order_column = "created_at";
+            }
+        }
+    }
+    
+    // Nếu không có cột order_date, thử thêm vào
+    if (!$has_order_date) {
+        $add_column_sql = "ALTER TABLE orders ADD COLUMN order_date datetime DEFAULT CURRENT_TIMESTAMP";
+        $conn->query($add_column_sql);
+        
+        // Cập nhật giá trị order_date từ cột created_at nếu có
+        if ($order_column == "created_at") {
+            $update_sql = "UPDATE orders SET order_date = created_at";
+            $conn->query($update_sql);
+        }
+    }
+    
+    // Sử dụng order_date nếu có, nếu không dùng created_at hoặc id
+    $order_by = $has_order_date ? "o.order_date" : ($order_column == "created_at" ? "o.created_at" : "o.id");
+    
+    // Lấy danh sách đơn hàng với các bộ lọc
+    $where_clauses = [];
+    $params = [];
+    $param_types = "";
 
-$result = $conn->query($sql);
+    // Lọc theo trạng thái
+    if (isset($_GET['status']) && !empty($_GET['status'])) {
+        $where_clauses[] = "o.status = ?";
+        $params[] = $_GET['status'];
+        $param_types .= "s";
+    }
+
+    // Lọc theo khoảng thời gian
+    if (isset($_GET['date_from']) && !empty($_GET['date_from'])) {
+        $date_from = date('Y-m-d 00:00:00', strtotime($_GET['date_from']));
+        $where_clauses[] = "o.order_date >= ?";
+        $params[] = $date_from;
+        $param_types .= "s";
+    }
+
+    if (isset($_GET['date_to']) && !empty($_GET['date_to'])) {
+        $date_to = date('Y-m-d 23:59:59', strtotime($_GET['date_to']));
+        $where_clauses[] = "o.order_date <= ?";
+        $params[] = $date_to;
+        $param_types .= "s";
+    }
+
+    // Lọc theo thành phố/quận/huyện
+    if (isset($_GET['location']) && !empty($_GET['location'])) {
+        $location_search = '%' . $_GET['location'] . '%';
+        $where_clauses[] = "o.shipping_address LIKE ?";
+        $params[] = $location_search;
+        $param_types .= "s";
+    }
+
+    // Tạo mệnh đề WHERE nếu có điều kiện lọc
+    $where_sql = "";
+    if (!empty($where_clauses)) {
+        $where_sql = " WHERE " . implode(" AND ", $where_clauses);
+    }
+
+    // Mảng trạng thái đơn hàng
+    $statuses = [
+        'pending' => 'Chờ xác nhận',
+        'confirmed' => 'Đã xác nhận',
+        'processing' => 'Đang xử lý',
+        'shipping' => 'Đang giao hàng',
+        'delivered' => 'Đã giao hàng',
+        'cancelled' => 'Đã hủy'
+    ];
+
+    // Mảng classes CSS cho từng trạng thái
+    $status_classes = [
+        'pending' => 'warning',
+        'confirmed' => 'primary',
+        'processing' => 'info',
+        'shipping' => 'info',
+        'delivered' => 'success',
+        'cancelled' => 'danger'
+    ];
+
+    // Lấy danh sách đơn hàng
+    $sql = "SELECT o.*, u.fullname as customer_name 
+            FROM orders o 
+            LEFT JOIN users u ON o.user_id = u.id " . $where_sql . "
+            ORDER BY o.order_date DESC";
+    
+    if (!empty($params)) {
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param($param_types, ...$params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } else {
+        $result = $conn->query($sql);
+    }
+    
+    $orders = [];
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $orders[] = $row;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -260,6 +375,64 @@ $result = $conn->query($sql);
                 <div class="alert alert-danger"><?php echo $error_message; ?></div>
             <?php endif; ?>
 
+            <!-- Form lọc đơn hàng -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="m-0"><i class="fas fa-filter mr-2"></i>Lọc đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <form method="GET" action="" class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="status"><i class="fas fa-tag mr-1"></i>Trạng thái</label>
+                                <select name="status" id="status" class="form-control form-control-sm">
+                                    <option value="">-- Tất cả trạng thái --</option>
+                                    <?php foreach ($statuses as $value => $label): ?>
+                                        <option value="<?php echo $value; ?>" <?php echo isset($_GET['status']) && $_GET['status'] === $value ? 'selected' : ''; ?>>
+                                            <?php echo $label; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="date_from"><i class="far fa-calendar-alt mr-1"></i>Từ ngày</label>
+                                <input type="date" name="date_from" id="date_from" class="form-control form-control-sm" 
+                                       value="<?php echo isset($_GET['date_from']) ? $_GET['date_from'] : ''; ?>">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="date_to"><i class="far fa-calendar-alt mr-1"></i>Đến ngày</label>
+                                <input type="date" name="date_to" id="date_to" class="form-control form-control-sm"
+                                       value="<?php echo isset($_GET['date_to']) ? $_GET['date_to'] : ''; ?>">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-3">
+                            <div class="form-group">
+                                <label for="location"><i class="fas fa-map-marker-alt mr-1"></i>Địa điểm</label>
+                                <input type="text" name="location" id="location" class="form-control form-control-sm" 
+                                       placeholder="Quận/Huyện/Thành phố"
+                                       value="<?php echo isset($_GET['location']) ? $_GET['location'] : ''; ?>">
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">
+                                <i class="fas fa-search mr-1"></i>Tìm kiếm
+                            </button>
+                            <a href="index.php" class="btn btn-outline-secondary btn-sm ml-2">
+                                <i class="fas fa-redo-alt mr-1"></i>Đặt lại
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -273,12 +446,12 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($result && $result->num_rows > 0): ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
+                    <?php if (!empty($orders)): ?>
+                        <?php foreach ($orders as $row): ?>
                             <tr>
                                 <td><?php echo isset($row['order_number']) ? $row['order_number'] : 'ĐH-' . $row['id']; ?></td>
                                 <td><?php echo htmlspecialchars($row['customer_name'] ?? 'Khách vãng lai'); ?></td>
-                                <td><?php echo date('d/m/Y H:i', strtotime($row['created_at'])); ?></td>
+                                <td><?php echo date('d/m/Y H:i', strtotime($row['order_date'])); ?></td>
                                 <td><?php echo number_format($row['total_amount'], 0, ',', '.'); ?> VNĐ</td>
                                 <td>
                                     <?php 
@@ -341,7 +514,7 @@ $result = $conn->query($sql);
                                     </form>
                                 </td>
                             </tr>
-                        <?php endwhile; ?>
+                        <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
                             <td colspan="7" style="text-align: center;">Không có đơn hàng nào</td>

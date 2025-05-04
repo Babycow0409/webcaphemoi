@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,124 +21,55 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Truy vấn để kiểm tra cấu trúc bảng users
-$check_users_table = "SHOW COLUMNS FROM users";
-$result_check = $conn->query($check_users_table);
-$columns = [];
-if ($result_check) {
-    while ($row = $result_check->fetch_assoc()) {
-        $columns[] = $row['Field'];
-    }
-}
+// Lấy thông tin admin hiện tại
+$admin = $_SESSION["admin"];
 
-// Xác định tên cột chứa thông tin tên người dùng
-$name_column = in_array('full_name', $columns) ? 'full_name' : (in_array('name', $columns) ? 'name' : 'email');
+// Lấy thời gian lọc từ form (nếu có)
+$date_from = isset($_GET['date_from']) && !empty($_GET['date_from']) ? $_GET['date_from'] : date('Y-m-d', strtotime('-30 days'));
+$date_to = isset($_GET['date_to']) && !empty($_GET['date_to']) ? $_GET['date_to'] : date('Y-m-d');
 
-// Lấy top 10 khách hàng có tổng giá trị đơn hàng cao nhất
-$sql = "SELECT u.id, u.$name_column as customer_name, u.email, COUNT(o.id) as total_orders, 
-        SUM(o.total_amount) as total_spent
-        FROM users u
-        LEFT JOIN orders o ON u.id = o.user_id
-        WHERE o.status = 'completed' OR o.status = 'delivered'
-        GROUP BY u.id
-        ORDER BY total_spent DESC
-        LIMIT 10";
+// Format lại thời gian cho query
+$date_from_query = date('Y-m-d 00:00:00', strtotime($date_from));
+$date_to_query = date('Y-m-d 23:59:59', strtotime($date_to));
 
-$result = $conn->query($sql);
+// Kiểm tra bảng orders có tồn tại không
+$orders_exist = $conn->query("SHOW TABLES LIKE 'orders'")->num_rows > 0;
+
 $top_customers = [];
 
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $top_customers[] = $row;
-    }
-}
-
-// Truy vấn cấu trúc bảng orders để tìm cột ngày đặt hàng
-$check_orders_table = "SHOW COLUMNS FROM orders";
-$result_check_orders = $conn->query($check_orders_table);
-$order_columns = [];
-if ($result_check_orders) {
-    while ($row = $result_check_orders->fetch_assoc()) {
-        $order_columns[] = $row['Field'];
-    }
-}
-
-// Xác định cột chứa ngày đặt hàng
-$date_column = in_array('order_date', $order_columns) ? 'order_date' : 
-               (in_array('created_at', $order_columns) ? 'created_at' : 
-               (in_array('date', $order_columns) ? 'date' : NULL));
-
-// Nếu không tìm thấy cột ngày, chỉ hiển thị tổng doanh thu không theo tháng
-if ($date_column) {
-    // Lấy thống kê doanh thu theo tháng
-    $sql_revenue = "SELECT 
-                    YEAR($date_column) as year,
-                    MONTH($date_column) as month,
-                    SUM(total_amount) as monthly_revenue
-                    FROM orders
-                    WHERE status = 'completed' OR status = 'delivered'
-                    GROUP BY YEAR($date_column), MONTH($date_column)
-                    ORDER BY year DESC, month DESC
-                    LIMIT 12";
-
-    $result_revenue = $conn->query($sql_revenue);
-    $monthly_revenue = [];
-
-    if ($result_revenue && $result_revenue->num_rows > 0) {
-        while ($row = $result_revenue->fetch_assoc()) {
-            $monthly_revenue[] = $row;
-        }
-    }
-} else {
-    // Không tìm thấy cột ngày, để mảng trống
-    $monthly_revenue = [];
-}
-
-// Phần sản phẩm bán chạy
-// Kiểm tra cấu trúc bảng order_items
-$check_order_items = "SHOW COLUMNS FROM order_items";
-$result_check_items = $conn->query($check_order_items);
-$item_columns = [];
-if ($result_check_items) {
-    while ($row = $result_check_items->fetch_assoc()) {
-        $item_columns[] = $row['Field'];
-    }
-}
-
-// Xác định cột liên kết đến sản phẩm
-$product_id_column = in_array('product_id', $item_columns) ? 'product_id' : 
-                    (in_array('item_id', $item_columns) ? 'item_id' : NULL);
-
-if ($product_id_column) {
-    // Lấy top 5 sản phẩm bán chạy nhất
-    $sql_products = "SELECT p.id, p.name, p.category, p.price, COUNT(oi.id) as total_sold
-                    FROM products p
-                    JOIN order_items oi ON p.id = oi.$product_id_column
-                    JOIN orders o ON oi.order_id = o.id
-                    WHERE o.status = 'completed' OR o.status = 'delivered'
-                    GROUP BY p.id
-                    ORDER BY total_sold DESC
-                    LIMIT 5";
-    $result_products = $conn->query($sql_products);
-    $top_products = [];
+if ($orders_exist) {
+    // Truy vấn top khách hàng theo doanh số
+    $sql = "SELECT u.id, u.fullname, u.email, COUNT(o.id) as order_count, SUM(o.total_amount) as total_spent,
+                   GROUP_CONCAT(CONCAT(o.id, ':', o.total_amount) ORDER BY o.order_date DESC SEPARATOR ',') as order_details
+            FROM users u
+            JOIN orders o ON u.id = o.user_id
+            WHERE o.order_date BETWEEN ? AND ?
+            GROUP BY u.id
+            ORDER BY total_spent DESC
+            LIMIT 5";
     
-    if ($result_products && $result_products->num_rows > 0) {
-        while ($row = $result_products->fetch_assoc()) {
-            $top_products[] = $row;
-        }
-    }
-} else {
-    // Không tìm thấy cột liên kết sản phẩm
-    $top_products = [];
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $date_from_query, $date_to_query);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
-    // Hiển thị các sản phẩm mới nhất thay thế
-    $sql_products = "SELECT id, name, category, price FROM products ORDER BY id DESC LIMIT 5";
-    $result_products = $conn->query($sql_products);
-    
-    if ($result_products && $result_products->num_rows > 0) {
-        while ($row = $result_products->fetch_assoc()) {
-            $row['total_sold'] = 'N/A';
-            $top_products[] = $row;
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Xử lý chi tiết đơn hàng
+            $orders = [];
+            if (!empty($row['order_details'])) {
+                $details = explode(',', $row['order_details']);
+                foreach ($details as $detail) {
+                    list($order_id, $amount) = explode(':', $detail);
+                    $orders[] = [
+                        'id' => $order_id,
+                        'amount' => $amount
+                    ];
+                }
+            }
+            
+            $row['orders'] = $orders;
+            $top_customers[] = $row;
         }
     }
 }
@@ -149,10 +80,9 @@ if ($product_id_column) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thống kê - Admin</title>
+    <title>Thống kê - Cà Phê Đậm Đà</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -176,10 +106,6 @@ if ($product_id_column) {
             color: white;
             background-color: rgba(255,255,255,.1);
         }
-        .sidebar .nav-link.active {
-            color: white;
-            background-color: rgba(255,255,255,.2);
-        }
         .content {
             padding: 20px;
         }
@@ -189,25 +115,8 @@ if ($product_id_column) {
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 20px;
         }
-        .stat-card {
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        .card {
             margin-bottom: 20px;
-        }
-        .stat-card .card-header {
-            font-weight: bold;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .badge-success {
-            background-color: #28a745;
-        }
-        .badge-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        .badge-danger {
-            background-color: #dc3545;
         }
     </style>
 </head>
@@ -239,7 +148,7 @@ if ($product_id_column) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../statistics/top-customers.php">
+                        <a class="nav-link active" href="top-customers.php">
                             <i class="fas fa-chart-bar mr-2"></i> Thống kê
                         </a>
                     </li>
@@ -253,108 +162,120 @@ if ($product_id_column) {
             
             <!-- Main content -->
             <div class="col-md-10">
-                <div class="header">
+                <div class="header d-flex justify-content-between align-items-center">
                     <h2>Thống kê</h2>
+                    <div>
+                        <i class="fas fa-user mr-1"></i> 
+                        <?php echo $admin["name"]; ?>
+                    </div>
                 </div>
                 
                 <div class="content">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="stat-card card">
-                                <div class="card-header">
-                                    <i class="fas fa-users mr-2"></i>Top 10 khách hàng
-                                </div>
-                                <div class="card-body">
-                                    <?php if (empty($top_customers)): ?>
-                                        <p class="text-muted">Chưa có dữ liệu về khách hàng</p>
-                                    <?php else: ?>
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tên</th>
-                                                        <th>Email</th>
-                                                        <th>Số đơn hàng</th>
-                                                        <th>Tổng chi tiêu</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($top_customers as $customer): ?>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="../users/view.php?id=<?php echo $customer['id']; ?>">
-                                                                    <?php echo $customer['customer_name']; ?>
-                                                                </a>
-                                                            </td>
-                                                            <td><?php echo $customer['email']; ?></td>
-                                                            <td><?php echo $customer['total_orders']; ?></td>
-                                                            <td><?php echo number_format($customer['total_spent'], 0, ',', '.'); ?> VNĐ</td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="m-0"><i class="fas fa-crown mr-2"></i>Top khách hàng theo doanh số</h5>
                         </div>
-                        
-                        <div class="col-md-6">
-                            <div class="stat-card card">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-line mr-2"></i>Doanh thu theo tháng
-                                </div>
-                                <div class="card-body">
-                                    <?php if (empty($monthly_revenue)): ?>
-                                        <p class="text-muted">Chưa có dữ liệu về doanh thu</p>
-                                    <?php else: ?>
-                                        <canvas id="revenueChart" height="300"></canvas>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <div class="stat-card card">
-                                <div class="card-header">
-                                    <i class="fas fa-coffee mr-2"></i>
-                                    <?php echo $product_id_column ? 'Sản phẩm bán chạy nhất' : 'Sản phẩm mới nhất'; ?>
-                                </div>
-                                <div class="card-body">
-                                    <?php if (empty($top_products)): ?>
-                                        <p class="text-muted">Chưa có dữ liệu về sản phẩm bán chạy</p>
-                                    <?php else: ?>
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Danh mục</th>
-                                                        <th>Giá</th>
-                                                        <th>Số lượng đã bán</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($top_products as $product): ?>
-                                                        <tr>
-                                                            <td>
-                                                                <a href="../products/edit.php?id=<?php echo $product['id']; ?>">
-                                                                    <?php echo $product['name']; ?>
-                                                                </a>
-                                                            </td>
-                                                            <td><?php echo ucfirst($product['category']); ?></td>
-                                                            <td><?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</td>
-                                                            <td><?php echo $product['total_sold']; ?></td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
+                        <div class="card-body">
+                            <!-- Form lọc theo khoảng thời gian -->
+                            <form method="GET" action="" class="mb-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="date_from"><i class="far fa-calendar-alt mr-1"></i>Từ ngày</label>
+                                            <input type="date" id="date_from" name="date_from" class="form-control form-control-sm" value="<?php echo $date_from; ?>">
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="date_to"><i class="far fa-calendar-alt mr-1"></i>Đến ngày</label>
+                                            <input type="date" id="date_to" name="date_to" class="form-control form-control-sm" value="<?php echo $date_to; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <button type="submit" class="btn btn-primary btn-sm d-block w-100">
+                                                <i class="fas fa-chart-line mr-1"></i>Thống kê
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+                            
+                            <?php if (!$orders_exist): ?>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle mr-1"></i>Bảng orders chưa tồn tại. Chưa có thông tin đơn hàng nào để thống kê.
+                                </div>
+                            <?php elseif (empty($top_customers)): ?>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle mr-1"></i>Không có đơn hàng nào trong khoảng thời gian từ <?php echo date('d/m/Y', strtotime($date_from)); ?> đến <?php echo date('d/m/Y', strtotime($date_to)); ?>.
+                                </div>
+                            <?php else: ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="text-center" width="5%">STT</th>
+                                                <th width="25%">Họ tên</th>
+                                                <th width="25%">Email</th>
+                                                <th class="text-center" width="15%">Số đơn hàng</th>
+                                                <th class="text-right" width="15%">Tổng chi tiêu</th>
+                                                <th class="text-center" width="15%">Chi tiết</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($top_customers as $index => $customer): ?>
+                                                <tr>
+                                                    <td class="text-center"><?php echo $index + 1; ?></td>
+                                                    <td>
+                                                        <span class="font-weight-bold"><?php echo htmlspecialchars($customer['fullname']); ?></span>
+                                                    </td>
+                                                    <td><?php echo htmlspecialchars($customer['email']); ?></td>
+                                                    <td class="text-center">
+                                                        <span class="badge badge-info"><?php echo $customer['order_count']; ?></span>
+                                                    </td>
+                                                    <td class="text-right font-weight-bold text-success">
+                                                        <?php echo number_format($customer['total_spent'], 0, ',', '.'); ?> VNĐ
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#orders-<?php echo $customer['id']; ?>">
+                                                            <i class="fas fa-eye mr-1"></i>Xem
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" class="p-0">
+                                                        <div id="orders-<?php echo $customer['id']; ?>" class="collapse">
+                                                            <table class="table mb-0 table-sm table-bordered">
+                                                                <thead class="bg-light">
+                                                                    <tr>
+                                                                        <th class="text-center" width="30%">Mã đơn hàng</th>
+                                                                        <th class="text-right" width="40%">Giá trị</th>
+                                                                        <th class="text-center" width="30%">Thao tác</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php foreach ($customer['orders'] as $order): ?>
+                                                                        <tr>
+                                                                            <td class="text-center">#<?php echo $order['id']; ?></td>
+                                                                            <td class="text-right"><?php echo number_format($order['amount'], 0, ',', '.'); ?> VNĐ</td>
+                                                                            <td class="text-center">
+                                                                                <a href="../orders/view.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                                                                    <i class="fas fa-file-invoice mr-1"></i>Chi tiết
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -365,56 +286,5 @@ if ($product_id_column) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <?php if (!empty($monthly_revenue)): ?>
-    <script>
-        // Dữ liệu doanh thu theo tháng
-        var months = [];
-        var revenues = [];
-        
-        <?php foreach ($monthly_revenue as $revenue): ?>
-            months.push('<?php echo $revenue['month'] . '/' . $revenue['year']; ?>');
-            revenues.push(<?php echo $revenue['monthly_revenue']; ?>);
-        <?php endforeach; ?>
-        
-        // Tạo biểu đồ doanh thu
-        var ctx = document.getElementById('revenueChart').getContext('2d');
-        var revenueChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: months.reverse(),
-                datasets: [{
-                    label: 'Doanh thu (VNĐ)',
-                    data: revenues.reverse(),
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return value.toLocaleString('vi-VN') + ' VNĐ';
-                            }
-                        }
-                    }
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.raw.toLocaleString('vi-VN') + ' VNĐ';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
-    <?php endif; ?>
 </body>
 </html> 

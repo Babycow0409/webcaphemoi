@@ -27,7 +27,7 @@ $stmt = $conn->prepare("SELECT o.*, COUNT(oi.id) as item_count,
                         LEFT JOIN order_items oi ON o.id = oi.order_id 
                         WHERE o.user_id = ? 
                         GROUP BY o.id 
-                        ORDER BY o.created_at DESC");
+                        ORDER BY o.order_number DESC");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

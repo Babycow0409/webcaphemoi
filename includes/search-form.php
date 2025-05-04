@@ -11,14 +11,21 @@
             <label for="categorySelect"><i class="fas fa-coffee"></i> Loại cà phê:</label>
             <select name="category" id="categorySelect">
                 <option value="">Tất cả loại</option>
-                <option value="arabica" <?php echo (isset($_GET['category']) && $_GET['category'] == 'arabica') ? 'selected' : ''; ?>>Arabica</option>
-                <option value="robusta" <?php echo (isset($_GET['category']) && $_GET['category'] == 'robusta') ? 'selected' : ''; ?>>Robusta</option>
-                <option value="chon" <?php echo (isset($_GET['category']) && $_GET['category'] == 'chon') ? 'selected' : ''; ?>>Chồn</option>
-                <option value="other" <?php echo (isset($_GET['category']) && $_GET['category'] == 'other') ? 'selected' : ''; ?>>Khác</option>
+                <?php
+                // Lấy danh sách danh mục từ database
+                $categories_query = "SELECT * FROM categories ORDER BY name";
+                $categories_result = $conn->query($categories_query);
+                if ($categories_result && $categories_result->num_rows > 0) {
+                    while ($cat = $categories_result->fetch_assoc()) {
+                        $selected = (isset($_GET['category']) && $_GET['category'] == $cat['id']) ? 'selected' : '';
+                        echo '<option value="' . $cat['id'] . '" ' . $selected . '>' . htmlspecialchars($cat['name']) . '</option>';
+                    }
+                }
+                ?>
             </select>
         </div>
         <?php else: ?>
-        <input type="hidden" name="category" value="<?php echo $currentCategory; ?>">
+        <input type="hidden" name="category" value="<?php echo isset($categoryId) ? $categoryId : (isset($currentCategory) ? $currentCategory : ''); ?>">
         <?php endif; ?>
         
         <div class="filter-section">
