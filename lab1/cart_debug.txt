@@ -1,0 +1,2732 @@
+2025-05-05 09:51:13 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:51:13 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:51:13 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:51:22 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:51:22 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:51:22 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:52:08 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:52:08 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:52:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:52:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:52:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:55:18 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:55:18 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:55:18 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:55:37 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:55:37 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:55:37 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:56:19 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:56:19 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:56:19 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 09:57:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:57:28 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:28 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:28 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:42 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:57:42 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:42 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:42 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:53 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+)
+
+2025-05-05 09:57:53 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:57:53 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-05 09:57:53 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-05 09:58:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-05 09:58:12 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 3
+)
+
+2025-05-05 09:58:16 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-05 09:58:16 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 3
+)
+
+2025-05-05 09:58:19 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-05 09:58:19 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 3
+)
+
+2025-05-05 09:58:31 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:58:31 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:58:31 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:58:31 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:58:56 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 09:58:56 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:58:56 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 09:58:56 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:01:23 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:57 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:01:57 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:57 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:01:57 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:03:20 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:03:20 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:03:20 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:03:20 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:03:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:03:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:03:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:07:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:07:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:07:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:08:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:08:04 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:08:04 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:11:17 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:11:17 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:11:17 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:14:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:14:28 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:14:28 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:14:35 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:14:35 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:14:35 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:15:59 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:15:59 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:15:59 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:17:02 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:02 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:03 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:17:03 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:03 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:16 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:17:16 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:16 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:35 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 10:17:35 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 10:17:35 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:11:43 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:11:43 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:11:43 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:14:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:36 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:14:36 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:36 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:41 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:14:41 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:41 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:50 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:14:50 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:50 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:55 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:14:55 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:14:55 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:15:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:15:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:15:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:18:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:18:02 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:18:02 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:18:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:18:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:18:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:20:51 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:20:51 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:20:51 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:21:55 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:21:55 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:21:55 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:28:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:28:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:28:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:29:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:29:01 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 16:29:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:29:01 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-05 16:29:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-05 16:29:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-05 16:29:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-06 10:14:59 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-06 10:14:59 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-06 10:14:59 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-06 10:15:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-06 10:15:04 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-06 10:23:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-06 10:23:00 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-06 10:23:06 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-06 10:23:06 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-06 10:23:06 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-06 10:23:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-06 10:23:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-06 10:23:12 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-06 10:23:12 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:05:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:05:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-07 09:05:12 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:05:12 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:05:19 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:05:19 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-07 09:05:19 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:05:19 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:19:25 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:19:25 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 2
+)
+
+2025-05-07 09:19:25 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:19:25 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:22:18 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:22:18 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:27:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:27:49 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:34:34 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:34:34 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-07 09:34:34 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:34:34 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-07 09:50:53 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-07 09:50:53 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-07 09:50:53 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-07 09:50:53 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:42:32 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:42:32 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:42:32 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:42:32 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:42:36 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:42:36 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:42:36 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:42:36 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:44:52 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:44:52 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:44:52 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:44:52 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:44:57 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:44:57 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:44:57 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:44:57 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:45:53 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:45:53 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:45:53 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:45:53 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 14:54:42 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 14:54:42 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 14:54:42 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 14:54:42 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-08 15:01:26 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-08 15:01:26 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 2
+)
+
+2025-05-08 15:01:26 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-08 15:01:26 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+

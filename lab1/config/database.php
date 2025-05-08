@@ -50,6 +50,18 @@ try {
         FOREIGN KEY (order_id) REFERENCES orders(id)
     )");
     
+    // Thêm bảng addresses trong database
+    $conn->exec("CREATE TABLE IF NOT EXISTS addresses (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT,
+        name VARCHAR(100),
+        phone VARCHAR(15),
+        address TEXT,
+        city VARCHAR(100),
+        is_default BOOLEAN DEFAULT 0,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    )");
+    
 } catch(PDOException $e) {
     echo "Kết nối thất bại: " . $e->getMessage();
     die();

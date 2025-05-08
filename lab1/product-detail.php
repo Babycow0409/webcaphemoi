@@ -1,9 +1,65 @@
+<?php
+include 'includes/db_connect.php';
+
+// Kiểm tra ID sản phẩm
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    // Chuyển hướng nếu không có ID
+    header("Location: products.php");
+    exit();
+}
+
+$product_id = intval($_GET['id']);
+
+// Lấy thông tin sản phẩm
+$sql = "SELECT p.*, c.name as category_name FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Kiểm tra sản phẩm có tồn tại không
+if ($result->num_rows === 0) {
+    // Nếu sản phẩm không tồn tại, hiển thị thông báo thân thiện
+    $product_not_found = true;
+} else {
+    $product = $result->fetch_assoc();
+    
+    // Lấy thêm sản phẩm liên quan dựa trên category_id
+    if (isset($product['category_id']) && !empty($product['category_id'])) {
+        $category_id = $product['category_id'];
+        $sql_related = "SELECT * FROM products WHERE category_id = ? AND id != ? LIMIT 4";
+        $stmt_related = $conn->prepare($sql_related);
+        $stmt_related->bind_param("ii", $category_id, $product_id);
+        $stmt_related->execute();
+        $result_related = $stmt_related->get_result();
+        $related_products = [];
+        
+        if ($result_related->num_rows > 0) {
+            while ($row = $result_related->fetch_assoc()) {
+                $related_products[] = $row;
+            }
+        }
+    } else {
+        $related_products = [];
+    }
+}
+
+// Kiểm tra và hiển thị an toàn
+$product_name = isset($product['name']) ? htmlspecialchars($product['name']) : 'Sản phẩm không xác định';
+$product_price = isset($product['price']) ? number_format($product['price'], 0, ',', '.') : '0';
+$product_weight = isset($product['weight']) ? htmlspecialchars($product['weight']) : '';
+$product_description = isset($product['description']) ? nl2br(htmlspecialchars($product['description'])) : 'Không có mô tả';
+$product_image = isset($product['image']) && !empty($product['image']) ? $product['image'] : 'path/to/default-image.jpg';
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết sản phẩm - Cà Phê Đậm Đà</title>
+    <title><?php echo isset($product) ? $product['name'] . ' - Cà Phê Đậm Đà' : 'Sản phẩm không tồn tại - Cà Phê Đậm Đà'; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
@@ -43,20 +99,68 @@
         .dropdown-content a:hover {
             background-color: #d4a373;
         }
-        .product-detail { max-width: 1200px; margin: 50px auto; padding: 20px; display: flex; flex-wrap: wrap; gap: 40px; }
-        .product-image {
-            width: 100%;
-            height: 400px;
+        .product-detail { 
+            max-width: 1200px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+        }
+        
+        .product-detail .product-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            height: auto;
+            text-align: center;
+        }
+        
+        .product-detail .product-image img {
+            max-width: 100%;
+            max-height: 400px;
             object-fit: contain;
             border-radius: 10px;
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .product-info { flex: 1; min-width: 300px; }
+        
+        .product-info { 
+            flex: 1; 
+            min-width: 300px; 
+        }
         h1 { font-family: 'Playfair Display', serif; color: #3c2f2f; margin-bottom: 20px; }
-        .price { color: #d4a373; font-size: 1.5em; margin: 15px 0; }
-        .description { color: #555; margin: 20px 0; line-height: 1.8; }
+        .product-price { 
+            color: #d4a373; 
+            font-size: 1.5em; 
+            margin: 15px 0; 
+            font-weight: bold;
+        }
+        .product-weight {
+            font-size: 1.1em;
+            color: #666;
+            margin: 10px 0;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            background: #d4a373;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .quantity-controls input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+        }
         .btn { 
             padding: 12px 30px; 
             background-color: #d4a373; 
@@ -117,6 +221,58 @@
             nav a { margin: 8px 0; }
             .product-detail { flex-direction: column; }
         }
+        
+        .product-not-found {
+            text-align: center;
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .product-not-found h1 {
+            font-size: 28px;
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        
+        .product-not-found p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .product-not-found .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .product-not-found .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .product-not-found .btn-primary {
+            background-color: #5a3921;
+            color: white;
+            border: none;
+        }
+        
+        .product-not-found .btn-primary:hover {
+            background-color: #3d2715;
+        }
+        
+        .product-not-found .btn-secondary {
+            background-color: #e9ecef;
+            color: #333;
+            border: 1px solid #ced4da;
+        }
+        
+        .product-not-found .btn-secondary:hover {
+            background-color: #ced4da;
+        }
     </style>
 </head>
 <body>
@@ -141,226 +297,155 @@
             </div>
         </nav>
     </header>
-
-    <?php
-    // Mảng sản phẩm từ tất cả các trang (products.php, arabica.php, robusta.php, chon.php)
-    $all_products = [
-        // Products.php - Arabica
-        1 => [
-            'name' => 'Cà phê Arabica',
-            'price' => 150000,
-            'image' => 'https://lh6.googleusercontent.com/proxy/ULqvKQ2UCFsMhYAqAbJE1VXiCR4I6IDe6dtj5t5h7qBXzhy4bqhlzOC3FlzOXHrOcvWBb_oiCQRi0U4ZXBOK3vA',
-            'weight' => '500g',
-            'description' => 'Cà phê Arabica được biết đến là loại cà phê cao cấp nhất thế giới, chiếm khoảng 60% sản lượng cà phê toàn cầu. Có hương vị nhẹ nhàng, thanh tao với hậu vị chua nhẹ đặc trưng, phù hợp cho những ai yêu thích sự tinh tế. Sản phẩm được chế biến từ những hạt cà phê Arabica nguyên chất được chọn lọc kỹ càng từ vùng Tây Nguyên.',
-            'category' => 'arabica'
-        ],
-        // Products.php - Robusta
-        2 => [
-            'name' => 'Cà phê Robusta',
-            'price' => 120000,
-            'image' => 'https://bizweb.dktcdn.net/thumb/1024x1024/100/512/697/products/r-bot-1719824345076.jpg?v=1719829974003',
-            'weight' => '500g',
-            'description' => 'Cà phê Robusta là loại cà phê phổ biến thứ hai trên thế giới sau Arabica. Đặc trưng với vị đắng mạnh, đậm đà và dư vị kéo dài, rất phù hợp để pha phin hoặc espresso. Hàm lượng caffeine trong Robusta cao hơn gấp đôi so với Arabica, mang đến cảm giác tỉnh táo mạnh mẽ. Việt Nam là quốc gia sản xuất cà phê Robusta lớn nhất thế giới.',
-            'category' => 'robusta'
-        ],
-        // Products.php - Chồn
-        3 => [
-            'name' => 'Cà phê Chồn',
-            'price' => 180000,
-            'image' => 'https://vn-live-01.slatic.net/p/cdf5f80d6feaa2e85e10968606ea4df6.jpg',
-            'weight' => '500g',
-            'description' => 'Cà phê chồn là loại cà phê đặc biệt được sản xuất từ hạt cà phê đã qua đường tiêu hóa của loài cầy vòi hương (còn gọi là chồn). Quá trình tiêu hóa đặc biệt này làm thay đổi cấu trúc protein của hạt cà phê, tạo nên hương vị độc đáo với độ chua nhẹ, vị đắng dịu và hương thơm nồng nàn.',
-            'category' => 'chon'
-        ],
-        // Products.php - Thêm
-        4 => [
-            'name' => 'Cà phê Mocha',
-            'price' => 145000,
-            'image' => 'https://product.hstatic.net/1000075078/product/mocha_nong_77f8777d72694d7099b7edefd5fa8e9a_master.jpg',
-            'weight' => '500g',
-            'description' => 'Cà phê Mocha là sự kết hợp hoàn hảo giữa cà phê espresso đậm đà và socola ngọt ngào. Sản phẩm mang đến hương vị đặc trưng với vị đắng của cà phê, vị ngọt của socola và vị béo của sữa, tạo nên một trải nghiệm thưởng thức tuyệt vời.',
-            'category' => 'other'
-        ],
-        5 => [
-            'name' => 'Cà phê Culi',
-            'price' => 135000,
-            'image' => 'https://coloihoang.com/wp-content/uploads/2019/04/san-pham-ca-phe-culi.png',
-            'weight' => '500g',
-            'description' => 'Cà phê Culi được chế biến từ những hạt cà phê đặc biệt có hình dạng tròn và to hơn thông thường. Đây là loại cà phê có hương vị đậm đà, đắng mạnh và thơm nồng hơn so với các loại cà phê khác, rất được ưa chuộng tại Việt Nam.',
-            'category' => 'other'
-        ],
-        6 => [
-            'name' => 'Cà phê Espresso',
-            'price' => 160000,
-            'image' => 'https://product.hstatic.net/1000075078/product/espresso_b62af56c27e14e41bbbd161181defd23_master.jpg',
-            'weight' => '500g',
-            'description' => 'Cà phê Espresso được chế biến từ hạt cà phê rang đậm và xay nhuyễn, tạo nên một loại cà phê cô đặc, đậm đà với lớp crema vàng óng trên bề mặt. Đây là nền tảng cho nhiều loại đồ uống cà phê phổ biến trên thế giới.',
-            'category' => 'other'
-        ],
-        
-        // Arabica.php - Thêm
-        14 => [
-            'name' => 'Cà phê Arabica Đặc Biệt',
-            'price' => 200000,
-            'image' => 'https://centurycoffee.vn/uploads/images/2024/12/545x545-1733215387-single_product1-gol.jpg',
-            'weight' => '500g',
-            'description' => 'Cà phê Arabica Đặc Biệt là dòng sản phẩm cao cấp được chọn lọc từ những hạt cà phê Arabica tốt nhất, trồng ở độ cao trên 1600m. Cà phê mang hương vị đặc trưng với vị chua thanh xen lẫn hương hoa và trái cây, tạo nên một trải nghiệm thưởng thức tinh tế.',
-            'category' => 'arabica'
-        ],
-        15 => [
-            'name' => 'Cà phê Arabica Colombia',
-            'price' => 400000,
-            'image' => 'https://covi.vn/wp-content/uploads/2021/06/ca-phe-arabica-colombia-3.jpg',
-            'weight' => '500g',
-            'description' => 'Cà phê Arabica Colombia được trồng trọt tại vùng cao nguyên Colombia, mang đặc trưng của vùng đất nổi tiếng này với hương vị cân bằng, vị chua nhẹ và hương thơm trái cây đặc trưng. Đây là loại cà phê được yêu thích trên toàn thế giới.',
-            'category' => 'arabica'
-        ],
-        16 => [
-            'name' => 'Cà phê Arabica Brazil',
-            'price' => 700000,
-            'image' => 'https://khoinghiepcafe.com/wp-content/uploads/khoi-nghiep-cafe-hat-arabica-bourbon-brazil-chau-my-cao-cap-nguyen-chat-sach-100-pha-may-espresso-chuan-y-qua-tang-viet-nam.jpg.webp',
-            'weight' => '500g',
-            'description' => 'Cà phê Arabica Brazil mang đến hương vị đầy đặn với vị chua nhẹ và vị ngọt caramel. Hạt cà phê được thu hoạch và chế biến tại Brazil - quốc gia sản xuất cà phê hàng đầu thế giới, đảm bảo chất lượng vượt trội.',
-            'category' => 'arabica'
-        ],
-        17 => [
-            'name' => 'Cà phê Arabica Ethiopia',
-            'price' => 540000,
-            'image' => 'https://thecoffeeholic.vn/storage/photos/2/Tr%C3%A0%20CF/4.jpg',
-            'weight' => '250g',
-            'description' => 'Cà phê Arabica Ethiopia - đến từ quê hương của cà phê, mang đến hương vị phức tạp với nốt hương hoa, trái cây và vị chua sáng. Đây là loại cà phê có lịch sử lâu đời nhất thế giới và được đánh giá cao về chất lượng.',
-            'category' => 'arabica'
-        ],
-        
-        // Robusta.php - Thêm
-        18 => [
-            'name' => 'Cà phê Robusta Đặc Biệt',
-            'price' => 160000,
-            'image' => 'https://salt.tikicdn.com/cache/750x750/ts/product/c6/a2/32/9c841efc66a4b07b2914418102b49186.jpg.webp',
-            'weight' => '500g',
-            'description' => 'Cà phê Robusta Đặc Biệt được chọn lọc từ những hạt cà phê chất lượng tốt nhất. Sản phẩm mang đến vị đắng đậm đà, thơm nồng và dư vị kéo dài. Đây là lựa chọn lý tưởng cho những người yêu thích cà phê đen đúng điệu.',
-            'category' => 'robusta'
-        ],
-        19 => [
-            'name' => 'Cà phê Robusta Buôn Ma Thuột',
-            'price' => 140000,
-            'image' => 'https://salt.tikicdn.com/cache/750x750/ts/product/f0/9a/60/2f49a4f93b1262747001968b686eb4fb.jpg.webp',
-            'weight' => '500g',
-            'description' => 'Cà phê Robusta Buôn Ma Thuột đến từ vùng đất nổi tiếng với cà phê ngon nhất Việt Nam. Hương vị đặc trưng với vị đắng mạnh mẽ, thơm nồng và đậm đà, mang đến cảm giác tỉnh táo, sảng khoái.',
-            'category' => 'robusta'
-        ],
-        20 => [
-            'name' => 'Cà phê Robusta Premium',
-            'price' => 150000,
-            'image' => 'https://devafood.vn/wp-content/uploads/2022/10/Ca-phe-Robusta-PREMIUM-Robusta-1Kg-edited_2.png.webp',
-            'weight' => '500g',
-            'description' => 'Cà phê Robusta Premium được chế biến từ những hạt cà phê Robusta chất lượng cao, rang vừa để giữ lại đầy đủ hương vị và dưỡng chất. Mang đến vị đắng thanh, thơm nồng và hậu vị kéo dài.',
-            'category' => 'robusta'
-        ],
-        
-        // Chon.php - Thêm
-        21 => [
-            'name' => 'Cà phê Chồn Đặc Biệt',
-            'price' => 250000,
-            'image' => 'https://huonghau.com/wp-content/uploads/2020/02/caphe-chon-dac-biet-600x428.jpg',
-            'weight' => '250g',
-            'description' => 'Cà phê Chồn Đặc Biệt được chọn lọc từ những hạt cà phê chất lượng nhất sau khi qua quá trình tiêu hóa của chồn. Sản phẩm mang đến hương vị tinh tế, hài hòa giữa vị chua nhẹ, đắng dịu và ngọt hậu đặc trưng.',
-            'category' => 'chon'
-        ],
-        22 => [
-            'name' => 'Cà phê Chồn Thượng Hạng',
-            'price' => 3760000,
-            'image' => 'https://salt.tikicdn.com/cache/750x750/ts/product/49/95/13/c1bba3c45f8353abb00c96f714c8720e.jpg.webp',
-            'weight' => '150g',
-            'description' => 'Cà phê Chồn Thượng Hạng là dòng sản phẩm cao cấp nhất, được chế biến với quy trình nghiêm ngặt và tiêu chuẩn khắt khe. Hương vị đặc biệt với độ chua nhẹ, vị đắng tinh tế và hương thơm phong phú, tạo nên trải nghiệm thưởng thức tuyệt vời.',
-            'category' => 'chon'
-        ],
-        23 => [
-            'name' => 'Cà phê Chồn Robusta',
-            'price' => 1500000,
-            'image' => 'https://sieuthicafe.com/wp-content/uploads/2020/03/robusta.png',
-            'weight' => '150g',
-            'description' => 'Cà phê Chồn Robusta là sự kết hợp giữa hạt cà phê Robusta và quy trình chế biến đặc biệt qua đường tiêu hóa của chồn. Sản phẩm mang đến vị đắng mạnh mẽ của Robusta nhưng được cân bằng bởi quá trình chế biến đặc biệt.',
-            'category' => 'chon'
-        ],
-        24 => [
-            'name' => 'Cà phê Chồn Arabica',
-            'price' => 1360000,
-            'image' => 'https://sieuthicafe.com/wp-content/uploads/2019/02/C%C3%A0-Ph%C3%AA-Ch%E1%BB%93n-Cao-C%E1%BA%A5p-CIVET-Coffee-Arabica--768x768.jpg',
-            'weight' => '100g',
-            'description' => 'Cà phê Chồn Arabica kết hợp giữa hạt Arabica cao cấp và quy trình chế biến chồn, mang đến hương vị tinh tế nhất. Vị chua nhẹ của Arabica hòa quyện với hương thơm đặc biệt sau quá trình chế biến tạo nên sản phẩm đặc biệt.',
-            'category' => 'chon'
-        ]
-    ];
-
-    // Lấy ID từ URL
-    $product_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
     
-    // Kiểm tra sản phẩm có tồn tại không
-    if (isset($all_products[$product_id])) {
-        $product = $all_products[$product_id];
-        $category = $product['category'];
-        
-        // Hiển thị chi tiết sản phẩm
-        echo "
-        <section class='product-detail'>
-            <img src='{$product['image']}' alt='{$product['name']}' class='product-image'>
-            <div class='product-info'>
-                <h1>{$product['name']}</h1>
-                <p class='price'>" . number_format($product['price'], 0, ',', '.') . " VNĐ / {$product['weight']}</p>
-                <p class='description'>{$product['description']}</p>
-                <a href='#' class='btn' onclick=\"addToCart('{$product['name']} - {$product['weight']}', {$product['price']})\">Thêm vào giỏ</a>
+    <!-- Thông báo thêm vào giỏ hàng -->
+    <div id="cart-message" style="display: none; background-color: #4CAF50; color: white; text-align: center; padding: 10px; position: fixed; top: 80px; left: 50%; transform: translateX(-50%); border-radius: 5px; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); width: 300px;"></div>
+
+    <div class="container">
+        <?php if (isset($product_not_found) && $product_not_found): ?>
+            <!-- Thông báo sản phẩm không tồn tại -->
+            <div class="product-not-found">
+                <h1>Sản phẩm không tồn tại</h1>
+                <p>Rất tiếc, sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+                <div class="actions">
+                    <a href="products.php" class="btn btn-primary">Xem tất cả sản phẩm</a>
+                    <a href="index.php" class="btn btn-secondary">Về trang chủ</a>
+                </div>
             </div>
-        </section>";
-        
-        // Hiển thị sản phẩm liên quan (cùng danh mục)
-        echo "<section class='related-products'>
-            <h2 style='text-align: center; margin-bottom: 30px; font-family: \"Playfair Display\", serif; color: #3c2f2f;'>Sản phẩm tương tự</h2>
-            <div class='product-grid'>";
+        <?php else: ?>
+            <!-- Hiển thị chi tiết sản phẩm -->
+            <div class="product-detail">
+                <div class="product-image">
+                    <img src="<?php echo htmlspecialchars($product_image); ?>" alt="<?php echo htmlspecialchars($product_name); ?>">
+                </div>
+                <div class="product-info">
+                    <h1><?php echo htmlspecialchars($product_name); ?></h1>
+                    <p class="price"><?php echo $product_price; ?>đ</p>
+                    
+                    <?php if (!empty($product_weight)): ?>
+                    <p class="product-weight">Trọng lượng: <?php echo htmlspecialchars($product_weight); ?></p>
+                    <?php endif; ?>
+                    
+                    <div class="product-description">
+                        <h3>Mô tả sản phẩm</h3>
+                        <p class="description"><?php echo $product_description; ?></p>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <div class="quantity-controls">
+                            <button onclick="decreaseQuantity()" class="quantity-btn">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="99" class="quantity-input">
+                            <button onclick="increaseQuantity()" class="quantity-btn">+</button>
+                        </div>
+                        <a href="javascript:void(0);" onclick="addToCart()" class="btn">Thêm vào giỏ hàng</a>
+                    </div>
+                </div>
+            </div>
             
-        $count = 0;
-        foreach ($all_products as $id => $related) {
-            if ($related['category'] == $category && $id != $product_id && $count < 3) {
-                echo "
-                <div class='product-card'>
-                    <a href='product-detail.php?id={$id}'>
-                        <img src='{$related['image']}' alt='{$related['name']}'>
-                    </a>
-                    <a href='product-detail.php?id={$id}'><h3>{$related['name']}</h3></a>
-                    <p>" . number_format($related['price'], 0, ',', '.') . " VNĐ / {$related['weight']}</p>
-                    <a href='#' class='btn' onclick=\"addToCart('{$related['name']} - {$related['weight']}', {$related['price']})\">Thêm vào giỏ</a>
-                </div>";
-                $count++;
-            }
-        }
-        
-        echo "</div></section>";
-        
-    } else {
-        // Hiển thị thông báo lỗi
-        echo "
-        <div class='not-found'>
-            <h2>Sản phẩm không tồn tại</h2>
-            <p>Rất tiếc, sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã bị xóa khỏi hệ thống.</p>
-            <p>Vui lòng quay lại trang sản phẩm để xem các sản phẩm khác.</p>
-            <a href='products.php' class='btn'>Xem tất cả sản phẩm</a>
-        </div>";
-    }
-    ?>
-
+            <!-- Sản phẩm liên quan -->
+            <?php if (!empty($related_products)): ?>
+            <div class="related-products">
+                <h2>Sản phẩm liên quan</h2>
+                <div class="product-grid">
+                    <?php foreach ($related_products as $related): ?>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="<?php echo $related['image']; ?>" alt="<?php echo $related['name']; ?>">
+                        </div>
+                        <div class="product-details">
+                            <h3><?php echo $related['name']; ?></h3>
+                            <p class="product-price"><?php echo number_format($related['price'], 0, ',', '.'); ?>đ</p>
+                            <?php if (isset($related['weight']) && !empty($related['weight'])): ?>
+                            <p class="product-weight"><?php echo $related['weight']; ?></p>
+                            <?php endif; ?>
+                            <div class="product-actions">
+                                <a href="product-detail.php?id=<?php echo $related['id']; ?>" class="btn btn-details">Chi tiết</a>
+                                <button class="btn btn-cart" onclick="addToCart('<?php echo $related['id']; ?>', '<?php echo addslashes($related['name']); ?>', <?php echo (float)$related['price']; ?>, '<?php echo addslashes($related['image']); ?>')">
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    
     <script>
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${name} đã được thêm vào giỏ hàng!`);
+    function decreaseQuantity() {
+        var input = document.getElementById('quantity');
+        var value = parseInt(input.value);
+        if(value > 1) {
+            input.value = value - 1;
         }
+    }
+
+    function increaseQuantity() {
+        var input = document.getElementById('quantity');
+        var value = parseInt(input.value);
+        if(value < 99) {
+            input.value = value + 1;
+        }
+    }
+
+    function addToCart() {
+        var quantity = document.getElementById('quantity').value;
+        var id = "<?php echo $product['id']; ?>";
+        var name = "<?php echo addslashes($product['name']); ?>";
+        var price = <?php echo $product['price']; ?>;
+        var image = "<?php echo isset($product['image']) ? $product['image'] : 'images/default-product.jpg'; ?>";
+        
+        // Sử dụng AJAX thay vì chuyển trang
+        fetch('add-to-cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id=${id}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}&quantity=${encodeURIComponent(quantity)}&ajax=1`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Kết quả thêm vào giỏ hàng:", data);
+                // Hiển thị thông tin ID của tất cả sản phẩm trong giỏ hàng
+                console.log("Danh sách ID sản phẩm trong giỏ hàng:");
+                data.cart.forEach((item, index) => {
+                    console.log(`Sản phẩm ${index + 1}: ID=${item.id} (${typeof item.id}), Tên=${item.name}`);
+                });
+                
+                // Cập nhật localStorage
+                localStorage.setItem("cart", JSON.stringify(data.cart));
+                
+                // Cập nhật số lượng trong biểu tượng giỏ hàng
+                const cartCountElement = document.getElementById("cartCount");
+                if (cartCountElement) {
+                    cartCountElement.textContent = data.count;
+                }
+                
+                // Hiển thị thông báo thành công
+                const messageElement = document.getElementById('cart-message');
+                if (messageElement) {
+                    messageElement.textContent = `${name} đã được thêm vào giỏ hàng!`;
+                    messageElement.style.display = 'block';
+                    // Ẩn thông báo sau 3 giây
+                    setTimeout(() => {
+                        messageElement.style.display = 'none';
+                    }, 3000);
+                } else {
+                    alert(`${name} đã được thêm vào giỏ hàng!`);
+                }
+            } else {
+                console.error("Lỗi thêm vào giỏ hàng:", data.message);
+                alert("Có lỗi xảy ra: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            alert("Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.");
+        });
+    }
     </script>
 </body>
 </html>

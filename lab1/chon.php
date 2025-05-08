@@ -1,3 +1,49 @@
+<?php
+session_start();
+require_once 'includes/db_connect.php';
+
+// Đảm bảo Content-Type header được thiết lập đúng
+header('Content-Type: text/html; charset=utf-8');
+
+// Kết nối database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "lab1";
+
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+// Lấy category_id cho loại sản phẩm Chồn
+$sql_category = "SELECT id FROM categories WHERE name LIKE '%Chồn%' LIMIT 1";
+$result_category = $conn->query($sql_category);
+$categoryId = 3; // Mặc định ID cho loại Chồn
+
+if ($result_category && $result_category->num_rows > 0) {
+    $category = $result_category->fetch_assoc();
+    $categoryId = $category['id'];
+}
+
+// Lấy sản phẩm từ database dựa vào category_id
+$sql = "SELECT * FROM products WHERE category_id = ? AND active = 1 ORDER BY id DESC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $categoryId);
+$stmt->execute();
+$result = $stmt->get_result();
+$products = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,6 +51,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cà phê Chồn - Cà Phê Đậm Đà</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/search-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { padding-top: 100px; line-height: 1.6; }
@@ -77,9 +125,6 @@
             display: block;
             transition: background-color 0.3s;
         }
-        .dropdown-content a:hover {
-            background-color: #d4a373;
-        }
         .info-section {
             max-width: 1200px;
             margin: 30px auto;
@@ -104,6 +149,40 @@
             nav a { margin: 8px 0; }
             .product-grid { grid-template-columns: 1fr; }
         }
+
+        // Thêm CSS styles cho cart notification
+        .cart-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            max-width: 300px;
+        }
+        .cart-icon {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #d4a373;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -124,10 +203,29 @@
                 </div>
                 <a href="#about">Giới thiệu</a>
                 <a href="#contact">Liên hệ</a>
-                <a href="cart.php">Giỏ hàng</a>
+                <a href="cart.php" class="cart-icon">
+                    Giỏ hàng
+                    <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                    <span class="cart-count"><?php echo count($_SESSION['cart']); ?></span>
+                    <?php endif; ?>
+                </a>
             </div>
         </nav>
     </header>
+
+    <div id="cartNotification" class="cart-notification"></div>
+
+    <?php if(isset($_SESSION['cart_message'])): ?>
+    <div class="cart-notification" style="display: block;" id="sessionMessage">
+        <?php echo $_SESSION['cart_message']; ?>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('sessionMessage').style.display = 'none';
+        }, 3000);
+    </script>
+    <?php unset($_SESSION['cart_message']); ?>
+    <?php endif; ?>
 
     <section class="products">
         <h1>Cà phê Chồn</h1>
@@ -142,106 +240,124 @@
             </p>
         </div>
         
-        <div style="text-align: center; margin-bottom: 20px;">
-            <form action="search.php" method="get">
-                <input type="text" id="searchInput" name="q" placeholder="Tìm kiếm sản phẩm..." style="padding: 10px; width: 300px; border: 1px solid #d4a373; border-radius: 5px;">
-                <button type="submit" class="btn">Tìm kiếm</button>
-            </form>
-        </div>
-        <div class="product-grid" id="productGrid">
+        <?php
+        $hideCategory = true;
+        $currentCategory = 'chon';
+        include 'includes/search-form.php';
+        ?>
+        
+        <div class="product-grid">
             <?php
-            $products = [
-                [
-                    'id' => 3,
-                    'name' => 'Cà phê Chồn',
-                    'price' => 180000,
-                    'image' => 'https://vn-live-01.slatic.net/p/cdf5f80d6feaa2e85e10968606ea4df6.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 21,
-                    'name' => 'Cà phê Chồn Đặc Biệt',
-                    'price' => 250000,
-                    'image' => 'https://huonghau.com/wp-content/uploads/2020/02/caphe-chon-dac-biet-600x428.jpg',
-                    'weight' => '250g'
-                ],
-                [
-                    'id' => 22,
-                    'name' => 'Cà phê Chồn Thượng Hạng',
-                    'price' => 3760000,
-                    'image' => 'https://salt.tikicdn.com/cache/750x750/ts/product/49/95/13/c1bba3c45f8353abb00c96f714c8720e.jpg.webp',
-                    'weight' => '150g'
-                ],
-                [
-                    'id' => 23,
-                    'name' => 'Cà phê Chồn Robusta',
-                    'price' => 1500000,
-                    'image' => 'https://sieuthicafe.com/wp-content/uploads/2020/03/robusta.png',
-                    'weight' => '150g'
-                ],
-                [
-                    'id' => 24,
-                    'name' => 'Cà phê Chồn Arabica',
-                    'price' => 1360000,
-                    'image' => 'https://sieuthicafe.com/wp-content/uploads/2019/02/C%C3%A0-Ph%C3%AA-Ch%E1%BB%93n-Cao-C%E1%BA%A5p-CIVET-Coffee-Arabica--768x768.jpg',
-                    'weight' => '100g'
-                ]
-            ];
+            if (count($products) > 0) {
+                foreach ($products as $product) {
+                    // Xử lý đường dẫn hình ảnh, thêm uploads/ nếu cần thiết  
+                    $imagePath = $product['image'];
+                    if (!empty($imagePath) && strpos($imagePath, 'uploads/') === false) {
+                        $imagePath = 'uploads/products/' . $imagePath;
+                    }
 
-            foreach ($products as $product) {
-                echo "
-                <div class='product-card'>
-                    <a href='product-detail.php?id={$product['id']}'>
-                        <img src='{$product['image']}' alt='{$product['name']}'>
-                    </a>
-                    <a href='product-detail.php?id={$product['id']}'><h3>{$product['name']}</h3></a>
-                    <p>" . number_format($product['price'], 0, ',', '.') . " VNĐ / {$product['weight']}</p>
-                    <a href='#' class='btn' onclick=\"addToCart('{$product['name']} - {$product['weight']}', {$product['price']})\">Thêm vào giỏ</a>
-                </div>";
+                    echo "
+                    <div class='product-card'>
+                        <img src='" . htmlspecialchars($imagePath) . "' alt='" . htmlspecialchars($product['name']) . "' onerror=\"this.src='images/default-product.jpg'\">
+                        <h3>" . htmlspecialchars($product['name']) . "</h3>
+                        <p class='price'>" . number_format($product['price'], 0, ',', '.') . " VNĐ</p>
+                        <div class='product-actions'>
+                            <a href='product-detail.php?id=" . $product['id'] . "' class='btn'>Xem chi tiết</a>
+                            <button type='button' onclick='addToCart(" . $product['id'] . ", \"" . addslashes($product['name']) . "\", " . $product['price'] . ", \"" . addslashes($imagePath) . "\")' class='btn'>Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>";
+                }
+            } else {
+                echo "<p class='text-center'>Không có sản phẩm nào trong danh mục này.</p>";
             }
             ?>
         </div>
     </section>
 
+    <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Liên hệ</h2>
+            <p style="margin: 20px 0; text-align: center;">
+                Địa chỉ: 123 Đường Nguyễn Huệ, Quận 1, TP.HCM<br>
+                Email: info@caphedamda.com<br>
+                Điện thoại: 0909 123 456
+            </p>
+            <div style="margin: 20px 0; text-align: center;">
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #aaa;">
+                © 2023 Cà Phê Đậm Đà. Tất cả các quyền được bảo lưu.
+            </p>
+        </div>
+    </footer>
+
     <script>
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const products = <?php echo json_encode($products); ?>;
-        const productGrid = document.getElementById('productGrid');
-        const searchInput = document.getElementById('searchInput');
-
-        function displayProducts(filteredProducts) {
-            productGrid.innerHTML = filteredProducts.map(product => `
-                <div class='product-card'>
-                    <a href='product-detail.php?id=${product.id}'>
-                        <img src='${product.image}' alt='${product.name}'>
-                    </a>
-                    <a href='product-detail.php?id=${product.id}'><h3>${product.name}</h3></a>
-                    <p>${new Intl.NumberFormat('vi-VN').format(product.price)} VNĐ / ${product.weight}</p>
-                    <a href='#' class='btn' onclick="addToCart('${product.name} - ${product.weight}', ${product.price})">Thêm vào giỏ</a>
-                </div>
-            `).join('');
+        // Tạo hàm hiển thị thông báo
+        function showNotification(message) {
+            const notification = document.getElementById('cartNotification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            // Tự động ẩn thông báo sau 3 giây
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
         }
-
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredProducts = products.filter(product => 
-                product.name.toLowerCase().includes(searchTerm)
-            );
-            displayProducts(filteredProducts);
-        });
-
-        // Hiển thị tất cả sản phẩm khi trang được tải
-        displayProducts(products);
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${name} đã được thêm vào giỏ hàng!`);
+        
+        // Hàm thêm sản phẩm vào giỏ hàng
+        function addToCart(id, name, price, image) {
+            // Gửi yêu cầu Ajax để thêm sản phẩm vào giỏ hàng
+            fetch('add-to-cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${id}&name=${encodeURIComponent(name)}&price=${price}&image=${encodeURIComponent(image)}&quantity=1&ajax=1`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hiển thị thông báo
+                    showNotification(`Đã thêm "${name}" vào giỏ hàng!`);
+                    
+                    // Lưu giỏ hàng vào localStorage
+                    localStorage.setItem('cart', JSON.stringify(data.cart));
+                    console.log('Đã cập nhật localStorage với dữ liệu:', data.cart);
+                    console.log('Số lượng sản phẩm trong giỏ hàng:', data.count);
+                    
+                    // Cập nhật số lượng sản phẩm trong giỏ hàng trên giao diện
+                    updateCartCount(data.count);
+                } else {
+                    showNotification('Có lỗi xảy ra: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
+            });
+        }
+        
+        // Hàm cập nhật số lượng sản phẩm trong giỏ hàng
+        function updateCartCount(count) {
+            const cartLinks = document.querySelectorAll('.cart-icon');
+            
+            cartLinks.forEach(link => {
+                // Xóa số đếm cũ nếu có
+                const oldCount = link.querySelector('.cart-count');
+                if (oldCount) {
+                    oldCount.remove();
+                }
+                
+                // Thêm số đếm mới nếu có sản phẩm trong giỏ hàng
+                if (count > 0) {
+                    const countSpan = document.createElement('span');
+                    countSpan.className = 'cart-count';
+                    countSpan.textContent = count;
+                    link.appendChild(countSpan);
+                }
+            });
         }
     </script>
 </body>

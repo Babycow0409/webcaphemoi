@@ -1,3 +1,49 @@
+<?php
+session_start();
+require_once 'includes/db_connect.php';
+
+// Đảm bảo Content-Type header được thiết lập đúng
+header('Content-Type: text/html; charset=utf-8');
+
+// Kết nối database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "lab1";
+
+// Tạo kết nối
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+// Lấy category_id cho loại sản phẩm Khác
+$sql_category = "SELECT id FROM categories WHERE name LIKE '%Khác%' LIMIT 1";
+$result_category = $conn->query($sql_category);
+$categoryId = 4; // Mặc định ID cho loại Khác
+
+if ($result_category && $result_category->num_rows > 0) {
+    $category = $result_category->fetch_assoc();
+    $categoryId = $category['id'];
+}
+
+// Lấy sản phẩm từ database dựa vào category_id
+$sql = "SELECT * FROM products WHERE category_id = ? AND active = 1 ORDER BY id DESC";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $categoryId);
+$stmt->execute();
+$result = $stmt->get_result();
+$products = [];
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,6 +51,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Các loại cà phê khác - Cà Phê Đậm Đà</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/search-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { padding-top: 100px; line-height: 1.6; }
@@ -46,7 +94,13 @@
             flex-direction: column;
         }
         .product-card:hover { transform: scale(1.05); }
-        .product-card img { width: 100%; border-radius: 5px; height: 200px; object-fit: cover; cursor: pointer; }
+        .product-card img { 
+            width: 100%; 
+            border-radius: 5px; 
+            height: 200px; 
+            object-fit: cover; 
+            cursor: pointer; 
+        }
         .product-card h3 { margin: 15px 0; color: #3c2f2f; cursor: pointer; }
         .product-card h3:hover { color: #d4a373; }
         .product-card p { color: #555; margin-bottom: 15px; }
@@ -61,24 +115,59 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
         .dropdown-content a {
             color: white;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            transition: background-color 0.3s;
         }
-        .dropdown-content a:hover {
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* CSS cho thông báo giỏ hàng */
+        #cartNotification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
             background-color: #d4a373;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1001;
+            font-weight: bold;
+        }
+        
+        /* CSS cho biểu tượng giỏ hàng và số đếm */
+        .cart-icon {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #d4a373;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) { 
+            nav { flex-direction: column; padding: 10px; }
+            .nav-links { flex-direction: column; margin-top: 15px; }
+            nav a { margin: 8px 0; }
+            .product-grid { grid-template-columns: 1fr; }
         }
         .info-section {
             max-width: 1200px;
@@ -96,13 +185,6 @@
             margin-bottom: 15px;
             text-align: justify;
             padding: 0 15px;
-        }
-        
-        @media (max-width: 768px) { 
-            nav { flex-direction: column; padding: 10px; }
-            .nav-links { flex-direction: column; margin-top: 15px; }
-            nav a { margin: 8px 0; }
-            .product-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -124,149 +206,146 @@
                 </div>
                 <a href="#about">Giới thiệu</a>
                 <a href="#contact">Liên hệ</a>
-                <a href="cart.php">Giỏ hàng</a>
+                <a href="cart.php" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <?php
+                    if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                        echo '<span class="cart-count">' . count($_SESSION['cart']) . '</span>';
+                    }
+                    ?>
+                </a>
             </div>
         </nav>
     </header>
 
+    <!-- Thông báo giỏ hàng -->
+    <div id="cartNotification"></div>
+
     <section class="products">
         <h1>Các loại cà phê khác</h1>
         
-      
-        
-        <div style="text-align: center; margin-bottom: 20px;">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." style="padding: 10px; width: 300px; border: 1px solid #d4a373; border-radius: 5px;">
+        <div class="info-section">
+            <h2>Giới thiệu về các loại cà phê khác</h2>
+            <p>
+                Ngoài các loại cà phê phổ biến như Arabica, Robusta và cà phê Chồn, thế giới còn có nhiều loại cà phê đặc biệt khác nhau. Mỗi loại đều có hương vị, đặc tính và cách chế biến riêng, mang đến những trải nghiệm thưởng thức đa dạng cho người yêu cà phê.
+            </p>
+            <p>
+                Một số loại cà phê đặc biệt có thể kể đến như: Cà phê Liberica có vị đắng nhẹ, hương trái cây nồng nàn; Cà phê Excelsa với hương vị phức tạp, độ chua mạnh; Cà phê Blue Mountain từ Jamaica nổi tiếng với vị chua nhẹ, hương thơm sang trọng và độ cân bằng tuyệt vời.
+            </p>
         </div>
         
-        <div class="product-grid" id="productGrid">
+        <?php
+        $hideCategory = true;
+        $currentCategory = 'khac';
+        include 'includes/search-form.php';
+        ?>
+        <div class="product-grid">
             <?php
-            $products = [
-                [
-                    'id' => 4,
-                    'name' => 'Cà phê Mocha',
-                    'price' => 145000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/mocha_nong_77f8777d72694d7099b7edefd5fa8e9a_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 5,
-                    'name' => 'Cà phê Culi',
-                    'price' => 135000,
-                    'image' => 'https://coloihoang.com/wp-content/uploads/2019/04/san-pham-ca-phe-culi.png',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 6,
-                    'name' => 'Cà phê Espresso',
-                    'price' => 160000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/espresso_b62af56c27e14e41bbbd161181defd23_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 7,
-                    'name' => 'Cà phê Latte',
-                    'price' => 155000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/latte_851541_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 8,
-                    'name' => 'Cà phê Bourbon',
-                    'price' => 170000,
-                    'image' => 'https://bizweb.dktcdn.net/100/346/613/products/ca-phe-bourbon.jpg?v=1554953413793',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 9,
-                    'name' => 'Cà phê Cappuccino',
-                    'price' => 165000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/cappuccino_621532_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 10,
-                    'name' => 'Cà phê Americano',
-                    'price' => 155000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/americano_968067_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 11,
-                    'name' => 'Cà phê Macchiato',
-                    'price' => 160000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/caramel-macchiato_143623_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 12,
-                    'name' => 'Cà phê Vanilla Latte',
-                    'price' => 170000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/vanilla-latte_618293_master.jpg',
-                    'weight' => '500g'
-                ],
-                [
-                    'id' => 13,
-                    'name' => 'Cà phê Caramel',
-                    'price' => 175000,
-                    'image' => 'https://product.hstatic.net/1000075078/product/caramel-phin-freeze_791036_master.jpg',
-                    'weight' => '500g'
-                ]
-            ];
-
-            foreach ($products as $product) {
-                echo "
-                <div class='product-card'>
-                    <a href='product-detail.php?id={$product['id']}'>
-                        <img src='{$product['image']}' alt='{$product['name']}'>
-                    </a>
-                    <a href='product-detail.php?id={$product['id']}'><h3>{$product['name']}</h3></a>
-                    <p>" . number_format($product['price'], 0, ',', '.') . " VNĐ / {$product['weight']}</p>
-                    <a href='#' class='btn' onclick=\"addToCart('{$product['name']} - {$product['weight']}', {$product['price']})\">Thêm vào giỏ</a>
-                </div>";
+            if (count($products) > 0) {
+                foreach ($products as $product) {
+                    // Xử lý đường dẫn hình ảnh, thêm upload nếu cần thiết
+                    $imagePath = $product['image'];
+                    if (!empty($imagePath) && strpos($imagePath, 'uploads/') === false) {
+                        $imagePath = 'uploads/products/' . $imagePath;
+                    }
+                    
+                    echo "
+                    <div class='product-card'>
+                        <img src='" . htmlspecialchars($imagePath) . "' alt='" . htmlspecialchars($product['name']) . "' onerror=\"this.src='images/default-product.jpg'\">
+                        <h3>" . htmlspecialchars($product['name']) . "</h3>
+                        <p class='price'>" . number_format($product['price'], 0, ',', '.') . " VNĐ</p>
+                        <div class='product-actions'>
+                            <a href='product-detail.php?id=" . $product['id'] . "' class='btn'>Xem chi tiết</a>
+                            <button onclick='addToCart(" . $product['id'] . ", \"" . addslashes($product['name']) . "\", " . $product['price'] . ", \"" . addslashes($imagePath) . "\")' class='btn'>Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>";
+                }
+            } else {
+                echo "<p class='text-center'>Không có sản phẩm nào trong danh mục này.</p>";
             }
             ?>
         </div>
     </section>
 
+    <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Liên hệ</h2>
+            <p style="margin: 20px 0; text-align: center;">
+                Địa chỉ: 123 Đường Nguyễn Huệ, Quận 1, TP.HCM<br>
+                Email: info@caphedamda.com<br>
+                Điện thoại: 0909 123 456
+            </p>
+            <div style="margin: 20px 0; text-align: center;">
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #aaa;">
+                © 2023 Cà Phê Đậm Đà. Tất cả các quyền được bảo lưu.
+            </p>
+        </div>
+    </footer>
+
     <script>
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const products = <?php echo json_encode($products); ?>;
-        const productGrid = document.getElementById('productGrid');
-        const searchInput = document.getElementById('searchInput');
-
-        function displayProducts(filteredProducts) {
-            productGrid.innerHTML = filteredProducts.map(product => `
-                <div class='product-card'>
-                    <a href='product-detail.php?id=${product.id}'>
-                        <img src='${product.image}' alt='${product.name}'>
-                    </a>
-                    <a href='product-detail.php?id=${product.id}'><h3>${product.name}</h3></a>
-                    <p>${new Intl.NumberFormat('vi-VN').format(product.price)} VNĐ / ${product.weight}</p>
-                    <a href='#' class='btn' onclick="addToCart('${product.name} - ${product.weight}', ${product.price})">Thêm vào giỏ</a>
-                </div>
-            `).join('');
+        // Tạo hàm hiển thị thông báo
+        function showNotification(message) {
+            const notification = document.getElementById('cartNotification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            // Tự động ẩn thông báo sau 3 giây
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
         }
-
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredProducts = products.filter(product => 
-                product.name.toLowerCase().includes(searchTerm)
-            );
-            displayProducts(filteredProducts);
-        });
-
-        // Hiển thị tất cả sản phẩm khi trang được tải
-        displayProducts(products);
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`${name} đã được thêm vào giỏ hàng!`);
+        
+        // Hàm thêm sản phẩm vào giỏ hàng
+        function addToCart(id, name, price, image) {
+            // Gửi yêu cầu Ajax để thêm sản phẩm vào giỏ hàng
+            fetch('add-to-cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `id=${id}&name=${encodeURIComponent(name)}&price=${price}&image=${encodeURIComponent(image)}&quantity=1&ajax=1`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hiển thị thông báo
+                    showNotification(`Đã thêm "${name}" vào giỏ hàng!`);
+                    
+                    // Cập nhật số lượng sản phẩm trong giỏ hàng trên giao diện
+                    updateCartCount(data.count);
+                } else {
+                    showNotification('Có lỗi xảy ra: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
+            });
+        }
+        
+        // Hàm cập nhật số lượng sản phẩm trong giỏ hàng
+        function updateCartCount(count) {
+            const cartLinks = document.querySelectorAll('.cart-icon');
+            
+            cartLinks.forEach(link => {
+                // Xóa số đếm cũ nếu có
+                const oldCount = link.querySelector('.cart-count');
+                if (oldCount) {
+                    oldCount.remove();
+                }
+                
+                // Thêm số đếm mới nếu có sản phẩm trong giỏ hàng
+                if (count > 0) {
+                    const countSpan = document.createElement('span');
+                    countSpan.className = 'cart-count';
+                    countSpan.textContent = count;
+                    link.appendChild(countSpan);
+                }
+            });
         }
     </script>
 </body>
