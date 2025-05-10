@@ -66,8 +66,8 @@ try {
     file_put_contents('order_debug.log', date('Y-m-d H:i:s') . " - INSERT DATA: " . $log_info, FILE_APPEND);
     
     // Tạo đơn hàng mới
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, shipping_name, shipping_address, shipping_phone, shipping_city, total_amount, payment_method, status, order_date, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssdssss", $user_id, $fullname, $address, $phone, $city, $totalAmount, $payment, $status, $order_date, $order_date);
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, shipping_name, shipping_address, shipping_phone, shipping_city, total_amount, payment_method, status, order_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssdsss", $user_id, $fullname, $address, $phone, $city, $totalAmount, $payment, $status, $order_date);
     $stmt->execute();
     $order_id = $conn->insert_id;
     
