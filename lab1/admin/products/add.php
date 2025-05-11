@@ -119,9 +119,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . uniqid('product_') . '.' . $imageFileType;
         
         // Kiểm tra loại file
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         if (!in_array($imageFileType, $allowedExtensions)) {
-            $error = "Chỉ chấp nhận file ảnh JPG, JPEG, PNG và GIF.";
+            $error = "Chỉ chấp nhận file ảnh JPG, JPEG, PNG, GIF và WebP.";
         }
         // Kiểm tra kích thước file (tối đa 5MB)
         else if ($_FILES["image"]["size"] > 5 * 1024 * 1024) {
@@ -155,6 +155,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+// Lấy danh sách danh mục để hiển thị trong form
+$categories = [];
+$stmt = $conn->prepare("SELECT id, name FROM categories ORDER BY name");
+$stmt->execute();
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $categories[] = $row;
+}
 ?>
 
 <!DOCTYPE html>
@@ -165,6 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Thêm sản phẩm mới - Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -197,10 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 20px;
         }
-        #preview-image {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 10px;
+        .note-editor .dropdown-toggle::after {
             display: none;
         }
     </style>
@@ -218,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../products/index.php">
+                        <a class="nav-link active" href="index.php">
                             <i class="fas fa-coffee mr-2"></i> Sản phẩm
                         </a>
                     </li>
@@ -250,93 +257,86 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header d-flex justify-content-between align-items-center">
                     <h2>Thêm sản phẩm mới</h2>
                     <a href="index.php" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Quay lại
+                        <i class="fas fa-arrow-left mr-1"></i> Quay lại
                     </a>
                 </div>
                 
                 <div class="content">
-                    <?php if (!empty($error)): ?>
-                        <div class="alert alert-danger"><?php echo $error; ?></div>
+                    <?php if (!empty($success)): ?>
+                        <div class="alert alert-success">
+                            <?php echo $success; ?>
+                        </div>
                     <?php endif; ?>
                     
-                    <?php if (!empty($success)): ?>
-                        <div class="alert alert-success"><?php echo $success; ?></div>
+                    <?php if (!empty($error)): ?>
+                        <div class="alert alert-danger">
+                            <?php echo $error; ?>
+                        </div>
                     <?php endif; ?>
                     
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="name">Tên sản phẩm <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="name" name="name" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="description">Mô tả</label>
-                                            <textarea class="form-control" id="description" name="description" rows="5"></textarea>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="price">Giá <span class="text-danger">*</span></label>
-                                                    <input type="number" class="form-control" id="price" name="price" min="0" step="1000" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="category">Danh mục <span class="text-danger">*</span></label>
-                                                    <select class="form-control" id="category" name="category" required>
-                                                        <option value="">-- Chọn danh mục --</option>
-                                                        <?php
-                                                        // Lấy danh sách danh mục từ database
-                                                        $sql_categories = "SELECT * FROM categories ORDER BY name ASC";
-                                                        $result_categories = $conn->query($sql_categories);
-                                                        
-                                                        if ($result_categories && $result_categories->num_rows > 0) {
-                                                            while($cat = $result_categories->fetch_assoc()) {
-                                                                echo '<option value="'.$cat['id'].'">'.$cat['name'].'</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option value="" disabled>Không có danh mục</option>';
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="weight">Trọng lượng</label>
-                                                    <input type="text" class="form-control" id="weight" name="weight" placeholder="Ví dụ: 250g, 500g, 1kg">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="stock">Số lượng tồn kho</label>
-                                                    <input type="number" class="form-control" id="stock" name="stock" min="0" value="0">
-                                                </div>
+                            <form method="post" action="" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Tên sản phẩm <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="price">Giá <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="price" name="price" step="1000" min="0" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">VNĐ</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="image">Hình ảnh</label>
-                                            <input type="file" class="form-control-file" id="image" name="image" accept="image/*" onchange="previewImage(this)">
-                                            <small class="form-text text-muted">Chọn ảnh JPG, PNG hoặc GIF (tối đa 5MB)</small>
-                                            <img id="preview-image" src="#" alt="Preview">
-                                        </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="category">Danh mục <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="category" name="category" required>
+                                            <option value="">-- Chọn danh mục --</option>
+                                            <?php foreach ($categories as $category): ?>
+                                                <option value="<?php echo $category['id']; ?>"><?php echo htmlspecialchars($category['name']); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i> Lưu sản phẩm
-                                </button>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="weight">Trọng lượng</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="weight" name="weight" placeholder="VD: 500g, 1kg">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">g/kg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="stock">Số lượng tồn kho</label>
+                                        <input type="number" class="form-control" id="stock" name="stock" min="0" value="0">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="description">Mô tả sản phẩm</label>
+                                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="image">Hình ảnh sản phẩm</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+                                        <label class="custom-file-label" for="image">Chọn file ảnh</label>
+                                    </div>
+                                    <small class="form-text text-muted">Chỉ chấp nhận file ảnh JPG, JPEG, PNG, GIF. Tối đa 5MB.</small>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary px-5">
+                                        <i class="fas fa-plus mr-1"></i> Thêm sản phẩm
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -348,23 +348,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script>
-        function previewImage(input) {
-            var preview = document.getElementById('preview-image');
+        $(document).ready(function () {
+            // Hiển thị tên file được chọn
+            bsCustomFileInput.init();
             
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.style.display = 'none';
-            }
-        }
+            // Khởi tạo trình soạn thảo rich text
+            $('#description').summernote({
+                placeholder: 'Nhập mô tả chi tiết về sản phẩm tại đây...',
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+        });
     </script>
 </body>
-</html> 
+</html>

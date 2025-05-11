@@ -86,9 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . uniqid('product_') . '.' . $imageFileType;
         
         // Kiểm tra loại file
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         if (!in_array($imageFileType, $allowedExtensions)) {
-            $error = "Chỉ chấp nhận file ảnh JPG, JPEG, PNG và GIF.";
+            $error = "Chỉ chấp nhận file ảnh JPG, JPEG, PNG, GIF và WebP.";
         }
         // Kiểm tra kích thước file (tối đa 5MB)
         else if ($_FILES["image"]["size"] > 5 * 1024 * 1024) {
@@ -127,6 +127,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
+// Lấy thông tin danh mục
+$categories = [];
+$sql = "SELECT id, name FROM categories ORDER BY name";
+$result = $conn->query($sql);
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +153,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
         }
         .container-fluid {
             padding: 0;
@@ -157,64 +166,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .sidebar .nav-link {
             color: rgba(255,255,255,.75);
             padding: 10px 20px;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
         }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+        .sidebar .nav-link:hover {
             color: white;
             background-color: rgba(255,255,255,.1);
-            border-left: 3px solid #17a2b8;
         }
         .content {
             padding: 20px;
         }
         .header {
-            background-color: #fff;
+            background-color: #f8f9fa;
             padding: 15px 20px;
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        #preview-image {
+        .current-image {
             max-width: 100%;
             max-height: 200px;
-            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
             border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 5px;
         }
-        .card {
-            border: none;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-            border-radius: 0.5rem;
-        }
-        .card-header {
-            background-color: #17a2b8;
-            color: white;
-            font-weight: bold;
-            border-radius: 0.5rem 0.5rem 0 0 !important;
-        }
-        .form-control:focus {
-            border-color: #17a2b8;
-            box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
-        }
-        .btn-primary {
-            background-color: #17a2b8;
-            border-color: #17a2b8;
-        }
-        .btn-primary:hover {
-            background-color: #138496;
-            border-color: #117a8b;
-        }
-        .image-preview-container {
-            border: 1px dashed #ced4da;
-            padding: 15px;
-            text-align: center;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        .required-field {
-            color: #dc3545;
-            margin-left: 4px;
+        .note-editor .dropdown-toggle::after {
+            display: none;
         }
     </style>
 </head>
@@ -231,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../products/index.php">
+                        <a class="nav-link active" href="index.php">
                             <i class="fas fa-coffee mr-2"></i> Sản phẩm
                         </a>
                     </li>
@@ -263,127 +238,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="header d-flex justify-content-between align-items-center">
                     <h2>Chỉnh sửa sản phẩm</h2>
                     <a href="index.php" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Quay lại
+                        <i class="fas fa-arrow-left mr-1"></i> Quay lại
                     </a>
                 </div>
                 
                 <div class="content">
-                    <?php if (!empty($error)): ?>
-                        <div class="alert alert-danger"><?php echo $error; ?></div>
+                    <?php if (!empty($success)): ?>
+                        <div class="alert alert-success">
+                            <?php echo $success; ?>
+                        </div>
                     <?php endif; ?>
                     
-                    <?php if (!empty($success)): ?>
-                        <div class="alert alert-success"><?php echo $success; ?></div>
+                    <?php if (!empty($error)): ?>
+                        <div class="alert alert-danger">
+                            <?php echo $error; ?>
+                        </div>
                     <?php endif; ?>
                     
                     <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-edit mr-2"></i>Thông tin sản phẩm
-                        </div>
                         <div class="card-body">
-                            <form method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="name">Tên sản phẩm <span class="required-field">*</span></label>
-                                            <input type="text" class="form-control" id="name" name="name" required value="<?php echo htmlspecialchars($product['name']); ?>" placeholder="Nhập tên sản phẩm">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="description">Mô tả sản phẩm</label>
-                                            <textarea class="form-control" id="summernote" name="description" rows="5"><?php echo htmlspecialchars($product['description'] ?? ''); ?></textarea>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="price">Giá <span class="required-field">*</span></label>
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control" id="price" name="price" min="0" step="1000" required value="<?php echo $product['price']; ?>" placeholder="Nhập giá sản phẩm">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text">VNĐ</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="category">Danh mục <span class="required-field">*</span></label>
-                                                    <select class="form-control" id="category" name="category" required>
-                                                        <option value="">-- Chọn danh mục --</option>
-                                                        <?php
-                                                        // Lấy danh sách danh mục từ database
-                                                        $sql_categories = "SELECT * FROM categories ORDER BY name ASC";
-                                                        $result_categories = $conn->query($sql_categories);
-                                                        
-                                                        if ($result_categories && $result_categories->num_rows > 0) {
-                                                            while($cat = $result_categories->fetch_assoc()) {
-                                                                $selected = ($cat['id'] == $product['category_id']) ? 'selected' : '';
-                                                                echo '<option value="'.$cat['id'].'" '.$selected.'>'.$cat['name'].'</option>';
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="weight">Trọng lượng</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="weight" name="weight" placeholder="Ví dụ: 250g, 500g, 1kg" value="<?php echo htmlspecialchars($product['weight'] ?? ''); ?>">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="fas fa-weight"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="stock">Số lượng tồn kho</label>
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control" id="stock" name="stock" min="0" value="<?php echo $product['stock'] ?? 0; ?>" placeholder="Nhập số lượng">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text"><i class="fas fa-cubes"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <form method="post" action="" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Tên sản phẩm <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($product['name']); ?>" required>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="price">Giá <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="price" name="price" step="1000" min="0" value="<?php echo htmlspecialchars($product['price']); ?>" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">VNĐ</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-4">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <i class="fas fa-image mr-2"></i>Hình ảnh sản phẩm
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="image-preview-container">
-                                                    <?php if (!empty($product['image'])): ?>
-                                                        <img id="preview-image" src="../../<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" class="mb-2">
-                                                    <?php else: ?>
-                                                        <img id="preview-image" src="#" alt="Preview" style="display: none;" class="mb-2">
-                                                        <p class="text-muted mb-0"><i class="fas fa-camera"></i> Chưa có hình ảnh</p>
-                                                    <?php endif; ?>
-                                                </div>
-                                                
-                                                <div class="custom-file mb-3">
-                                                    <input type="file" class="custom-file-input" id="image" name="image" accept="image/*" onchange="previewImage(this)">
-                                                    <label class="custom-file-label" for="image">Chọn ảnh</label>
-                                                </div>
-                                                <small class="form-text text-muted">
-                                                    <i class="fas fa-info-circle mr-1"></i>Chấp nhận các định dạng: JPG, PNG, GIF (tối đa 5MB)
-                                                </small>
-                                            </div>
-                                        </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="category">Danh mục <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="category" name="category" required>
+                                            <option value="">-- Chọn danh mục --</option>
+                                            <?php foreach ($categories as $category): ?>
+                                                <option value="<?php echo $category['id']; ?>" <?php echo ($product['category_id'] == $category['id']) ? 'selected' : ''; ?>>
+                                                    <?php echo htmlspecialchars($category['name']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="weight">Trọng lượng</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="weight" name="weight" placeholder="VD: 500g, 1kg" value="<?php echo htmlspecialchars($product['weight'] ?? ''); ?>">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">g/kg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="stock">Số lượng tồn kho</label>
+                                        <input type="number" class="form-control" id="stock" name="stock" min="0" value="<?php echo htmlspecialchars($product['stock'] ?? 0); ?>">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="description">Mô tả sản phẩm</label>
+                                    <textarea class="form-control" id="description" name="description" rows="5"><?php echo htmlspecialchars($product['description'] ?? ''); ?></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Hình ảnh hiện tại</label>
+                                    <div>
+                                        <?php if (!empty($product['image']) && file_exists("../../" . $product['image'])): ?>
+                                            <img src="../../<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="current-image">
+                                        <?php else: ?>
+                                            <p class="text-muted">Không có ảnh</p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="image">Đổi hình ảnh</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="image" name="image" accept="image/*">
+                                        <label class="custom-file-label" for="image">Chọn file ảnh</label>
+                                    </div>
+                                    <small class="form-text text-muted">Để trống nếu không muốn thay đổi ảnh. Chỉ chấp nhận file ảnh JPG, JPEG, PNG, GIF, WebP. Tối đa 5MB.</small>
+                                </div>
+                                
                                 <div class="text-center mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        <i class="fas fa-save mr-2"></i> Cập nhật sản phẩm
+                                    <button type="submit" class="btn btn-primary px-5">
+                                        <i class="fas fa-save mr-1"></i> Lưu thay đổi
                                     </button>
                                 </div>
                             </form>
@@ -394,16 +339,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Khởi tạo Summernote
-            $('#summernote').summernote({
-                placeholder: 'Nhập mô tả chi tiết về sản phẩm',
-                tabsize: 2,
+        $(document).ready(function () {
+            // Hiển thị tên file được chọn
+            bsCustomFileInput.init();
+            
+            // Khởi tạo trình soạn thảo rich text
+            $('#description').summernote({
+                placeholder: 'Nhập mô tả chi tiết về sản phẩm tại đây...',
                 height: 200,
                 toolbar: [
                     ['style', ['style']],
@@ -413,40 +361,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ['table', ['table']],
                     ['insert', ['link']],
                     ['view', ['fullscreen', 'codeview', 'help']]
-                ],
-                callbacks: {
-                    onImageUpload: function(files) {
-                        alert('Để thêm hình ảnh vào mô tả, vui lòng tải lên và chèn URL hình ảnh.');
-                    }
-                }
-            });
-            
-            // Custom file input
-            $(".custom-file-input").on("change", function() {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName || "Chọn ảnh");
+                ]
             });
         });
-
-        function previewImage(input) {
-            var preview = document.getElementById('preview-image');
-            
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    preview.parentElement.querySelector('p.text-muted')?.remove();
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                <?php if (empty($product['image'])): ?>
-                preview.style.display = 'none';
-                <?php endif; ?>
-            }
-        }
     </script>
 </body>
-</html> 
+</html>

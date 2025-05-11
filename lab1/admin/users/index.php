@@ -197,11 +197,8 @@ if ($result && $result->num_rows > 0) {
             userRows.forEach(row => {
                 const userName = row.children[1].textContent.toLowerCase();
                 const userEmail = row.children[2].textContent.toLowerCase();
-                const userPhone = row.children[3].textContent.toLowerCase();
                 
-                if (userName.includes(searchTerm) || 
-                    userEmail.includes(searchTerm) || 
-                    userPhone.includes(searchTerm)) {
+                if (userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';
@@ -210,4 +207,4 @@ if ($result && $result->num_rows > 0) {
         });
     </script>
 </body>
-</html> 
+</html>

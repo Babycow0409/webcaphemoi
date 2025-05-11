@@ -442,6 +442,7 @@ if (!$orders_exist) {
                         <th>Tổng tiền</th>
                         <th>Thanh toán</th>
                         <th>Trạng thái</th>
+                        <th>Địa chỉ</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -498,6 +499,7 @@ if (!$orders_exist) {
                                     ?>
                                     <span class="status <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
                                 </td>
+                                <td><?php echo htmlspecialchars($row['shipping_address'] ?? ''); ?></td>
                                 <td>
                                     <a href="view.php?id=<?php echo $row['id']; ?>" class="action-btn view-btn">Xem</a>
                                     <form method="get" action="" style="display: inline;">

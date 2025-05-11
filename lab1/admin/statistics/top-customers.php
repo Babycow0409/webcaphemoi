@@ -202,78 +202,63 @@ if ($orders_exist) {
                                 </div>
                             </form>
                             
-                            <?php if (!$orders_exist): ?>
-                                <div class="alert alert-info">
-                                    <i class="fas fa-info-circle mr-1"></i>Bảng orders chưa tồn tại. Chưa có thông tin đơn hàng nào để thống kê.
-                                </div>
-                            <?php elseif (empty($top_customers)): ?>
-                                <div class="alert alert-info">
-                                    <i class="fas fa-info-circle mr-1"></i>Không có đơn hàng nào trong khoảng thời gian từ <?php echo date('d/m/Y', strtotime($date_from)); ?> đến <?php echo date('d/m/Y', strtotime($date_to)); ?>.
-                                </div>
+                            <?php if ($orders_exist): ?>
+                                <?php if (empty($top_customers)): ?>
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle mr-1"></i>Không có dữ liệu đơn hàng trong khoảng thời gian đã chọn.
+                                    </div>
+                                <?php else: ?>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Khách hàng</th>
+                                                    <th>Email</th>
+                                                    <th>Số đơn hàng</th>
+                                                    <th>Tổng chi tiêu</th>
+                                                    <th>Chi tiết</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($top_customers as $index => $customer): ?>
+                                                    <tr>
+                                                        <td><?php echo $index + 1; ?></td>
+                                                        <td><?php echo htmlspecialchars($customer['fullname']); ?></td>
+                                                        <td><?php echo htmlspecialchars($customer['email']); ?></td>
+                                                        <td><?php echo $customer['order_count']; ?></td>
+                                                        <td><?php echo number_format($customer['total_spent'], 0, ',', '.'); ?>đ</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#customer-<?php echo $customer['id']; ?>">
+                                                                <i class="fas fa-list-ul mr-1"></i>Xem
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" class="p-0">
+                                                            <div class="collapse" id="customer-<?php echo $customer['id']; ?>">
+                                                                <div class="card card-body m-2">
+                                                                    <h6>Đơn hàng gần đây:</h6>
+                                                                    <ul class="list-group">
+                                                                        <?php foreach (array_slice($customer['orders'], 0, 5) as $order): ?>
+                                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                                <span>Đơn hàng #<?php echo $order['id']; ?></span>
+                                                                                <span class="badge badge-primary"><?php echo number_format($order['amount'], 0, ',', '.'); ?>đ</span>
+                                                                            </li>
+                                                                        <?php endforeach; ?>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php endif; ?>
                             <?php else: ?>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th class="text-center" width="5%">STT</th>
-                                                <th width="25%">Họ tên</th>
-                                                <th width="25%">Email</th>
-                                                <th class="text-center" width="15%">Số đơn hàng</th>
-                                                <th class="text-right" width="15%">Tổng chi tiêu</th>
-                                                <th class="text-center" width="15%">Chi tiết</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($top_customers as $index => $customer): ?>
-                                                <tr>
-                                                    <td class="text-center"><?php echo $index + 1; ?></td>
-                                                    <td>
-                                                        <span class="font-weight-bold"><?php echo htmlspecialchars($customer['fullname']); ?></span>
-                                                    </td>
-                                                    <td><?php echo htmlspecialchars($customer['email']); ?></td>
-                                                    <td class="text-center">
-                                                        <span class="badge badge-info"><?php echo $customer['order_count']; ?></span>
-                                                    </td>
-                                                    <td class="text-right font-weight-bold text-success">
-                                                        <?php echo number_format($customer['total_spent'], 0, ',', '.'); ?> VNĐ
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#orders-<?php echo $customer['id']; ?>">
-                                                            <i class="fas fa-eye mr-1"></i>Xem
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="6" class="p-0">
-                                                        <div id="orders-<?php echo $customer['id']; ?>" class="collapse">
-                                                            <table class="table mb-0 table-sm table-bordered">
-                                                                <thead class="bg-light">
-                                                                    <tr>
-                                                                        <th class="text-center" width="30%">Mã đơn hàng</th>
-                                                                        <th class="text-right" width="40%">Giá trị</th>
-                                                                        <th class="text-center" width="30%">Thao tác</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php foreach ($customer['orders'] as $order): ?>
-                                                                        <tr>
-                                                                            <td class="text-center">#<?php echo $order['id']; ?></td>
-                                                                            <td class="text-right"><?php echo number_format($order['amount'], 0, ',', '.'); ?> VNĐ</td>
-                                                                            <td class="text-center">
-                                                                                <a href="../orders/view.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary">
-                                                                                    <i class="fas fa-file-invoice mr-1"></i>Chi tiết
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>Chưa có dữ liệu đơn hàng trong hệ thống.
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -287,4 +272,4 @@ if ($orders_exist) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
