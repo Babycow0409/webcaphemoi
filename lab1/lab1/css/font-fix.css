@@ -1,0 +1,73 @@
+/* 
+ * Font-fix CSS để đảm bảo hiển thị đúng và đẹp với tiếng Việt 
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+body, h1, h2, h3, h4, h5, p, a, span, div, button, input, textarea, select, option {
+    font-family: 'Montserrat', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.2px;
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+/* Đảm bảo các ký tự đặc biệt hiển thị đúng */
+.vietnamese-text {
+    font-family: 'Montserrat', sans-serif;
+    unicode-bidi: embed;
+}
+
+/* Cải thiện nút button */
+.btn, .btn-primary, button[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Cải thiện form */
+input, select, textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+}
+
+/* Cải thiện navbar */
+nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Cải thiện footer */
+footer {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Cải thiện headings */
+h1 {
+    letter-spacing: 0.5px;
+}
+
+/* Font mềm mại hơn cho nội dung */
+p {
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+/* Đảm bảo font không bị chữ đậm với tiếng Việt */
+strong, b {
+    font-weight: 600;
+}
+
+/* Tăng font-weight cho tiêu đề */
+.profile-card h2, .modal-content h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+} 

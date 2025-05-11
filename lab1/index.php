@@ -33,17 +33,17 @@ try {
     
     if ($checkFeaturedColumn && $checkFeaturedColumn->num_rows > 0) {
         // Nếu có cột featured, ưu tiên lấy sản phẩm nổi bật
-        $sql = "SELECT * FROM products WHERE featured = 1 AND active = 1 ORDER BY id DESC LIMIT 8";
+        $sql = "SELECT * FROM products WHERE featured = 1 AND active = 1 ORDER BY id ASC LIMIT 3";
         $result = $conn->query($sql);
         
         // Nếu không có sản phẩm nổi bật, lấy tất cả sản phẩm
         if ($result && $result->num_rows == 0) {
-            $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id DESC LIMIT 8";
+            $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id ASC LIMIT 3";
             $result = $conn->query($sql);
         }
     } else {
         // Nếu không có cột featured, lấy tất cả sản phẩm
-        $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id DESC LIMIT 8";
+        $sql = "SELECT * FROM products WHERE active = 1 ORDER BY id ASC LIMIT 3";
         $result = $conn->query($sql);
     }
     
@@ -138,6 +138,11 @@ try {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 30px;
+        }
+        .featured-products.three-products {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1000px;
+            margin: 30px auto;
         }
         .product-card { 
             background-color: #fffaf0; 
@@ -243,6 +248,9 @@ try {
             .hero h1 { font-size: 2em; }
             .hero-content { padding: 50px 20px; }
             .featured-products, .category-grid { grid-template-columns: 1fr; }
+            .featured-products.three-products {
+                grid-template-columns: 1fr;
+            }
         }
         .nav-user-icon {
             padding: 5px 10px;
@@ -284,8 +292,15 @@ try {
                 <a href="cart.php">Giỏ hàng</a>
                 <?php
                 if(isset($_SESSION['user_id'])) {
-                    echo '<span style="color: #d4a373; margin-right: 15px;">Xin chào, ' . htmlspecialchars($_SESSION['fullname']) . '</span>';
-                    echo '<a href="logout.php">Đăng xuất</a>';
+                    echo '<div class="dropdown">
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user nav-icon"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
+                        <div class="dropdown-content">
+                            <a href="profile.php"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
+                            <a href="address-book.php"><i class="fas fa-address-book"></i> Sổ địa chỉ</a>
+                            <a href="my-orders.php"><i class="fas fa-shopping-bag"></i> Lịch sử đơn hàng</a>
+                            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>';
                 } else {
                     echo '<div class="dropdown">
                         <a href="#" class="nav-user-icon"><i class="fas fa-user nav-icon"></i></a>
@@ -336,7 +351,7 @@ try {
     
     <section class="featured" id="featured">
         <h2>Sản phẩm nổi bật</h2>
-        <div class="featured-products">
+        <div class="featured-products three-products">
             <?php if (count($featured_products) > 0): ?>
                 <?php foreach ($featured_products as $product): ?>
                     <?php

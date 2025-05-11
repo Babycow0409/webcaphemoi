@@ -3396,3 +3396,159 @@
     [quantity] => 1
 )
 
+2025-05-11 08:19:44 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 3
+        )
+
+    [3] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:44 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-11 08:19:44 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-11 08:19:44 - Processing item: Array
+(
+    [id] => 23
+    [name] => Robusta Buôn Ma Thuột
+    [price] => 150000
+    [image] => uploads/products/product_6820415606312.jpg
+    [quantity] => 3
+)
+
+2025-05-11 08:19:44 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-11 08:19:58 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:58 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-11 08:19:58 - Processing item: Array
+(
+    [id] => 23
+    [name] => Robusta Buôn Ma Thuột
+    [price] => 150000
+    [image] => uploads/products/product_6820415606312.jpg
+    [quantity] => 1
+)
+
+2025-05-11 08:19:58 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-11 09:16:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 28
+            [name] => Robusta Côte d’Ivoire (Ivory Coast)
+            [price] => 250000
+            [image] => uploads/products/product_68204e9fe695d.webp
+            [quantity] => 2
+        )
+
+)
+
+2025-05-11 09:16:00 - Processing item: Array
+(
+    [id] => 28
+    [name] => Robusta Côte d’Ivoire (Ivory Coast)
+    [price] => 250000
+    [image] => uploads/products/product_68204e9fe695d.webp
+    [quantity] => 2
+)
+

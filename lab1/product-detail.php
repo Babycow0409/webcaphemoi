@@ -96,9 +96,6 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
             text-decoration: none;
             display: block;
         }
-        .dropdown-content a:hover {
-            background-color: #d4a373;
-        }
         .product-detail { 
             max-width: 1200px; 
             margin: 50px auto; 

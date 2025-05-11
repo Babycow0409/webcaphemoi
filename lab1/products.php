@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // Xử lý phân trang
-$productsPerPage = 6;
+$productsPerPage = 8;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $productsPerPage;
 
@@ -45,7 +45,7 @@ $query = "SELECT p.*, c.name as category_name
           FROM products p 
           LEFT JOIN categories c ON p.category_id = c.id 
           $whereClause 
-          ORDER BY p.id DESC LIMIT $offset, $productsPerPage";
+          ORDER BY p.id ASC LIMIT $offset, $productsPerPage";
 $result = $conn->query($query);
 $products = [];
 while ($row = $result->fetch_assoc()) {
@@ -98,7 +98,7 @@ if ($categories_result->num_rows > 0) {
         .products { max-width: 1200px; margin: 50px auto; padding: 20px; }
         .product-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            grid-template-columns: repeat(4, 1fr); 
             gap: 30px; 
             padding: 20px;
         }
@@ -129,10 +129,18 @@ if ($categories_result->num_rows > 0) {
         .product-card h3:hover { color: #d4a373; }
         .product-card p { color: #555; margin-bottom: 15px; }
         
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
         @media (max-width: 768px) { 
             nav { flex-direction: column; padding: 10px; }
             .nav-links { flex-direction: column; margin-top: 15px; }
             nav a { margin: 8px 0; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
             .product-grid { grid-template-columns: 1fr; }
         }
         .dropdown {
@@ -223,25 +231,36 @@ if ($categories_result->num_rows > 0) {
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 5px;
-            margin-top: 30px;
+            gap: 10px;
+            margin: 30px 0;
         }
-        .page-link {
-            padding: 8px 15px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
+        
+        .pagination a, .pagination span {
             color: #3c2f2f;
+            padding: 10px 15px;
             text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             transition: all 0.3s;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
         }
-        .page-link:hover {
+        
+        .pagination a.active {
             background-color: #d4a373;
             color: white;
+            border-color: #d4a373;
         }
-        .page-link.active {
-            background-color: #d4a373;
-            color: white;
-            font-weight: bold;
+        
+        .pagination a:hover:not(.active) {
+            background-color: #f3e3d3;
+            border-color: #d4a373;
+        }
+        
+        .pagination span {
+            background-color: #f8f8f8;
+            color: #999;
         }
         .product-actions {
             display: flex;
@@ -495,6 +514,48 @@ if ($categories_result->num_rows > 0) {
                 </div>";
             }
             ?>
+        </div>
+        
+        <!-- Phân trang -->
+        <div class="pagination">
+            <?php if ($totalPages > 1): ?>
+                <?php if ($page > 1): ?>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page-1; ?>">&laquo; Trước</a>
+                <?php endif; ?>
+                
+                <?php 
+                // Hiển thị tối đa 5 trang ở giữa
+                $startPage = max(1, $page - 2);
+                $endPage = min($totalPages, $startPage + 4);
+                
+                // Hiển thị nút về trang đầu
+                if ($startPage > 1): ?>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=1">1</a>
+                    <?php if ($startPage > 2): ?>
+                        <span>...</span>
+                    <?php endif; ?>
+                <?php endif; ?>
+                
+                <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $i; ?>" 
+                       class="<?php echo ($i == $page) ? 'active' : ''; ?>">
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
+                
+                <?php 
+                // Hiển thị nút đến trang cuối
+                if ($endPage < $totalPages): ?>
+                    <?php if ($endPage < $totalPages - 1): ?>
+                        <span>...</span>
+                    <?php endif; ?>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $totalPages; ?>"><?php echo $totalPages; ?></a>
+                <?php endif; ?>
+                
+                <?php if ($page < $totalPages): ?>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page+1; ?>">Tiếp &raquo;</a>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
     </section>
     <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">

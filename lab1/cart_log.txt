@@ -4619,3 +4619,742 @@
 
 2025-05-09 06:26:26 - Cart data received: [{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":1}]
 2025-05-09 06:26:26 - Sync cart success: 2 sản phẩm
+2025-05-11 08:19:11 - Check cart session: true, count: 2
+2025-05-11 08:19:14 - Check cart session: true, count: 2
+2025-05-11 08:19:19 - Check cart session: true, count: 2
+2025-05-11 08:19:35 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000.00
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000.00
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:35 - Product data: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:35 - Product found in database: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000.00, Image: uploads/products/product_6820415606312.jpg
+2025-05-11 08:19:35 - Final product data for cart: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:35 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:35 - Adding product with ID: 23 (type: integer)
+2025-05-11 08:19:35 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:35 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:35 - Checking cart item with ID: 20 (type: integer)
+2025-05-11 08:19:35 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:35 - Final product ID type check: integer, value: 23
+2025-05-11 08:19:35 - Added new product to cart with ID: 23 (type: integer)
+2025-05-11 08:19:35 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:35 - Cart count: 3
+2025-05-11 08:19:37 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000.00
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000.00
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:37 - Product data: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:37 - Product found in database: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000.00, Image: uploads/products/product_6820415606312.jpg
+2025-05-11 08:19:37 - Final product data for cart: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:37 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:37 - Adding product with ID: 23 (type: integer)
+2025-05-11 08:19:37 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:37 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:37 - Checking cart item with ID: 20 (type: integer)
+2025-05-11 08:19:37 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:37 - Checking cart item with ID: 23 (type: integer)
+2025-05-11 08:19:37 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:37 - Found matching product ID: 23 == 23
+2025-05-11 08:19:37 - Updated quantity to: 2
+2025-05-11 08:19:37 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-11 08:19:37 - Cart count: 3
+2025-05-11 08:19:39 - Check cart session: true, count: 3
+2025-05-11 08:19:40 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 08:19:40 - Product data: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-11 08:19:40 - Product found in database: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000.00, Image: uploads/products/product_6805da1d277cd.png
+2025-05-11 08:19:40 - Final product data for cart: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-11 08:19:40 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-11 08:19:40 - Adding product with ID: 22 (type: integer)
+2025-05-11 08:19:40 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:40 - Comparing with product ID: 22 (type: integer)
+2025-05-11 08:19:40 - Checking cart item with ID: 20 (type: integer)
+2025-05-11 08:19:40 - Comparing with product ID: 22 (type: integer)
+2025-05-11 08:19:40 - Checking cart item with ID: 23 (type: integer)
+2025-05-11 08:19:40 - Comparing with product ID: 22 (type: integer)
+2025-05-11 08:19:40 - Final product ID type check: integer, value: 22
+2025-05-11 08:19:40 - Added new product to cart with ID: 22 (type: integer)
+2025-05-11 08:19:40 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 2
+        )
+
+    [3] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:40 - Cart count: 4
+2025-05-11 08:19:41 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 08:19:41 - Product data: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:41 - Product found in database: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000.00, Image: uploads/products/product_6820415606312.jpg
+2025-05-11 08:19:41 - Final product data for cart: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:41 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 2
+        )
+
+    [3] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:41 - Adding product with ID: 23 (type: integer)
+2025-05-11 08:19:41 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:41 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:41 - Checking cart item with ID: 20 (type: integer)
+2025-05-11 08:19:41 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:41 - Checking cart item with ID: 23 (type: integer)
+2025-05-11 08:19:41 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:41 - Found matching product ID: 23 == 23
+2025-05-11 08:19:41 - Updated quantity to: 3
+2025-05-11 08:19:41 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 3
+        )
+
+    [3] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:41 - Cart count: 4
+2025-05-11 08:19:45 - Check cart session: false, count: 0
+2025-05-11 08:19:49 - Check cart session: false, count: 0
+2025-05-11 08:19:51 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 08:19:51 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-11 08:19:51 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-11 08:19:51 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-11 08:19:51 - Cart before: Array
+(
+)
+
+2025-05-11 08:19:51 - Adding product with ID: 21 (type: integer)
+2025-05-11 08:19:51 - Final product ID type check: integer, value: 21
+2025-05-11 08:19:51 - Added new product to cart with ID: 21 (type: integer)
+2025-05-11 08:19:51 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:51 - Cart count: 1
+2025-05-11 08:19:52 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 08:19:52 - Product data: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:52 - Product found in database: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000.00, Image: uploads/products/product_6820415606312.jpg
+2025-05-11 08:19:52 - Final product data for cart: ID: 23, Name: Robusta Buôn Ma Thuột, Price: 150000, Image: uploads/products/product_6820415606312.jpg, Quantity: 1
+2025-05-11 08:19:52 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:52 - Adding product with ID: 23 (type: integer)
+2025-05-11 08:19:52 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:52 - Comparing with product ID: 23 (type: integer)
+2025-05-11 08:19:52 - Final product ID type check: integer, value: 23
+2025-05-11 08:19:52 - Added new product to cart with ID: 23 (type: integer)
+2025-05-11 08:19:52 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:52 - Cart count: 2
+2025-05-11 08:19:55 - Check cart session: true, count: 2
+2025-05-11 08:19:56 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 08:19:56 - Product data: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-11 08:19:56 - Product found in database: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000.00, Image: uploads/products/product_6805da1d277cd.png
+2025-05-11 08:19:56 - Final product data for cart: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-11 08:19:56 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:56 - Adding product with ID: 22 (type: integer)
+2025-05-11 08:19:56 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 08:19:56 - Comparing with product ID: 22 (type: integer)
+2025-05-11 08:19:56 - Checking cart item with ID: 23 (type: integer)
+2025-05-11 08:19:56 - Comparing with product ID: 22 (type: integer)
+2025-05-11 08:19:56 - Final product ID type check: integer, value: 22
+2025-05-11 08:19:56 - Added new product to cart with ID: 22 (type: integer)
+2025-05-11 08:19:56 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 08:19:56 - Cart count: 3
+2025-05-11 08:20:00 - Check cart session: false, count: 0
+2025-05-11 08:40:53 - Check cart session: false, count: 0
+2025-05-11 08:42:09 - Check cart session: false, count: 0
+2025-05-11 08:43:54 - Check cart session: false, count: 0
+2025-05-11 08:44:11 - Check cart session: false, count: 0
+2025-05-11 08:45:32 - Check cart session: false, count: 0
+2025-05-11 08:45:36 - Check cart session: false, count: 0
+2025-05-11 08:57:54 - Check cart session: false, count: 0
+2025-05-11 09:01:44 - Check cart session: false, count: 0
+2025-05-11 09:01:47 - Check cart session: false, count: 0
+2025-05-11 09:01:50 - Check cart session: false, count: 0
+2025-05-11 09:02:11 - Check cart session: false, count: 0
+2025-05-11 09:04:25 - Check cart session: false, count: 0
+2025-05-11 09:12:04 - Check cart session: false, count: 0
+2025-05-11 09:12:06 - Check cart session: false, count: 0
+2025-05-11 09:15:46 - Check cart session: false, count: 0
+2025-05-11 09:15:53 - Check cart session: false, count: 0
+2025-05-11 09:15:59 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 28
+            [name] => Robusta Côte d’Ivoire (Ivory Coast)
+            [price] => 250000
+            [image] => uploads/products/product_68204e9fe695d.webp
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 28
+            [name] => Robusta Côte d’Ivoire (Ivory Coast)
+            [price] => 250000
+            [image] => uploads/products/product_68204e9fe695d.webp
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 09:15:59 - Product data: ID: 28, Name: Robusta Côte d’Ivoire (Ivory Coast), Price: 250000, Image: uploads/products/product_68204e9fe695d.webp, Quantity: 2
+2025-05-11 09:15:59 - Product found in database: ID: 28, Name: Robusta Côte d’Ivoire (Ivory Coast), Price: 250000.00, Image: uploads/products/product_68204e9fe695d.webp
+2025-05-11 09:15:59 - Final product data for cart: ID: 28, Name: Robusta Côte d’Ivoire (Ivory Coast), Price: 250000, Image: uploads/products/product_68204e9fe695d.webp, Quantity: 2
+2025-05-11 09:15:59 - Cart before: Array
+(
+)
+
+2025-05-11 09:15:59 - Adding product with ID: 28 (type: integer)
+2025-05-11 09:15:59 - Final product ID type check: integer, value: 28
+2025-05-11 09:15:59 - Added new product to cart with ID: 28 (type: integer)
+2025-05-11 09:15:59 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 28
+            [name] => Robusta Côte d’Ivoire (Ivory Coast)
+            [price] => 250000
+            [image] => uploads/products/product_68204e9fe695d.webp
+            [quantity] => 2
+        )
+
+)
+
+2025-05-11 09:15:59 - Cart count: 1
+2025-05-11 09:16:03 - Check cart session: false, count: 0
+2025-05-11 09:16:19 - Check cart session: false, count: 0
+2025-05-11 09:16:48 - Check cart session: false, count: 0
+2025-05-11 09:16:54 - Check cart session: false, count: 0
+2025-05-11 09:20:01 - Check cart session: false, count: 0
+2025-05-11 09:20:04 - Check cart session: false, count: 0
+2025-05-11 09:20:13 - Check cart session: false, count: 0
+2025-05-11 09:20:15 - Check cart session: false, count: 0
+2025-05-11 09:20:18 - Check cart session: false, count: 0
+2025-05-11 09:20:45 - Check cart session: false, count: 0
+2025-05-11 09:20:47 - Check cart session: false, count: 0
+2025-05-11 09:34:54 - Check cart session: false, count: 0
+2025-05-11 09:34:56 - Check cart session: false, count: 0
+2025-05-11 09:34:58 - Check cart session: false, count: 0
+2025-05-11 09:35:13 - Check cart session: false, count: 0
+2025-05-11 09:36:20 - Check cart session: false, count: 0
+2025-05-11 09:36:24 - Check cart session: false, count: 0
+2025-05-11 09:51:33 - Check cart session: false, count: 0
+2025-05-11 09:51:38 - Check cart session: false, count: 0
+2025-05-11 09:51:41 - Check cart session: false, count: 0
+2025-05-11 11:44:53 - Check cart session: false, count: 0
+2025-05-11 11:44:55 - Check cart session: false, count: 0
+2025-05-11 11:44:59 - Check cart session: false, count: 0

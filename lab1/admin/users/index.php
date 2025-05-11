@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 
 // Kiểm tra đăng nhập
@@ -211,3 +212,15 @@ if ($result && $result->num_rows > 0) {
     </script>
 </body>
 </html> 
+=======
+$page_title = "Quản lý người dùng";
+include '../includes/header.php';
+?>
+
+<h2>Quản lý người dùng</h2>
+<p>Nội dung quản lý người dùng sẽ được hiển thị ở đây.</p>
+
+<?php
+include '../includes/footer.php';
+?> 
+>>>>>>> 36298127f1deb9f590e3222166af251932b728fd
