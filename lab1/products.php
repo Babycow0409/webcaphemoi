@@ -101,6 +101,7 @@ if ($categories_result->num_rows > 0) {
             grid-template-columns: repeat(4, 1fr); 
             gap: 30px; 
             padding: 20px;
+            margin-bottom: 40px;
         }
         .product-card { 
             background-color: #fffaf0; 
@@ -110,6 +111,7 @@ if ($categories_result->num_rows > 0) {
             transition: transform 0.3s; 
             display: flex; 
             flex-direction: column;
+            height: 100%;
         }
         .product-card:hover { transform: scale(1.05); }
         .product-card img { 
@@ -233,11 +235,12 @@ if ($categories_result->num_rows > 0) {
             justify-content: center;
             gap: 10px;
             margin: 30px 0;
+            flex-wrap: wrap;
         }
         
         .pagination a, .pagination span {
             color: #3c2f2f;
-            padding: 10px 15px;
+            padding: 12px 18px;
             text-decoration: none;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -245,17 +248,22 @@ if ($categories_result->num_rows > 0) {
             font-size: 16px;
             font-weight: 500;
             display: inline-block;
+            margin: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         .pagination a.active {
             background-color: #d4a373;
             color: white;
             border-color: #d4a373;
+            box-shadow: 0 2px 8px rgba(212, 163, 115, 0.4);
+            transform: scale(1.05);
         }
         
         .pagination a:hover:not(.active) {
             background-color: #f3e3d3;
             border-color: #d4a373;
+            transform: scale(1.05);
         }
         
         .pagination span {
@@ -314,30 +322,6 @@ if ($categories_result->num_rows > 0) {
             border-color: #4CAF50;
         }
         
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .pagination a {
-            color: black;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-            border: 1px solid #ddd;
-            margin: 0 4px;
-        }
-        
-        .pagination a.active {
-            background-color: #4CAF50;
-            color: white;
-            border: 1px solid #4CAF50;
-        }
-        
-        .pagination a:hover:not(.active) {
-            background-color: #ddd;
-        }
         .nav-user-icon {
             padding: 5px 10px;
             font-size: 22px;
@@ -520,7 +504,9 @@ if ($categories_result->num_rows > 0) {
         <div class="pagination">
             <?php if ($totalPages > 1): ?>
                 <?php if ($page > 1): ?>
-                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page-1; ?>">&laquo; Trước</a>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page-1; ?>"><i class="fas fa-chevron-left"></i> Trước</a>
+                <?php else: ?>
+                    <span><i class="fas fa-chevron-left"></i> Trước</span>
                 <?php endif; ?>
                 
                 <?php 
@@ -553,7 +539,9 @@ if ($categories_result->num_rows > 0) {
                 <?php endif; ?>
                 
                 <?php if ($page < $totalPages): ?>
-                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page+1; ?>">Tiếp &raquo;</a>
+                    <a href="?<?php echo (!empty($category) ? 'category='.$category.'&' : ''); ?>page=<?php echo $page+1; ?>">Tiếp <i class="fas fa-chevron-right"></i></a>
+                <?php else: ?>
+                    <span>Tiếp <i class="fas fa-chevron-right"></i></span>
                 <?php endif; ?>
             <?php endif; ?>
         </div>

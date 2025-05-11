@@ -5358,3 +5358,198 @@
 2025-05-11 11:44:53 - Check cart session: false, count: 0
 2025-05-11 11:44:55 - Check cart session: false, count: 0
 2025-05-11 11:44:59 - Check cart session: false, count: 0
+2025-05-11 11:55:01 - Check cart session: false, count: 0
+2025-05-11 11:55:02 - Check cart session: false, count: 0
+2025-05-11 11:55:03 - Check cart session: false, count: 0
+2025-05-11 11:55:04 - Check cart session: false, count: 0
+2025-05-11 11:55:06 - Check cart session: false, count: 0
+2025-05-11 11:55:09 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 11:55:09 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-11 11:55:09 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-11 11:55:09 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-11 11:55:09 - Cart before: Array
+(
+)
+
+2025-05-11 11:55:09 - Adding product with ID: 21 (type: integer)
+2025-05-11 11:55:09 - Final product ID type check: integer, value: 21
+2025-05-11 11:55:09 - Added new product to cart with ID: 21 (type: integer)
+2025-05-11 11:55:09 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 11:55:09 - Cart count: 1
+2025-05-11 11:55:13 - Check cart session: true, count: 1
+2025-05-11 11:55:21 - Check cart session: true, count: 1
+2025-05-11 11:55:31 - Check cart session: true, count: 1
+2025-05-11 11:59:45 - Check cart session: true, count: 1
+2025-05-11 11:59:47 - Check cart session: true, count: 1
+2025-05-11 11:59:50 - Check cart session: true, count: 1
+2025-05-11 12:01:13 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 12:01:13 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 2
+2025-05-11 12:01:13 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-11 12:01:13 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 2
+2025-05-11 12:01:13 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-11 12:01:13 - Adding product with ID: 21 (type: integer)
+2025-05-11 12:01:13 - Checking cart item with ID: 21 (type: integer)
+2025-05-11 12:01:13 - Comparing with product ID: 21 (type: integer)
+2025-05-11 12:01:13 - Found matching product ID: 21 == 21
+2025-05-11 12:01:13 - Updated quantity to: 3
+2025-05-11 12:01:13 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-11 12:01:13 - Cart count: 1
+2025-05-11 12:01:18 - Check cart session: false, count: 0
+2025-05-11 12:01:21 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+            [ajax] => 1
+        )
+
+)
+
+2025-05-11 12:01:21 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 2
+2025-05-11 12:01:21 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-11 12:01:21 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 2
+2025-05-11 12:01:21 - Cart before: Array
+(
+)
+
+2025-05-11 12:01:21 - Adding product with ID: 21 (type: integer)
+2025-05-11 12:01:21 - Final product ID type check: integer, value: 21
+2025-05-11 12:01:21 - Added new product to cart with ID: 21 (type: integer)
+2025-05-11 12:01:21 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-11 12:01:21 - Cart count: 1
+2025-05-11 12:01:24 - Check cart session: false, count: 0
+2025-05-11 12:02:49 - Check cart session: false, count: 0
+2025-05-11 12:02:52 - Check cart session: false, count: 0
+2025-05-11 12:06:50 - Check cart session: false, count: 0
+2025-05-11 12:06:52 - Check cart session: false, count: 0
+2025-05-11 12:08:14 - Check cart session: false, count: 0
+2025-05-11 12:08:18 - Check cart session: false, count: 0
+2025-05-11 12:08:21 - Check cart session: false, count: 0
+2025-05-11 12:08:23 - Check cart session: false, count: 0
+2025-05-11 12:08:25 - Check cart session: false, count: 0
+2025-05-11 12:08:30 - Check cart session: false, count: 0
+2025-05-11 12:08:33 - Check cart session: false, count: 0
+2025-05-11 12:08:44 - Check cart session: false, count: 0
+2025-05-11 12:08:45 - Check cart session: false, count: 0
+2025-05-11 12:08:57 - Check cart session: false, count: 0
+2025-05-11 12:10:18 - Check cart session: false, count: 0

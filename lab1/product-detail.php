@@ -50,7 +50,50 @@ if ($result->num_rows === 0) {
 $product_name = isset($product['name']) ? htmlspecialchars($product['name']) : 'Sản phẩm không xác định';
 $product_price = isset($product['price']) ? number_format($product['price'], 0, ',', '.') : '0';
 $product_weight = isset($product['weight']) ? htmlspecialchars($product['weight']) : '';
-$product_description = isset($product['description']) ? nl2br(htmlspecialchars($product['description'])) : 'Không có mô tả';
+
+// Xử lý mô tả sản phẩm: kiểm tra nếu có chứa HTML thì hiển thị nguyên bản, nếu không thì thêm thẻ <p> cho mỗi đoạn
+if (isset($product['description'])) {
+    $description = $product['description'];
+    // Kiểm tra nếu có chứa thẻ HTML
+    if (strip_tags($description) != $description) {
+        // Có chứa HTML, hiển thị nguyên bản
+        $product_description = $description;
+    } else {
+        // Tách mỗi đoạn thành phần tử p riêng biệt để hiển thị rõ ràng hơn
+        // Xử lý cả \r\n và \n để hỗ trợ nhiều hệ điều hành
+        $description = str_replace("\r\n", "\n", $description);
+        $paragraphs = explode("\n\n", $description);
+        
+        $formatted_description = '';
+        foreach ($paragraphs as $paragraph) {
+            $paragraph = trim($paragraph);
+            if (!empty($paragraph)) {
+                // Kiểm tra xem đoạn có nhiều dòng không
+                if (strpos($paragraph, "\n") !== false) {
+                    // Đoạn có nhiều dòng, có thể là danh sách
+                    $lines = explode("\n", $paragraph);
+                    if (count($lines) > 1) {
+                        $formatted_description .= '<ul>';
+                        foreach ($lines as $line) {
+                            $line = trim($line);
+                            if (!empty($line)) {
+                                $formatted_description .= '<li>' . htmlspecialchars($line) . '</li>';
+                            }
+                        }
+                        $formatted_description .= '</ul>';
+                    }
+                } else {
+                    // Đoạn văn bản thông thường
+                    $formatted_description .= '<p>' . htmlspecialchars($paragraph) . '</p>';
+                }
+            }
+        }
+        $product_description = $formatted_description;
+    }
+} else {
+    $product_description = '<p>Không có mô tả</p>';
+}
+
 $product_image = isset($product['image']) && !empty($product['image']) ? $product['image'] : 'path/to/default-image.jpg';
 ?>
 
@@ -189,12 +232,45 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
             transition: transform 0.3s; 
             display: flex; 
             flex-direction: column;
+            height: 100%;
         }
         .product-card:hover { transform: scale(1.05); }
-        .product-card img { width: 100%; border-radius: 5px; height: 200px; object-fit: cover; cursor: pointer; }
-        .product-card h3 { margin: 15px 0; color: #3c2f2f; cursor: pointer; }
+        .product-card img { 
+            width: 100%; 
+            border-radius: 5px; 
+            height: 200px; 
+            object-fit: cover; 
+            cursor: pointer; 
+        }
+        .product-card h3 { 
+            margin: 15px 0; 
+            color: #3c2f2f; 
+            cursor: pointer;
+            font-size: 1.2em;
+        }
         .product-card h3:hover { color: #d4a373; }
-        .product-card p { color: #555; margin-bottom: 15px; }
+        .product-card .product-price { 
+            font-size: 1.2em;
+            color: #d4a373;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-card .product-weight {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .product-card .product-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+        .product-card .btn {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            flex: 1;
+            text-align: center;
+        }
         .not-found {
             text-align: center;
             padding: 100px 20px;
@@ -269,6 +345,60 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
         
         .product-not-found .btn-secondary:hover {
             background-color: #ced4da;
+        }
+        
+        .product-details {
+            margin-top: 15px;
+        }
+        .product-card p { color: #555; margin-bottom: 15px; }
+        .not-found {
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Cải thiện hiển thị mô tả sản phẩm */
+        .product-description h3 {
+            margin: 20px 0 15px 0;
+            font-size: 1.5em;
+            color: #3c2f2f;
+            border-bottom: 2px solid #d4a373;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        .product-description .description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .product-description p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        .product-description ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            list-style-type: disc;
+        }
+        .product-description li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        .price {
+            font-size: 1.8em;
+            color: #d4a373;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .not-found h2 {
+            margin-bottom: 20px;
+            color: #3c2f2f;
+            font-family: 'Playfair Display', serif;
         }
     </style>
 </head>
