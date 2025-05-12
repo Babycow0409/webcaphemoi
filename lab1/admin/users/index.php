@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Kiểm tra đăng nhập
+// Kiểm tra đăng nhập admin
 if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
@@ -21,20 +21,25 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Lấy danh sách người dùng
-$sql = "SELECT * FROM users ORDER BY created_at DESC";
-$result = $conn->query($sql);
-$users = [];
-
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
-    }
+// Xử lý tìm kiếm
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$where_clause = '';
+if (!empty($search)) {
+    $search = $conn->real_escape_string($search);
+    $where_clause = "WHERE username LIKE '%$search%' OR email LIKE '%$search%' OR fullname LIKE '%$search%'";
 }
+
+// Lấy danh sách người dùng
+$sql = "SELECT * FROM users $where_clause ORDER BY id DESC";
+$result = $conn->query($sql);
+
+// Đóng kết nối
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,46 +47,70 @@ if ($result && $result->num_rows > 0) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container-fluid {
-            padding: 0;
-        }
-        .sidebar {
-            background-color: #343a40;
-            color: white;
-            min-height: 100vh;
-            padding-top: 20px;
-        }
-        .sidebar .nav-link {
-            color: rgba(255,255,255,.75);
-            padding: 10px 20px;
-        }
-        .sidebar .nav-link:hover {
-            color: white;
-            background-color: rgba(255,255,255,.1);
-        }
-        .sidebar .nav-link.active {
-            color: white;
-            background-color: rgba(255,255,255,.2);
-        }
-        .content {
-            padding: 20px;
-        }
-        .header {
-            background-color: #f8f9fa;
-            padding: 15px 20px;
-            border-bottom: 1px solid #dee2e6;
-            margin-bottom: 20px;
-        }
-        .search-box {
-            margin-bottom: 20px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .sidebar {
+        background-color: #343a40;
+        color: white;
+        min-height: 100vh;
+        padding-top: 20px;
+    }
+
+    .sidebar .nav-link {
+        color: rgba(255, 255, 255, .75);
+        padding: 10px 20px;
+    }
+
+    .sidebar .nav-link:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, .1);
+    }
+
+    .sidebar .nav-link.active {
+        color: white;
+        background-color: rgba(255, 255, 255, .2);
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header {
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-bottom: 1px solid #dee2e6;
+        margin-bottom: 20px;
+    }
+
+    .search-box {
+        margin-bottom: 20px;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+    }
+
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .btn-group .btn {
+        margin: 0 2px;
+    }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -121,98 +150,118 @@ if ($result && $result->num_rows > 0) {
                     </li>
                 </ul>
             </div>
-            
+
             <!-- Main content -->
             <div class="col-md-10">
                 <div class="header">
                     <h2>Quản lý người dùng</h2>
                 </div>
-                
+
                 <div class="content">
                     <?php if (isset($_GET['message'])): ?>
-                        <div class="alert alert-success alert-dismissible fade show">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <?php echo htmlspecialchars($_GET['message']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (isset($_GET['error'])): ?>
-                        <div class="alert alert-danger alert-dismissible fade show">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <?php echo htmlspecialchars($_GET['error']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <div class="search-box">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm người dùng...">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <?php echo htmlspecialchars($_GET['message']); ?>
                     </div>
-                    
+                    <?php endif; ?>
+
+                    <?php if (isset($_GET['error'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <?php echo htmlspecialchars($_GET['error']); ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- Search box -->
+                    <div class="search-box">
+                        <form action="" method="GET" class="form-inline">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control"
+                                    placeholder="Tìm kiếm theo tên, email..."
+                                    value="<?php echo htmlspecialchars($search); ?>">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i> Tìm kiếm
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Users table -->
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="thead-dark">
+                        <table class="table table-bordered table-hover">
+                            <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Họ tên</th>
+                                    <th>Tên đăng nhập</th>
                                     <th>Email</th>
-                                    <th>Số điện thoại</th>
+                                    <th>Họ tên</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
                                     <th>Ngày đăng ký</th>
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
-                            <tbody id="userTableBody">
-                                <?php if (empty($users)): ?>
-                                    <tr>
-                                        <td colspan="6" class="text-center">Không có người dùng nào.</td>
-                                    </tr>
+                            <tbody>
+                                <?php if ($result->num_rows > 0): ?>
+                                <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?php echo $row['id']; ?></td>
+                                    <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                    <td><?php echo htmlspecialchars($row['fullname'] ?? $row['name'] ?? 'N/A'); ?></td>
+                                    <td>
+                                        <span
+                                            class="badge <?php echo $row['role'] == 'admin' ? 'badge-danger' : 'badge-info'; ?>">
+                                            <?php echo $row['role'] == 'admin' ? 'Quản trị viên' : 'Khách hàng'; ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <?php if (isset($row['active'])): ?>
+                                        <span
+                                            class="badge <?php echo $row['active'] == 1 ? 'badge-success' : 'badge-secondary'; ?>">
+                                            <?php echo $row['active'] == 1 ? 'Đang hoạt động' : 'Đã khóa'; ?>
+                                        </span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php echo isset($row['created_at']) ? date('d/m/Y H:i', strtotime($row['created_at'])) : 'N/A'; ?>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="view.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-info"
+                                                title="Xem chi tiết">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="edit.php?id=<?php echo $row['id']; ?>"
+                                                class="btn btn-sm btn-primary" title="Chỉnh sửa">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <?php if ($row['role'] !== 'admin'): ?>
+                                            <?php if (isset($row['active'])): ?>
+                                            <?php if ($row['active'] == 1): ?>
+                                            <button type="button" class="btn btn-sm btn-warning"
+                                                onclick="toggleUserStatus(<?php echo $row['id']; ?>, 'deactivate')"
+                                                title="Khóa tài khoản">
+                                                <i class="fas fa-lock"></i>
+                                            </button>
+                                            <?php else: ?>
+                                            <button type="button" class="btn btn-sm btn-success"
+                                                onclick="toggleUserStatus(<?php echo $row['id']; ?>, 'activate')"
+                                                title="Mở khóa tài khoản">
+                                                <i class="fas fa-unlock"></i>
+                                            </button>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endwhile; ?>
                                 <?php else: ?>
-                                    <?php foreach ($users as $user): ?>
-                                        <tr>
-                                            <td><?php echo $user['id']; ?></td>
-                                            <td><?php echo isset($user['fullname']) ? $user['fullname'] : (isset($user['name']) ? $user['name'] : 'N/A'); ?></td>
-                                            <td><?php echo $user['email']; ?></td>
-                                            <td><?php echo $user['phone'] ?? 'N/A'; ?></td>
-                                            <td><?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></td>
-                                            <td>
-                                                <div class="btn-group" role="group">
-                                                    <a href="view.php?id=<?php echo $user['id']; ?>" class="btn btn-info btn-sm" title="Xem chi tiết">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                    <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm" title="Chỉnh sửa">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <?php if ($user['role'] !== 'admin'): // Không cho phép xóa tài khoản admin ?>
-                                                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" 
-                                                       onclick="return confirm('Bạn có chắc muốn xóa người dùng này?');" title="Xóa">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                    <?php endif; ?>
-                                                    
-                                                    <?php if (isset($user['active'])): ?>
-                                                        <?php if ($user['active'] == 1): ?>
-                                                            <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=deactivate" 
-                                                               class="btn btn-secondary btn-sm" title="Khóa tài khoản"
-                                                               onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
-                                                                <i class="fas fa-lock"></i>
-                                                            </a>
-                                                        <?php else: ?>
-                                                            <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=activate" 
-                                                               class="btn btn-success btn-sm" title="Mở khóa tài khoản"
-                                                               onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?');">
-                                                                <i class="fas fa-unlock"></i>
-                                                            </a>
-                                                        <?php endif; ?>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                <tr>
+                                    <td colspan="8" class="text-center">Không tìm thấy người dùng nào.</td>
+                                </tr>
                                 <?php endif; ?>
                             </tbody>
                         </table>
@@ -221,31 +270,35 @@ if ($result && $result->num_rows > 0) {
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
     <script>
-        // Tìm kiếm người dùng
-        const searchInput = document.getElementById('searchInput');
-        const userTableBody = document.getElementById('userTableBody');
-        const userRows = Array.from(userTableBody.querySelectorAll('tr'));
-        
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            
-            userRows.forEach(row => {
-                const userName = row.children[1].textContent.toLowerCase();
-                const userEmail = row.children[2].textContent.toLowerCase();
-                
-                if (userName.includes(searchTerm) || userEmail.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
+    function toggleUserStatus(userId, action) {
+        const confirmMessage = action === 'activate' ?
+            'Bạn có chắc chắn muốn mở khóa tài khoản này? Người dùng sẽ có thể đăng nhập và sử dụng hệ thống.' :
+            'Bạn có chắc chắn muốn khóa tài khoản này? Người dùng sẽ không thể đăng nhập và sử dụng hệ thống.';
+
+        if (confirm(confirmMessage)) {
+            fetch(`toggle_status.php?id=${userId}&action=${action}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert('Có lỗi xảy ra: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi thay đổi trạng thái tài khoản');
+                });
+        }
+    }
     </script>
 </body>
+
 </html>

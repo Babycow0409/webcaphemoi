@@ -1,11 +1,28 @@
 <?php
 session_start();
 
-// Kiểm tra đăng nhập
+// Kiểm tra đăng nhập admin
 if (!isset($_SESSION["admin"])) {
-    header("Location: ../login.php");
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Unauthorized access']);
     exit();
 }
+
+// Kiểm tra phương thức POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+    exit();
+}
+
+// Kiểm tra ID người dùng
+if (!isset($_POST['id']) || empty($_POST['id'])) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'User ID is required']);
+    exit();
+}
+
+$user_id = intval($_POST['id']);
 
 // Kết nối database
 $servername = "localhost";
@@ -13,89 +30,76 @@ $username = "root";
 $password = "";
 $dbname = "lab1";
 
-// Tạo kết nối
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
-
-$message = '';
-$error = '';
-
-// Kiểm tra xem có id được truyền vào không
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $user_id = $_GET['id'];
-    
-    // Kiểm tra người dùng có tồn tại và không phải là admin
-    $sql = "SELECT id, username, role FROM users WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows == 0) {
-        $error = "Không tìm thấy người dùng với ID: $user_id";
-    } else {
-        $user = $result->fetch_assoc();
-        
-        // Không cho phép xóa tài khoản admin
-        if ($user['role'] == 'admin') {
-            $error = "Không thể xóa tài khoản quản trị viên.";
-        } else {
-            // Xóa thông tin liên quan đến người dùng trước
-            
-            // 1. Xóa địa chỉ của người dùng (nếu có bảng addresses)
-            $sql_delete_addresses = "DELETE FROM addresses WHERE user_id = ?";
-            $stmt_addresses = $conn->prepare($sql_delete_addresses);
-            if ($stmt_addresses) {
-                $stmt_addresses->bind_param("i", $user_id);
-                $stmt_addresses->execute();
-                $stmt_addresses->close();
-            }
-            
-            // 2. Xóa chi tiết người dùng (nếu có bảng user_details)
-            $sql_delete_details = "DELETE FROM user_details WHERE user_id = ?";
-            $stmt_details = $conn->prepare($sql_delete_details);
-            if ($stmt_details) {
-                $stmt_details->bind_param("i", $user_id);
-                $stmt_details->execute();
-                $stmt_details->close();
-            }
-            
-            // 3. Xóa người dùng
-            $sql_delete_user = "DELETE FROM users WHERE id = ?";
-            $stmt_user = $conn->prepare($sql_delete_user);
-            $stmt_user->bind_param("i", $user_id);
-            
-            if ($stmt_user->execute()) {
-                $message = "Đã xóa người dùng thành công.";
-            } else {
-                $error = "Lỗi khi xóa người dùng: " . $conn->error;
-            }
-            
-            $stmt_user->close();
-        }
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
     }
-    
-    $stmt->close();
-} else {
-    $error = "ID người dùng không hợp lệ.";
-}
 
-// Đóng kết nối
-$conn->close();
+    // Kiểm tra xem người dùng có tồn tại không
+    $check_sql = "SELECT id FROM users WHERE id = ?";
+    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt->bind_param("i", $user_id);
+    $check_stmt->execute();
+    $result = $check_stmt->get_result();
 
-// Chuyển hướng về trang danh sách người dùng
-if (!empty($message)) {
-    header("Location: index.php?message=" . urlencode($message));
-    exit();
-} else if (!empty($error)) {
-    header("Location: index.php?error=" . urlencode($error));
-    exit();
-} else {
-    header("Location: index.php");
-    exit();
+    if ($result->num_rows === 0) {
+        throw new Exception("User not found");
+    }
+
+    // Bắt đầu transaction
+    $conn->begin_transaction();
+
+    try {
+        // Xóa các bản ghi trong bảng order_items liên quan đến orders của user
+        $delete_order_items = "DELETE oi FROM order_items oi 
+                             INNER JOIN orders o ON oi.order_id = o.id 
+                             WHERE o.user_id = ?";
+        $stmt_order_items = $conn->prepare($delete_order_items);
+        $stmt_order_items->bind_param("i", $user_id);
+        $stmt_order_items->execute();
+
+        // Xóa các bản ghi trong bảng orders của user
+        $delete_orders = "DELETE FROM orders WHERE user_id = ?";
+        $stmt_orders = $conn->prepare($delete_orders);
+        $stmt_orders->bind_param("i", $user_id);
+        $stmt_orders->execute();
+
+        // Xóa các bản ghi trong bảng addresses của user
+        $delete_addresses = "DELETE FROM addresses WHERE user_id = ?";
+        $stmt_addresses = $conn->prepare($delete_addresses);
+        $stmt_addresses->bind_param("i", $user_id);
+        $stmt_addresses->execute();
+
+        // Xóa các bản ghi trong bảng cart_items của user
+        $delete_cart_items = "DELETE FROM cart_items WHERE user_id = ?";
+        $stmt_cart_items = $conn->prepare($delete_cart_items);
+        $stmt_cart_items->bind_param("i", $user_id);
+        $stmt_cart_items->execute();
+
+        // Cuối cùng mới xóa user
+        $delete_user = "DELETE FROM users WHERE id = ?";
+        $stmt_user = $conn->prepare($delete_user);
+        $stmt_user->bind_param("i", $user_id);
+        $stmt_user->execute();
+
+        // Commit transaction
+        $conn->commit();
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'message' => 'User deleted successfully']);
+    } catch (Exception $e) {
+        // Rollback transaction nếu có lỗi
+        $conn->rollback();
+        throw $e;
+    }
+} catch (Exception $e) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+} finally {
+    if (isset($conn)) {
+        $conn->close();
+    }
 }
-?> 
+?>

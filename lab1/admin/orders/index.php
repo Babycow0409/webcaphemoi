@@ -24,7 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update_status' && isset($_GET[
     $order_id = intval($_GET['id']);
     $new_status = $_GET['status'];
     
-    $allowed_statuses = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];
+    $allowed_statuses = ['pending', 'processing', 'shipping', 'delivered', 'cancelled'];
     
     if (in_array($new_status, $allowed_statuses)) {
         $sql = "UPDATE orders SET status = ? WHERE id = ?";
@@ -286,11 +286,15 @@ if (!$orders_exist) {
             background-color: rgba(255, 193, 7, 0.2);
             color: #ff9800;
         }
+        .confirmed {
+            background-color: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+        }
         .processing {
             background-color: rgba(13, 110, 253, 0.2);
             color: #0d6efd;
         }
-        .shipped {
+        .shipping {
             background-color: rgba(23, 162, 184, 0.2);
             color: #17a2b8;
         }
@@ -475,12 +479,16 @@ if (!$orders_exist) {
                                             $status_class = 'pending';
                                             $status_text = 'Chờ xác nhận';
                                             break;
+                                        case 'confirmed':
+                                            $status_class = 'confirmed';
+                                            $status_text = 'Đã xác nhận';
+                                            break;
                                         case 'processing':
                                             $status_class = 'processing';
                                             $status_text = 'Đang xử lý';
                                             break;
-                                        case 'shipped':
-                                            $status_class = 'shipped';
+                                        case 'shipping':
+                                            $status_class = 'shipping';
                                             $status_text = 'Đang giao hàng';
                                             break;
                                         case 'delivered':
@@ -502,18 +510,7 @@ if (!$orders_exist) {
                                 <td><?php echo htmlspecialchars($row['shipping_address'] ?? ''); ?></td>
                                 <td>
                                     <a href="view.php?id=<?php echo $row['id']; ?>" class="action-btn view-btn">Xem</a>
-                                    <form method="get" action="" style="display: inline;">
-                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                        <input type="hidden" name="action" value="update_status">
-                                        <select name="status" class="status-select" onchange="this.form.submit()">
-                                            <option value="">Cập nhật trạng thái</option>
-                                            <option value="pending" <?php if (($row['status'] ?? '') === 'pending') echo 'selected'; ?>>Chờ xác nhận</option>
-                                            <option value="processing" <?php if (($row['status'] ?? '') === 'processing') echo 'selected'; ?>>Đang xử lý</option>
-                                            <option value="shipped" <?php if (($row['status'] ?? '') === 'shipped') echo 'selected'; ?>>Đang giao hàng</option>
-                                            <option value="delivered" <?php if (($row['status'] ?? '') === 'delivered') echo 'selected'; ?>>Đã giao hàng</option>
-                                            <option value="cancelled" <?php if (($row['status'] ?? '') === 'cancelled') echo 'selected'; ?>>Đã hủy</option>
-                                        </select>
-                                    </form>
+                                
                                 </td>
                             </tr>
                         <?php endforeach; ?>

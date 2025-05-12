@@ -221,7 +221,7 @@ if ($result->num_rows > 0) {
         position: absolute;
         background-color: #3c2f2f;
         min-width: 170px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1;
         border-radius: 4px;
         margin-top: -2px;
@@ -231,7 +231,7 @@ if ($result->num_rows > 0) {
     .dropdown:hover .dropdown-content {
         display: block;
     }
-    
+
     .dropdown-content a {
         color: white;
         font-size: 16px;
@@ -239,11 +239,11 @@ if ($result->num_rows > 0) {
         text-decoration: none;
         display: block;
     }
-    
+
     .dropdown-content a:hover {
         background-color: #5a4b4b;
     }
-    
+
     .dropdown-content i {
         margin-right: 8px;
         color: #d4a373;
@@ -290,18 +290,18 @@ if ($result->num_rows > 0) {
     }
 
     /* Thêm CSS styles cho cart notification*/
-     .cart-notification {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: none;
-    max-width: 300px;
+    .cart-notification {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+        max-width: 300px;
     }
 
     .cart-icon {
@@ -324,13 +324,14 @@ if ($result->num_rows > 0) {
         font-size: 12px;
         font-weight: bold;
     }
-    
+
     .pagination {
         display: flex;
         justify-content: center;
         margin: 30px 0;
         gap: 5px;
     }
+
     .pagination a {
         display: inline-block;
         padding: 8px 15px;
@@ -341,20 +342,23 @@ if ($result->num_rows > 0) {
         border-radius: 4px;
         transition: all 0.3s;
     }
+
     .pagination a.active {
         background-color: #d4a373;
         color: white;
         border-color: #d4a373;
     }
+
     .pagination a:hover:not(.active):not(.disabled) {
         background-color: #e9e9e9;
     }
+
     .pagination a.disabled {
         opacity: 0.5;
         cursor: not-allowed;
         pointer-events: none;
     }
-    
+
     /* CSS cho thông tin cá nhân - cập nhật để giống trang chủ */
     .nav-user-icon {
         padding: 8px 15px;
@@ -372,7 +376,7 @@ if ($result->num_rows > 0) {
         background: #5a4b4b;
         color: #fff;
     }
-    
+
     .nav-user-icon i {
         margin-right: 8px;
         font-size: 16px;
@@ -469,10 +473,15 @@ if ($result->num_rows > 0) {
             <?php
             if (count($products) > 0) {
                 foreach ($products as $product) {
-                    // Xử lý đường dẫn hình ảnh, thêm uploads/ nếu cần thiết  
+                    // Xử lý đường dẫn hình ảnh
                     $imagePath = $product['image'];
-                    if (!empty($imagePath) && strpos($imagePath, 'uploads/') === false) {
-                        $imagePath = 'uploads/products/' . $imagePath;
+                    if (empty($imagePath)) {
+                        $imagePath = 'images/default-product.jpg';
+                    } else {
+                        // Kiểm tra xem đường dẫn đã có 'uploads/products/' chưa
+                        if (strpos($imagePath, 'uploads/products/') === false) {
+                            $imagePath = 'uploads/products/' . $imagePath;
+                        }
                     }
 
                     echo "
@@ -500,14 +509,14 @@ if ($result->num_rows > 0) {
             <?php else: ?>
             <a class="disabled"><i class="fas fa-chevron-left"></i> Trước</a>
             <?php endif; ?>
-            
+
             <?php 
             for ($i = 1; $i <= $totalPages; $i++): 
                 $activeClass = ($i == $page) ? 'active' : '';
             ?>
             <a href="?page=<?php echo $i; ?>" class="<?php echo $activeClass; ?>"><?php echo $i; ?></a>
             <?php endfor; ?>
-            
+
             <?php if ($page < $totalPages): ?>
             <a href="?page=<?php echo $page+1; ?>">Tiếp <i class="fas fa-chevron-right"></i></a>
             <?php else: ?>
@@ -517,28 +526,7 @@ if ($result->num_rows > 0) {
         <?php endif; ?>
     </section>
 
-    <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <h2 style="color: white; text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">
-                Liên hệ</h2>
-            <p style="margin: 20px 0; text-align: center;">
-                Địa chỉ: 123 Đường Nguyễn Huệ, Quận 1, TP.HCM<br>
-                Email: info@caphedamda.com<br>
-                Điện thoại: 0909 123 456
-            </p>
-            <div style="margin: 20px 0; text-align: center;">
-                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i
-                        class="fab fa-facebook"></i> Facebook</a>
-                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i
-                        class="fab fa-instagram"></i> Instagram</a>
-                <a href="#" style="color: #d4a373; margin: 0 10px; text-decoration: none;"><i
-                        class="fab fa-twitter"></i> Twitter</a>
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9em; text-align: center; color: #aaa;">
-                © 2023 Cà Phê Đậm Đà. Tất cả các quyền được bảo lưu.
-            </p>
-        </div>
-    </footer>
+
 
     <script>
     // Tạo hàm hiển thị thông báo
@@ -557,33 +545,33 @@ if ($result->num_rows > 0) {
     function addToCart(id, name, price, image) {
         // Gửi yêu cầu Ajax để thêm sản phẩm vào giỏ hàng
         fetch('add-to-cart.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `id=${id}&name=${encodeURIComponent(name)}&price=${price}&image=${encodeURIComponent(image)}&quantity=1&ajax=1`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Hiển thị thông báo
-                    showNotification(`Đã thêm "${name}" vào giỏ hàng!`);
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id=${id}&name=${encodeURIComponent(name)}&price=${price}&image=${encodeURIComponent(image)}&quantity=1&ajax=1`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Hiển thị thông báo
+                showNotification(`Đã thêm "${name}" vào giỏ hàng!`);
 
-                    // Lưu giỏ hàng vào localStorage
-                    localStorage.setItem('cart', JSON.stringify(data.cart));
-                    console.log('Đã cập nhật localStorage với dữ liệu:', data.cart);
-                    console.log('Số lượng sản phẩm trong giỏ hàng:', data.count);
+                // Lưu giỏ hàng vào localStorage
+                localStorage.setItem('cart', JSON.stringify(data.cart));
+                console.log('Đã cập nhật localStorage với dữ liệu:', data.cart);
+                console.log('Số lượng sản phẩm trong giỏ hàng:', data.count);
 
-                    // Cập nhật số lượng sản phẩm trong giỏ hàng trên giao diện
-                    updateCartCount(data.count);
-                } else {
-                    showNotification('Có lỗi xảy ra: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNotification('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
-            });
+                // Cập nhật số lượng sản phẩm trong giỏ hàng trên giao diện
+                updateCartCount(data.count);
+            } else {
+                showNotification('Có lỗi xảy ra: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
+        });
     }
 
     // Hàm cập nhật số lượng sản phẩm trong giỏ hàng

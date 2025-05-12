@@ -248,15 +248,6 @@ $conn->close();
                                     <h5 class="mb-3">Thông tin tài khoản</h5>
                                     <p><strong>Tên đăng nhập:</strong> <?php echo htmlspecialchars($user['username'] ?? 'N/A'); ?></p>
                                     <p><strong>Ngày đăng ký:</strong> <?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></p>
-                                    <p><strong>Trạng thái:</strong> 
-                                        <?php if (isset($user['active'])): ?>
-                                            <span class="status-badge <?php echo $user['active'] == 1 ? 'bg-success text-white' : 'bg-secondary text-white'; ?>">
-                                                <?php echo $user['active'] == 1 ? 'Đang hoạt động' : 'Đã khóa'; ?>
-                                            </span>
-                                        <?php else: ?>
-                                            Không xác định
-                                        <?php endif; ?>
-                                    </p>
                                 </div>
                             </div>
                             
@@ -266,25 +257,16 @@ $conn->close();
                                 </a>
                                 
                                 <?php if ($user['role'] !== 'admin'): ?>
-                                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger" 
-                                       onclick="return confirm('Bạn có chắc muốn xóa người dùng này?');">
-                                        <i class="fas fa-trash mr-1"></i> Xóa
-                                    </a>
-                                <?php endif; ?>
-                                
-                                <?php if (isset($user['active'])): ?>
-                                    <?php if ($user['active'] == 1 && $user['role'] !== 'admin'): ?>
-                                        <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=deactivate" 
-                                           class="btn btn-secondary" 
-                                           onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
-                                            <i class="fas fa-lock mr-1"></i> Khóa tài khoản
-                                        </a>
-                                    <?php elseif ($user['active'] == 0): ?>
-                                        <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=activate" 
-                                           class="btn btn-success" 
-                                           onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?');">
-                                            <i class="fas fa-unlock mr-1"></i> Mở khóa tài khoản
-                                        </a>
+                                    <?php if (isset($user['active'])): ?>
+                                        <?php if ($user['active'] == 1): ?>
+                                            <button type="button" class="btn btn-warning" onclick="toggleUserStatus(<?php echo $user['id']; ?>, 'deactivate')">
+                                                <i class="fas fa-lock mr-1"></i> Khóa tài khoản
+                                            </button>
+                                        <?php else: ?>
+                                            <button type="button" class="btn btn-success" onclick="toggleUserStatus(<?php echo $user['id']; ?>, 'activate')">
+                                                <i class="fas fa-unlock mr-1"></i> Mở khóa tài khoản
+                                            </button>
+                                        <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 
@@ -388,5 +370,30 @@ $conn->close();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function toggleUserStatus(userId, action) {
+        const actionText = action === 'activate' ? 'mở khóa' : 'khóa';
+        const confirmMessage = action === 'activate' 
+            ? 'Bạn có chắc chắn muốn mở khóa tài khoản này? Người dùng sẽ có thể đăng nhập và sử dụng hệ thống.'
+            : 'Bạn có chắc chắn muốn khóa tài khoản này? Người dùng sẽ không thể đăng nhập và sử dụng hệ thống.';
+        
+        if (confirm(confirmMessage)) {
+            fetch(`toggle_status.php?id=${userId}&action=${action}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert('Có lỗi xảy ra: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra khi thay đổi trạng thái tài khoản');
+                });
+        }
+    }
+    </script>
 </body>
 </html> 

@@ -58,45 +58,48 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm cột Active - Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            padding: 50px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    body {
+        padding: 50px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Thêm cột Active vào bảng Users</h2>
-        
+
         <?php if (!empty($message)): ?>
-            <div class="alert alert-success">
-                <?php echo $message; ?>
-            </div>
+        <div class="alert alert-success">
+            <?php echo $message; ?>
+        </div>
         <?php endif; ?>
-        
+
         <?php if (!empty($error)): ?>
-            <div class="alert alert-danger">
-                <?php echo $error; ?>
-            </div>
+        <div class="alert alert-danger">
+            <?php echo $error; ?>
+        </div>
         <?php endif; ?>
-        
+
         <p>Cột <code>active</code> dùng để xác định trạng thái hoạt động của tài khoản người dùng.</p>
         <p>Giá trị:</p>
         <ul>
             <li><strong>1</strong>: Tài khoản đang hoạt động (mặc định)</li>
             <li><strong>0</strong>: Tài khoản bị khóa</li>
         </ul>
-        
+
         <div class="mt-4">
             <a href="index.php" class="btn btn-primary">Quay lại danh sách người dùng</a>
         </div>
     </div>
 </body>
-</html> 
+
+</html>
