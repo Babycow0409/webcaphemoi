@@ -37,28 +37,24 @@ if ($table_exists->num_rows == 0) {
 
 // Xử lý thêm địa chỉ mới
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_address'])) {
-    $fullname = trim($_POST['fullname']);
-    $phone = trim($_POST['phone']);
-    $address = trim($_POST['address']);
-    $city = trim($_POST['city']);
+    $address_detail = trim($_POST['address_detail']);
+    $ward = trim($_POST['ward']);
+    $district = trim($_POST['district']);
+    $province = trim($_POST['province']);
     $is_default = isset($_POST['is_default']) ? 1 : 0;
     
-    // Validate dữ liệu đầu vào
-    if (empty($fullname) || empty($phone) || empty($address) || empty($city)) {
+    if (empty($address_detail) || empty($ward) || empty($district) || empty($province)) {
         $error_msg = 'Vui lòng điền đầy đủ thông tin địa chỉ!';
     } else {
-        // Nếu đây là địa chỉ mặc định, cập nhật tất cả các địa chỉ khác thành không mặc định
         if ($is_default) {
             $update_sql = "UPDATE addresses SET is_default = 0 WHERE user_id = ?";
             $update_stmt = $conn->prepare($update_sql);
             $update_stmt->bind_param('i', $user_id);
             $update_stmt->execute();
         }
-        
-        // Thêm địa chỉ mới
-        $sql = "INSERT INTO addresses (user_id, fullname, phone, address, city, is_default) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO addresses (user_id, address_detail, ward, district, province, is_default) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('issssi', $user_id, $fullname, $phone, $address, $city, $is_default);
+        $stmt->bind_param('issssi', $user_id, $address_detail, $ward, $district, $province, $is_default);
         
         if ($stmt->execute()) {
             set_message('Thêm địa chỉ mới thành công!', 'success');
@@ -131,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_address_submit']
         }
         
         // Cập nhật địa chỉ
-        $sql = "UPDATE addresses SET fullname = ?, phone = ?, address = ?, city = ?, is_default = ? WHERE id = ? AND user_id = ?";
+        $sql = "UPDATE addresses SET recipient_name = ?, phone = ?, province = ?, district = ?, ward = ?, address_detail = ?, is_default = ? WHERE id = ? AND user_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssssiis', $fullname, $phone, $address, $city, $is_default, $address_id, $user_id);
+        $stmt->bind_param('ssssssiis', $fullname, $phone, $city, $city, $city, $address, $is_default, $address_id, $user_id);
         
         if ($stmt->execute()) {
             set_message('Cập nhật địa chỉ thành công!', 'success');
@@ -210,14 +206,21 @@ include 'includes/header.php';
                                 <?php endif; ?>
                                 
                                 <div class="address-info">
-                                    <h3 class="recipient-name"><?php echo htmlspecialchars($address['fullname']); ?></h3>
+                                    <h3 class="recipient-name"><?php echo htmlspecialchars($address['recipient_name']); ?></h3>
                                     <p class="phone-number"><i class="fas fa-phone"></i> <?php echo htmlspecialchars($address['phone']); ?></p>
-                                    <p class="address-line"><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($address['address']); ?></p>
-                                    <p class="city-line"><i class="fas fa-city"></i> <?php echo htmlspecialchars($address['city']); ?></p>
+                                    <p class="address-line"><i class="fas fa-map-marker-alt"></i>
+                                        <?php
+                                            echo htmlspecialchars($address['address_detail']);
+                                            if (!empty($address['ward'])) echo ', ' . htmlspecialchars($address['ward']);
+                                            if (!empty($address['district'])) echo ', ' . htmlspecialchars($address['district']);
+                                            if (!empty($address['province'])) echo ', ' . htmlspecialchars($address['province']);
+                                        ?>
+                                    </p>
+                                    <p class="city-line"><i class="fas fa-city"></i> <?php echo htmlspecialchars($address['province']); ?></p>
                                 </div>
                                 
                                 <div class="address-actions">
-                                    <button class="action-btn edit-btn" onclick="editAddress(<?php echo $address['id']; ?>, '<?php echo addslashes($address['fullname']); ?>', '<?php echo addslashes($address['phone']); ?>', '<?php echo addslashes($address['address']); ?>', '<?php echo addslashes($address['city']); ?>', <?php echo $address['is_default']; ?>)">
+                                    <button class="action-btn edit-btn" onclick="editAddress(<?php echo $address['id']; ?>, '<?php echo addslashes($address['recipient_name']); ?>', '<?php echo addslashes($address['phone']); ?>', '<?php echo addslashes($address['address_detail']); ?>', '<?php echo addslashes($address['province']); ?>', <?php echo $address['is_default']; ?>)">
                                         <i class="fas fa-edit"></i> Sửa
                                     </button>
                                     
@@ -248,37 +251,22 @@ include 'includes/header.php';
         <span class="close" onclick="hideAddAddressModal()">&times;</span>
         <h2>Thêm địa chỉ mới</h2>
         <form method="POST" action="" class="payment-form">
-            <input type="hidden" name="action" value="add">
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="fullname" class="required">Họ tên</label>
-                    <input type="text" id="fullname" name="fullname" required placeholder="Nhập họ tên người nhận">
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone" class="required">Số điện thoại</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại">
-                </div>
-            </div>
-            
             <div class="form-group">
-                <label for="address" class="required">Địa chỉ</label>
-                <input type="text" id="address" name="address" required placeholder="Ví dụ: Số 123, Đường ABC, Phường XYZ, Quận/Huyện...">
+                <label for="address_detail" class="required">Địa chỉ chi tiết</label>
+                <input type="text" id="address_detail" name="address_detail" required placeholder="Số nhà, tên đường...">
             </div>
-            
             <div class="form-group">
-                <label for="city" class="required">Thành phố</label>
-                <input type="text" id="city" name="city" required placeholder="Nhập tên thành phố">
+                <label for="ward" class="required">Phường/Xã</label>
+                <input type="text" id="ward" name="ward" required>
             </div>
-            
             <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="is_default" value="1">
-                    <span>Đặt làm địa chỉ mặc định</span>
-                </label>
+                <label for="district" class="required">Quận/Huyện</label>
+                <input type="text" id="district" name="district" required>
             </div>
-            
+            <div class="form-group">
+                <label for="province" class="required">Tỉnh/Thành phố</label>
+                <input type="text" id="province" name="province" required>
+            </div>
             <div class="form-group">
                 <button type="submit" name="add_address" class="payment-btn">Thêm địa chỉ</button>
             </div>
