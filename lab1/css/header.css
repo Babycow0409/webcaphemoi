@@ -66,9 +66,11 @@ nav a:hover {
     color: #6f4e37;
 }
 
+
 /* Dropdown menu */
 .dropdown {
     position: relative;
+    
 }
 
 .dropdown-toggle {

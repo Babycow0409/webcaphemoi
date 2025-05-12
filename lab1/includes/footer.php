@@ -41,10 +41,10 @@
 
             <h3 style="margin-top: 25px;">Theo dõi chúng tôi</h3>
             <div class="social-links">
-                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="instagram.com" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </div>

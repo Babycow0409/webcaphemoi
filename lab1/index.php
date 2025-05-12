@@ -526,7 +526,7 @@ try {
                 <?php
                 if(isset($_SESSION['user_id'])) {
                     echo '<div class="dropdown">
-                        <a href="#" class="nav-user-icon"><i class="fas fa-user nav-icon"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
+                        <a href="profile.php" class="nav-user-icon"><i class="fas fa-user nav-icon"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
                         <div class="dropdown-content">
                             <a href="profile.php"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
                             <a href="address-book.php"><i class="fas fa-address-book"></i> Sổ địa chỉ</a>
@@ -536,7 +536,7 @@ try {
                     </div>';
                 } else {
                     echo '<div class="dropdown">
-                        <a href="#" class="nav-user-icon"><i class="fas fa-user nav-icon"></i></a>
+                        <a href="profile.php" class="nav-user-icon"><i class="fas fa-user nav-icon"></i></a>
                         <div class="dropdown-content">
                             <a href="login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
                             <a href="register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
