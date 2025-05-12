@@ -15,28 +15,32 @@
  * @return array Giỏ hàng đã cập nhật
  */
 function addToCart($cart, $id, $name, $price, $image, $quantity = 1) {
+    // Kiểm tra tính hợp lệ của dữ liệu đầu vào
+    if (!is_numeric($id) || !is_numeric($price) || !is_numeric($quantity)) {
+        throw new Exception('Dữ liệu không hợp lệ');
+    }
+    if ($quantity <= 0) {
+        throw new Exception('Số lượng phải lớn hơn 0');
+    }
     // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
     $found = false;
     foreach($cart as $key => $item) {
         if(isset($item['id']) && (int)$item['id'] == (int)$id) {
-            // Cập nhật số lượng
             $cart[$key]['quantity'] += $quantity;
             $found = true;
             break;
         }
     }
-
     // Nếu chưa có trong giỏ hàng, thêm mới
     if(!$found) {
         $cart[] = [
-            'id' => (int)$id, // Đảm bảo ID là số nguyên
+            'id' => (int)$id,
             'name' => $name,
             'price' => (float)$price,
             'image' => $image,
             'quantity' => (int)$quantity
         ];
     }
-
     // Đảm bảo chỉ số mảng liên tục
     return array_values($cart);
 }
@@ -69,17 +73,18 @@ function removeFromCart($cart, $id) {
  * @return array Giỏ hàng đã cập nhật
  */
 function updateCartItemQuantity($cart, $id, $quantity) {
+    if (!is_numeric($id) || !is_numeric($quantity)) {
+        throw new Exception('Dữ liệu không hợp lệ');
+    }
     if($quantity <= 0) {
         return removeFromCart($cart, $id);
     }
-    
     foreach($cart as $key => $item) {
         if(isset($item['id']) && $item['id'] == $id) {
             $cart[$key]['quantity'] = $quantity;
             break;
         }
     }
-    
     return $cart;
 }
 
