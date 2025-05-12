@@ -129,6 +129,20 @@ if ($result && $result->num_rows > 0) {
                 </div>
                 
                 <div class="content">
+                    <?php if (isset($_GET['message'])): ?>
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <?php echo htmlspecialchars($_GET['message']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($_GET['error'])): ?>
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <?php echo htmlspecialchars($_GET['error']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="search-box">
                         <div class="input-group">
                             <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm người dùng...">
@@ -166,9 +180,36 @@ if ($result && $result->num_rows > 0) {
                                             <td><?php echo $user['phone'] ?? 'N/A'; ?></td>
                                             <td><?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></td>
                                             <td>
-                                                <a href="view.php?id=<?php echo $user['id']; ?>" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
+                                                <div class="btn-group" role="group">
+                                                    <a href="view.php?id=<?php echo $user['id']; ?>" class="btn btn-info btn-sm" title="Xem chi tiết">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <?php if ($user['role'] !== 'admin'): // Không cho phép xóa tài khoản admin ?>
+                                                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm" 
+                                                       onclick="return confirm('Bạn có chắc muốn xóa người dùng này?');" title="Xóa">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    <?php endif; ?>
+                                                    
+                                                    <?php if (isset($user['active'])): ?>
+                                                        <?php if ($user['active'] == 1): ?>
+                                                            <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=deactivate" 
+                                                               class="btn btn-secondary btn-sm" title="Khóa tài khoản"
+                                                               onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
+                                                                <i class="fas fa-lock"></i>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=activate" 
+                                                               class="btn btn-success btn-sm" title="Mở khóa tài khoản"
+                                                               onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?');">
+                                                                <i class="fas fa-unlock"></i>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    <?php endif; ?>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

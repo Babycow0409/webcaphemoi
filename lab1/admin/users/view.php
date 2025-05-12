@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra đăng nhập
-if (!isset($_SESSION["admin_id"])) {
+if (!isset($_SESSION["admin"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION["admin_id"])) {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "coffee_shop";
+$dbname = "lab1";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,55 +21,79 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Kiểm tra ID người dùng
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: index.php");
-    exit();
-}
-
-$user_id = intval($_GET['id']);
-
-// Lấy thông tin người dùng
-$sql = "SELECT * FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    header("Location: index.php");
-    exit();
-}
-
-$user = $result->fetch_assoc();
-
-// Lấy thông tin đơn hàng của người dùng
-$sql_orders = "SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC";
-$stmt_orders = $conn->prepare($sql_orders);
-$stmt_orders->bind_param("i", $user_id);
-$stmt_orders->execute();
-$result_orders = $stmt_orders->get_result();
+// Lấy thông tin chi tiết người dùng
+$user = [];
 $orders = [];
 
-if ($result_orders->num_rows > 0) {
-    while ($row = $result_orders->fetch_assoc()) {
-        $orders[] = $row;
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $user_id = $_GET['id'];
+    
+    // Lấy thông tin người dùng
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        
+        // Kiểm tra cấu trúc bảng orders để biết cột nào dùng để sắp xếp
+        $check_columns = "SHOW COLUMNS FROM orders";
+        $columns_result = $conn->query($check_columns);
+        $has_created_at = false;
+        $has_order_date = false;
+        
+        if ($columns_result) {
+            while ($column = $columns_result->fetch_assoc()) {
+                if ($column['Field'] == 'created_at') {
+                    $has_created_at = true;
+                }
+                if ($column['Field'] == 'order_date') {
+                    $has_order_date = true;
+                }
+            }
+        }
+        
+        // Lấy danh sách đơn hàng của người dùng (nếu có)
+        // Xây dựng câu truy vấn dựa trên cột có sẵn
+        if ($has_created_at) {
+            $order_by_clause = "o.created_at DESC";
+        } elseif ($has_order_date) {
+            $order_by_clause = "o.order_date DESC";
+        } else {
+            $order_by_clause = "o.id DESC"; // Sắp xếp theo ID nếu không có cột ngày
+        }
+        
+        $sql_orders = "SELECT o.*, 
+                       (SELECT COUNT(*) FROM order_items WHERE order_id = o.id) as total_items,
+                       (SELECT SUM(price * quantity) FROM order_items WHERE order_id = o.id) as total_amount
+                       FROM orders o 
+                       WHERE o.user_id = ? 
+                       ORDER BY $order_by_clause";
+        
+        $stmt_orders = $conn->prepare($sql_orders);
+        $stmt_orders->bind_param("i", $user_id);
+        $stmt_orders->execute();
+        $result_orders = $stmt_orders->get_result();
+        
+        if ($result_orders->num_rows > 0) {
+            while ($row = $result_orders->fetch_assoc()) {
+                $orders[] = $row;
+            }
+        }
+        
+        $stmt_orders->close();
     }
+    
+    $stmt->close();
+} else {
+    header("Location: index.php");
+    exit();
 }
 
-// Lấy địa chỉ của người dùng
-$sql_addresses = "SELECT * FROM addresses WHERE user_id = ?";
-$stmt_addresses = $conn->prepare($sql_addresses);
-$stmt_addresses->bind_param("i", $user_id);
-$stmt_addresses->execute();
-$result_addresses = $stmt_addresses->get_result();
-$addresses = [];
-
-if ($result_addresses->num_rows > 0) {
-    while ($row = $result_addresses->fetch_assoc()) {
-        $addresses[] = $row;
-    }
-}
+// Đóng kết nối
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -116,27 +140,21 @@ if ($result_addresses->num_rows > 0) {
             border-bottom: 1px solid #dee2e6;
             margin-bottom: 20px;
         }
+        .user-profile {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
         .user-info {
             margin-bottom: 30px;
         }
-        .nav-tabs {
-            margin-bottom: 20px;
-        }
-        .badge-pending {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        .badge-processing {
-            background-color: #17a2b8;
-        }
-        .badge-shipped {
-            background-color: #007bff;
-        }
-        .badge-delivered {
-            background-color: #28a745;
-        }
-        .badge-cancelled {
-            background-color: #dc3545;
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -182,174 +200,186 @@ if ($result_addresses->num_rows > 0) {
             
             <!-- Main content -->
             <div class="col-md-10">
-                <div class="header d-flex justify-content-between align-items-center">
+                <div class="header">
                     <h2>Chi tiết người dùng</h2>
-                    <a href="index.php" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Quay lại
-                    </a>
                 </div>
                 
                 <div class="content">
-                    <div class="user-info card">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="mb-0">Thông tin cá nhân</h3>
+                    <?php if (empty($user)): ?>
+                        <div class="alert alert-warning">
+                            Không tìm thấy thông tin người dùng.
                         </div>
-                        <div class="card-body">
+                        <a href="index.php" class="btn btn-primary">
+                            <i class="fas fa-arrow-left mr-1"></i> Quay lại danh sách
+                        </a>
+                    <?php else: ?>
+                        <div class="user-profile">
                             <div class="row">
-                                <div class="col-md-8">
-                                    <table class="table table-striped">
-                                        <tr>
-                                            <th width="150">ID:</th>
-                                            <td><?php echo $user['id']; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Họ tên:</th>
-                                            <td><?php echo $user['name'] ?? 'N/A'; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email:</th>
-                                            <td><?php echo $user['email']; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Số điện thoại:</th>
-                                            <td><?php echo $user['phone'] ?? 'N/A'; ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Ngày đăng ký:</th>
-                                            <td><?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></td>
-                                        </tr>
+                                <div class="col-md-12 mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3><?php echo htmlspecialchars($user['fullname'] ?? $user['name'] ?? 'N/A'); ?></h3>
+                                        <div>
+                                            <?php if (isset($user['role'])): ?>
+                                                <span class="badge <?php echo $user['role'] == 'admin' ? 'badge-danger' : 'badge-info'; ?>">
+                                                    <?php echo $user['role'] == 'admin' ? 'Quản trị viên' : 'Khách hàng'; ?>
+                                                </span>
+                                            <?php endif; ?>
+                                            
+                                            <?php if (isset($user['active'])): ?>
+                                                <span class="badge <?php echo $user['active'] == 1 ? 'badge-success' : 'badge-secondary'; ?>">
+                                                    <?php echo $user['active'] == 1 ? 'Đang hoạt động' : 'Đã khóa'; ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row user-info">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Thông tin cá nhân</h5>
+                                    <p><strong>ID:</strong> <?php echo $user['id']; ?></p>
+                                    <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+                                    <p><strong>Số điện thoại:</strong> <?php echo htmlspecialchars($user['phone'] ?? 'Chưa cập nhật'); ?></p>
+                                    <p><strong>Địa chỉ:</strong> <?php echo htmlspecialchars($user['address'] ?? 'Chưa cập nhật'); ?></p>
+                                    <p><strong>Thành phố:</strong> <?php echo htmlspecialchars($user['city'] ?? 'Chưa cập nhật'); ?></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Thông tin tài khoản</h5>
+                                    <p><strong>Tên đăng nhập:</strong> <?php echo htmlspecialchars($user['username'] ?? 'N/A'); ?></p>
+                                    <p><strong>Ngày đăng ký:</strong> <?php echo isset($user['created_at']) ? date('d/m/Y H:i', strtotime($user['created_at'])) : 'N/A'; ?></p>
+                                    <p><strong>Trạng thái:</strong> 
+                                        <?php if (isset($user['active'])): ?>
+                                            <span class="status-badge <?php echo $user['active'] == 1 ? 'bg-success text-white' : 'bg-secondary text-white'; ?>">
+                                                <?php echo $user['active'] == 1 ? 'Đang hoạt động' : 'Đã khóa'; ?>
+                                            </span>
+                                        <?php else: ?>
+                                            Không xác định
+                                        <?php endif; ?>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons mb-4">
+                                <a href="edit.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">
+                                    <i class="fas fa-edit mr-1"></i> Chỉnh sửa
+                                </a>
+                                
+                                <?php if ($user['role'] !== 'admin'): ?>
+                                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="btn btn-danger" 
+                                       onclick="return confirm('Bạn có chắc muốn xóa người dùng này?');">
+                                        <i class="fas fa-trash mr-1"></i> Xóa
+                                    </a>
+                                <?php endif; ?>
+                                
+                                <?php if (isset($user['active'])): ?>
+                                    <?php if ($user['active'] == 1 && $user['role'] !== 'admin'): ?>
+                                        <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=deactivate" 
+                                           class="btn btn-secondary" 
+                                           onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?');">
+                                            <i class="fas fa-lock mr-1"></i> Khóa tài khoản
+                                        </a>
+                                    <?php elseif ($user['active'] == 0): ?>
+                                        <a href="toggle_status.php?id=<?php echo $user['id']; ?>&action=activate" 
+                                           class="btn btn-success" 
+                                           onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?');">
+                                            <i class="fas fa-unlock mr-1"></i> Mở khóa tài khoản
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                
+                                <a href="index.php" class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left mr-1"></i> Quay lại
+                                </a>
+                            </div>
+                            
+                            <!-- Đơn hàng của người dùng -->
+                            <h4 class="mt-4 mb-3">Lịch sử đơn hàng</h4>
+                            <?php if (empty($orders)): ?>
+                                <div class="alert alert-info">
+                                    Người dùng này chưa có đơn hàng nào.
+                                </div>
+                            <?php else: ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Mã đơn hàng</th>
+                                                <th>Ngày đặt</th>
+                                                <th>Số sản phẩm</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Trạng thái</th>
+                                                <th>Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($orders as $order): ?>
+                                                <tr>
+                                                    <td>#<?php echo $order['id']; ?></td>
+                                                    <td>
+                                                        <?php 
+                                                        if (isset($order['created_at'])) {
+                                                            echo date('d/m/Y H:i', strtotime($order['created_at']));
+                                                        } elseif (isset($order['order_date'])) {
+                                                            echo date('d/m/Y H:i', strtotime($order['order_date']));
+                                                        } else {
+                                                            echo 'N/A';
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php echo $order['total_items']; ?></td>
+                                                    <td><?php echo number_format($order['total_amount'], 0, ',', '.'); ?>đ</td>
+                                                    <td>
+                                                        <?php 
+                                                        $status_class = '';
+                                                        $status_text = '';
+                                                        
+                                                        if (isset($order['status'])) {
+                                                            switch ($order['status']) {
+                                                                case 'pending':
+                                                                    $status_class = 'badge-warning';
+                                                                    $status_text = 'Chờ xử lý';
+                                                                    break;
+                                                                case 'processing':
+                                                                    $status_class = 'badge-info';
+                                                                    $status_text = 'Đang xử lý';
+                                                                    break;
+                                                                case 'shipped':
+                                                                    $status_class = 'badge-primary';
+                                                                    $status_text = 'Đang giao hàng';
+                                                                    break;
+                                                                case 'delivered':
+                                                                    $status_class = 'badge-success';
+                                                                    $status_text = 'Đã giao hàng';
+                                                                    break;
+                                                                case 'cancelled':
+                                                                    $status_class = 'badge-danger';
+                                                                    $status_text = 'Đã hủy';
+                                                                    break;
+                                                                default:
+                                                                    $status_class = 'badge-secondary';
+                                                                    $status_text = 'Không xác định';
+                                                            }
+                                                        } else {
+                                                            $status_class = 'badge-secondary';
+                                                            $status_text = 'Không xác định';
+                                                        }
+                                                        ?>
+                                                        <span class="badge <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
+                                                    </td>
+                                                    <td>
+                                                        <a href="../orders/view.php?id=<?php echo $order['id']; ?>" class="btn btn-sm btn-info">
+                                                            <i class="fas fa-eye"></i> Xem
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            <?php endif; ?>
                         </div>
-                    </div>
-                    
-                    <ul class="nav nav-tabs mt-4" id="userTabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders" role="tab">
-                                <i class="fas fa-shopping-cart mr-2"></i>Đơn hàng
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Địa chỉ
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <div class="tab-content" id="userTabContent">
-                        <!-- Tab đơn hàng -->
-                        <div class="tab-pane fade show active" id="orders" role="tabpanel">
-                            <div class="card">
-                                <div class="card-body">
-                                    <?php if (empty($orders)): ?>
-                                        <p class="text-muted">Người dùng chưa có đơn hàng nào.</p>
-                                    <?php else: ?>
-                                        <div class="table-responsive">
-                                            <table class="table table-hover">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Mã đơn hàng</th>
-                                                        <th>Ngày đặt</th>
-                                                        <th>Tổng tiền</th>
-                                                        <th>Trạng thái</th>
-                                                        <th>Thao tác</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($orders as $order): ?>
-                                                        <tr>
-                                                            <td><?php echo $order['order_number'] ?? $order['id']; ?></td>
-                                                            <td><?php echo date('d/m/Y H:i', strtotime($order['order_date'])); ?></td>
-                                                            <td><?php echo number_format($order['total_amount'], 0, ',', '.'); ?> VNĐ</td>
-                                                            <td>
-                                                                <?php
-                                                                $status_class = '';
-                                                                $status_text = '';
-                                                                
-                                                                switch ($order['status']) {
-                                                                    case 'pending':
-                                                                        $status_class = 'badge-pending';
-                                                                        $status_text = 'Chờ xử lý';
-                                                                        break;
-                                                                    case 'processing':
-                                                                        $status_class = 'badge-processing';
-                                                                        $status_text = 'Đang xử lý';
-                                                                        break;
-                                                                    case 'shipped':
-                                                                        $status_class = 'badge-shipped';
-                                                                        $status_text = 'Đang giao hàng';
-                                                                        break;
-                                                                    case 'delivered':
-                                                                    case 'completed':
-                                                                        $status_class = 'badge-success';
-                                                                        $status_text = 'Đã giao hàng';
-                                                                        break;
-                                                                    case 'cancelled':
-                                                                        $status_class = 'badge-danger';
-                                                                        $status_text = 'Đã hủy';
-                                                                        break;
-                                                                    default:
-                                                                        $status_class = 'badge-secondary';
-                                                                        $status_text = 'Không xác định';
-                                                                }
-                                                                ?>
-                                                                <span class="badge <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="../orders/view.php?id=<?php echo $order['id']; ?>" class="btn btn-info btn-sm">
-                                                                    <i class="fas fa-eye"></i> Xem
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Tab địa chỉ -->
-                        <div class="tab-pane fade" id="address" role="tabpanel">
-                            <div class="card">
-                                <div class="card-body">
-                                    <?php if (empty($addresses)): ?>
-                                        <p class="text-muted">Người dùng chưa có địa chỉ nào.</p>
-                                    <?php else: ?>
-                                        <div class="row">
-                                            <?php foreach ($addresses as $address): ?>
-                                                <div class="col-md-6 mb-3">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">
-                                                                <?php echo $address['name']; ?>
-                                                                <?php if (isset($address['is_default']) && $address['is_default']): ?>
-                                                                    <span class="badge badge-primary">Mặc định</span>
-                                                                <?php endif; ?>
-                                                            </h5>
-                                                            <p class="card-text">
-                                                                <strong>Địa chỉ:</strong> <?php echo $address['address_line1']; ?>
-                                                                <?php if (!empty($address['address_line2'])): ?>
-                                                                    , <?php echo $address['address_line2']; ?>
-                                                                <?php endif; ?>
-                                                            </p>
-                                                            <p class="card-text">
-                                                                <strong>Quận/Huyện:</strong> <?php echo $address['district']; ?><br>
-                                                                <strong>Tỉnh/Thành phố:</strong> <?php echo $address['city']; ?><br>
-                                                                <strong>Số điện thoại:</strong> <?php echo $address['phone']; ?>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

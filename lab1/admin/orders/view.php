@@ -37,9 +37,29 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_status' && isset($_PO
     $allowed_statuses = ['pending', 'confirmed', 'processing', 'shipping', 'delivered', 'cancelled'];
     
     if (in_array($new_status, $allowed_statuses)) {
-        $sql = "UPDATE orders SET status = ?, status_note = ?, updated_at = NOW() WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssi", $new_status, $status_note, $order_id);
+        // Kiểm tra xem cột status_note có tồn tại trong bảng orders không
+        $check_column = "SHOW COLUMNS FROM orders LIKE 'status_note'";
+        $column_result = $conn->query($check_column);
+        
+        if ($column_result->num_rows > 0) {
+            // Nếu cột status_note tồn tại, sử dụng câu truy vấn ban đầu
+            $sql = "UPDATE orders SET status = ?, status_note = ?, updated_at = NOW() WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssi", $new_status, $status_note, $order_id);
+        } else {
+            // Nếu cột status_note không tồn tại, bỏ qua cột này trong câu truy vấn
+            // Kiểm tra xem cột updated_at có tồn tại không
+            $check_updated_column = "SHOW COLUMNS FROM orders LIKE 'updated_at'";
+            $updated_column_result = $conn->query($check_updated_column);
+            
+            if ($updated_column_result->num_rows > 0) {
+                $sql = "UPDATE orders SET status = ?, updated_at = NOW() WHERE id = ?";
+            } else {
+                $sql = "UPDATE orders SET status = ? WHERE id = ?";
+            }
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("si", $new_status, $order_id);
+        }
         
         if ($stmt->execute()) {
             $success_message = "Cập nhật trạng thái đơn hàng thành công!";
