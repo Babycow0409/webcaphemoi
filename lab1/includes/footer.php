@@ -2,10 +2,11 @@
     <div class="footer-container">
         <div class="footer-section">
             <h3>Coffee Shop</h3>
-            <p>Chúng tôi chuyên cung cấp các loại cà phê chất lượng cao, từ hạt Arabica, Robusta đến cà phê Chồn đặc biệt, mang đến trải nghiệm thưởng thức cà phê tuyệt vời.</p>
+            <p>Chúng tôi chuyên cung cấp các loại cà phê chất lượng cao, từ hạt Arabica, Robusta đến cà phê Chồn đặc
+                biệt, mang đến trải nghiệm thưởng thức cà phê tuyệt vời.</p>
             <p>Hương vị độc đáo - Chất lượng đỉnh cao</p>
         </div>
-        
+
         <div class="footer-section">
             <h3>Liên hệ</h3>
             <p><i class="fas fa-map-marker-alt"></i> 123 Đường Cà Phê, Quận 1, TP. Hồ Chí Minh</p>
@@ -13,18 +14,23 @@
             <p><i class="fas fa-envelope"></i> Email: info@coffeeshop.com</p>
             <p><i class="fas fa-clock"></i> Giờ mở cửa: 7:00 - 22:00 (Hàng ngày)</p>
         </div>
-        
+
         <div class="footer-section">
             <h3>Truy cập nhanh</h3>
             <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 8px;"><a href="index.php" style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Trang chủ</a></li>
-                <li style="margin-bottom: 8px;"><a href="products.php" style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Sản phẩm</a></li>
-                <li style="margin-bottom: 8px;"><a href="about.php" style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Giới thiệu</a></li>
-                <li style="margin-bottom: 8px;"><a href="contact.php" style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Liên hệ</a></li>
-                <li style="margin-bottom: 8px;"><a href="my-orders.php" style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Đơn hàng</a></li>
+                <li style="margin-bottom: 8px;"><a href="index.php" style="color: #f1f1f1; text-decoration: none;"><i
+                            class="fas fa-chevron-right"></i> Trang chủ</a></li>
+                <li style="margin-bottom: 8px;"><a href="products.php" style="color: #f1f1f1; text-decoration: none;"><i
+                            class="fas fa-chevron-right"></i> Sản phẩm</a></li>
+                <li style="margin-bottom: 8px;"><a href="about.php" style="color: #f1f1f1; text-decoration: none;"><i
+                            class="fas fa-chevron-right"></i> Giới thiệu</a></li>
+
+                <li style="margin-bottom: 8px;"><a href="my-orders.php"
+                        style="color: #f1f1f1; text-decoration: none;"><i class="fas fa-chevron-right"></i> Đơn hàng</a>
+                </li>
             </ul>
         </div>
-        
+
         <div class="footer-section">
             <h3>Đăng ký nhận thông tin</h3>
             <p>Nhận thông tin về sản phẩm mới và khuyến mãi đặc biệt.</p>
@@ -32,7 +38,7 @@
                 <input type="email" placeholder="Nhập email của bạn" required>
                 <button type="submit">Đăng ký</button>
             </form>
-            
+
             <h3 style="margin-top: 25px;">Theo dõi chúng tôi</h3>
             <div class="social-links">
                 <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -42,9 +48,10 @@
             </div>
         </div>
     </div>
-    
+
     <div class="footer-bottom">
-        <p>&copy; <?php echo date("Y"); ?> Coffee Shop. Tất cả quyền được bảo lưu | Thiết kế bởi <a href="#" style="color: #d4a373; text-decoration: none;">Company Name</a></p>
+        <p>&copy; <?php echo date("Y"); ?> Coffee Shop. Tất cả quyền được bảo lưu | Thiết kế bởi <a href="#"
+                style="color: #d4a373; text-decoration: none;">Company Name</a></p>
     </div>
 </footer>
 
@@ -157,7 +164,7 @@ footer {
     .footer-container {
         flex-direction: column;
     }
-    
+
     .footer-section {
         margin-bottom: 30px;
     }
@@ -166,4 +173,5 @@ footer {
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
-</html> 
+
+</html>
