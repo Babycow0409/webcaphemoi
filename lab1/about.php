@@ -423,7 +423,12 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Cà Phê Đậm Đà</div>
+            <div class="logo">
+    <a href="index.php" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://res.cloudinary.com/dczuwkvok/image/upload/v1747069387/Brown_Beige_Modern_Coffee_Logo_xeceb8.png" alt="LOGO" width="70" height="70" style="border-radius: 50%; margin-right: 10px;">
+        <span style="font-family: 'Playfair Display', serif; font-size: 1em; color: white; font-weight: bold;">Cà Phê Đậm Đà</span>
+    </a>
+            </div>
             <div class="nav-links">
                 <a href="index.php">Trang chủ</a>
                 <div class="dropdown">

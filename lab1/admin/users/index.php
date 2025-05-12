@@ -158,10 +158,13 @@ $conn->close();
                 </div>
 
                 <div class="content">
-                    <?php if (isset($_GET['message'])): ?>
+                    <?php if (isset($_SESSION['success_message'])): ?>
                     <div class="alert alert-success alert-dismissible fade show">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <?php echo htmlspecialchars($_GET['message']); ?>
+                        <?php 
+                        echo $_SESSION['success_message'];
+                        unset($_SESSION['success_message']);
+                        ?>
                     </div>
                     <?php endif; ?>
 
@@ -173,7 +176,7 @@ $conn->close();
                     <?php endif; ?>
 
                     <!-- Search box -->
-                    <div class="search-box">
+                    <div class="search-box d-flex justify-content-between align-items-center">
                         <form action="" method="GET" class="form-inline">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control"
@@ -186,6 +189,9 @@ $conn->close();
                                 </div>
                             </div>
                         </form>
+                        <a href="add_user.php" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Thêm người dùng
+                        </a>
                     </div>
 
                     <!-- Users table -->

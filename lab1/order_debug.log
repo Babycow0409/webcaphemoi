@@ -107,3 +107,12 @@ Total: 3100000
 2025-05-12 20:33:14 - ORDER CREATED: Created order ID: 15
 2025-05-12 20:33:14 - TRANSACTION COMPLETED
 2025-05-12 20:33:14 - VERIFICATION: Verified order exists - ID: 15 | User ID: 3 | Total: 3100000.00
+2025-05-12 23:07:15 - PRE-ORDER: User ID: 3
+Email: ahehehihihahahuhu123@gmail.com
+Fullname: le hieu
+2025-05-12 23:07:15 - INSERT DATA: Attempting to insert order with user_id: 3
+Name: le hieu
+Total: 3100000
+2025-05-12 23:07:15 - ORDER CREATED: Created order ID: 14
+2025-05-12 23:07:15 - TRANSACTION COMPLETED
+2025-05-12 23:07:15 - VERIFICATION: Verified order exists - ID: 14 | User ID: 3 | Total: 3100000.00
