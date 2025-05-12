@@ -62,3 +62,12 @@ Total: 1050000
 2025-05-12 09:11:09 - ORDER CREATED: Created order ID: 13
 2025-05-12 09:11:09 - TRANSACTION COMPLETED
 2025-05-12 09:11:09 - VERIFICATION: Verified order exists - ID: 13 | User ID: 3 | Total: 1050000.00
+2025-05-12 09:35:43 - PRE-ORDER: User ID: 2
+Email: dangkhoanguyenphuc0409@gmail.com
+Fullname: Nguyễn Phúc Đăng Khoa
+2025-05-12 09:35:43 - INSERT DATA: Attempting to insert order with user_id: 2
+Name: Nguyễn Phúc Đăng Khoa
+Total: 600000
+2025-05-12 09:35:43 - ORDER CREATED: Created order ID: 13
+2025-05-12 09:35:43 - TRANSACTION COMPLETED
+2025-05-12 09:35:43 - VERIFICATION: Verified order exists - ID: 13 | User ID: 2 | Total: 600000.00

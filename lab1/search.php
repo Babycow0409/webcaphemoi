@@ -182,17 +182,15 @@ $paginatedProducts = array_slice(
             display: none;
             position: absolute;
             background-color: #3c2f2f;
-            min-width: 160px;
+            min-width: 170px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s, transform 0.3s;
+            border-radius: 4px;
+            margin-top: -2px;
+            padding-top: 10px;
         }
         .dropdown:hover .dropdown-content {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
         .dropdown-content a {
             color: white;

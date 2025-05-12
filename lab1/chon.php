@@ -19,20 +19,43 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Lấy category_id cho loại sản phẩm Chồn
-$sql_category = "SELECT id FROM categories WHERE name LIKE '%Chồn%' LIMIT 1";
-$result_category = $conn->query($sql_category);
-$categoryId = 3; // Mặc định ID cho loại Chồn
+// Tìm category_id cho Chồn
+$category_name = 'Chồn';
+$cat_query = "SELECT id FROM categories WHERE name LIKE ?";
+$cat_stmt = $conn->prepare($cat_query);
+$search_param = "%$category_name%";
+$cat_stmt->bind_param("s", $search_param);
+$cat_stmt->execute();
+$cat_result = $cat_stmt->get_result();
+$categoryId = 3; // Mặc định ID cho Chồn
 
-if ($result_category && $result_category->num_rows > 0) {
-    $category = $result_category->fetch_assoc();
-    $categoryId = $category['id'];
+if ($cat_result && $cat_result->num_rows > 0) {
+    $categoryId = $cat_result->fetch_assoc()['id'];
 }
 
-// Lấy sản phẩm từ database dựa vào category_id
-$sql = "SELECT * FROM products WHERE category_id = ? AND active = 1 ORDER BY id DESC";
+// Xử lý phân trang
+$productsPerPage = 8; // Số sản phẩm mỗi trang
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $productsPerPage;
+
+// Đếm tổng số sản phẩm Chồn
+$countQuery = "SELECT COUNT(*) as total FROM products WHERE category_id = ? AND active = 1";
+$countStmt = $conn->prepare($countQuery);
+$countStmt->bind_param("i", $categoryId);
+$countStmt->execute();
+$countResult = $countStmt->get_result();
+$totalProducts = $countResult->fetch_assoc()['total'];
+$totalPages = ceil($totalProducts / $productsPerPage);
+
+// Lấy sản phẩm Chồn từ database với phân trang
+$sql = "SELECT p.*, c.name as category_name 
+        FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.category_id = ? AND p.active = 1
+        ORDER BY p.id ASC
+        LIMIT ? OFFSET ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $categoryId);
+$stmt->bind_param("iii", $categoryId, $productsPerPage, $offset);
 $stmt->execute();
 $result = $stmt->get_result();
 $products = [];
@@ -197,26 +220,33 @@ if ($result->num_rows > 0) {
         display: none;
         position: absolute;
         background-color: #3c2f2f;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        min-width: 170px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
         z-index: 1;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s, transform 0.3s;
+        border-radius: 4px;
+        margin-top: -2px;
+        padding-top: 10px;
     }
 
     .dropdown:hover .dropdown-content {
         display: block;
-        opacity: 1;
-        transform: translateY(0);
     }
-
+    
     .dropdown-content a {
         color: white;
-        padding: 12px 16px;
+        font-size: 16px;
+        padding: 12px 18px;
         text-decoration: none;
         display: block;
-        transition: background-color 0.3s;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #5a4b4b;
+    }
+    
+    .dropdown-content i {
+        margin-right: 8px;
+        color: #d4a373;
     }
 
     .info-section {
@@ -261,8 +291,6 @@ if ($result->num_rows > 0) {
 
     /* Thêm CSS styles cho cart notification*/
      .cart-notification {
-
-
     position: fixed;
     top: 100px;
     right: 20px;
@@ -296,6 +324,59 @@ if ($result->num_rows > 0) {
         font-size: 12px;
         font-weight: bold;
     }
+    
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+        gap: 5px;
+    }
+    .pagination a {
+        display: inline-block;
+        padding: 8px 15px;
+        text-decoration: none;
+        color: #333;
+        background-color: #f2f2f2;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all 0.3s;
+    }
+    .pagination a.active {
+        background-color: #d4a373;
+        color: white;
+        border-color: #d4a373;
+    }
+    .pagination a:hover:not(.active):not(.disabled) {
+        background-color: #e9e9e9;
+    }
+    .pagination a.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    
+    /* CSS cho thông tin cá nhân - cập nhật để giống trang chủ */
+    .nav-user-icon {
+        padding: 8px 15px;
+        font-size: 16px;
+        color: #fff;
+        background: #3c2f2f;
+        border-radius: 20px;
+        transition: background 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-user-icon:hover {
+        background: #5a4b4b;
+        color: #fff;
+    }
+    
+    .nav-user-icon i {
+        margin-right: 8px;
+        font-size: 16px;
+    }
     </style>
 </head>
 
@@ -323,6 +404,27 @@ if ($result->num_rows > 0) {
                     <span class="cart-count"><?php echo count($_SESSION['cart']); ?></span>
                     <?php endif; ?>
                 </a>
+                <?php
+                if(isset($_SESSION['user_id'])) {
+                    echo '<div class="dropdown">
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
+                        <div class="dropdown-content">
+                            <a href="profile.php"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
+                            <a href="address-book.php"><i class="fas fa-address-book"></i> Sổ địa chỉ</a>
+                            <a href="my-orders.php"><i class="fas fa-shopping-bag"></i> Lịch sử đơn hàng</a>
+                            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>';
+                } else {
+                    echo '<div class="dropdown">
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i></a>
+                        <div class="dropdown-content">
+                            <a href="login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                            <a href="register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                        </div>
+                    </div>';
+                }
+                ?>
             </div>
         </nav>
     </header>
@@ -389,6 +491,30 @@ if ($result->num_rows > 0) {
             }
             ?>
         </div>
+
+        <!-- Thêm phân trang -->
+        <?php if ($totalPages > 1): ?>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+            <a href="?page=<?php echo $page-1; ?>"><i class="fas fa-chevron-left"></i> Trước</a>
+            <?php else: ?>
+            <a class="disabled"><i class="fas fa-chevron-left"></i> Trước</a>
+            <?php endif; ?>
+            
+            <?php 
+            for ($i = 1; $i <= $totalPages; $i++): 
+                $activeClass = ($i == $page) ? 'active' : '';
+            ?>
+            <a href="?page=<?php echo $i; ?>" class="<?php echo $activeClass; ?>"><?php echo $i; ?></a>
+            <?php endfor; ?>
+            
+            <?php if ($page < $totalPages): ?>
+            <a href="?page=<?php echo $page+1; ?>">Tiếp <i class="fas fa-chevron-right"></i></a>
+            <?php else: ?>
+            <a class="disabled">Tiếp <i class="fas fa-chevron-right"></i></a>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
     </section>
 
     <footer id="contact" style="background-color: #3c2f2f; color: white; padding: 30px 0; margin-top: 50px;">

@@ -565,59 +565,33 @@ foreach($cart as $item) {
         display: none;
         position: absolute;
         background-color: #3c2f2f;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        min-width: 170px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
         z-index: 1;
+        border-radius: 4px;
+        margin-top: -2px;
+        padding-top: 10px;
     }
-
-    .dropdown-content a {
-        color: white;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
+    
     .dropdown:hover .dropdown-content {
         display: block;
     }
 
-    /* Footer styles */
-    footer {
-        background-color: #3c2f2f;
-        color: white;
-        padding: 40px 0;
-        margin-top: 50px;
-    }
-
-    /* Thêm style cho icon người dùng */
-    .nav-user-icon {
-        padding: 5px 10px;
-        font-size: 22px;
-        color: #fff;
-        border-radius: 50%;
-        background: #d4a373;
-        transition: background 0.3s;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        margin-right: 5px;
-    }
-
-    .nav-user-icon:hover {
-        background: #c49666;
-        color: #fff;
-    }
-
-    .dropdown-content {
-        min-width: 170px;
-        z-index: 10;
-    }
-
     .dropdown-content a {
+        color: white;
         font-size: 16px;
         padding: 12px 18px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #5a4b4b;
+    }
+    
+    .dropdown-content i {
+        margin-right: 8px;
+        color: #d4a373;
     }
 
     .nav-icon {
@@ -647,30 +621,14 @@ foreach($cart as $item) {
                 <a href="cart.php">Giỏ hàng</a>
                 <?php
                 if(isset($_SESSION['user_id'])) {
-                    // Hiển thị tên người dùng nếu đã đăng nhập
-                    echo '<span style="color: #d4a373; margin-right: 15px;">Xin chào, ' . (isset($_SESSION['fullname']) ? htmlspecialchars($_SESSION['fullname']) : 'Khách hàng') . '</span>';
-                    
-                    // Kiểm tra xem có đơn hàng đang xử lý không
-                    $has_pending_orders = false;
-                    if(isset($_SESSION['orders'])) {
-                        foreach($_SESSION['orders'] as $order) {
-                            if($order['status'] != 'completed') {
-                                $has_pending_orders = true;
-                                break;
-                            }
-                        }
-                    }
-
+                    // Hiển thị menu dropdown thông tin tài khoản
                     echo '<div class="dropdown">
-                        <a href="#">Tài khoản</a>
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
                         <div class="dropdown-content">
-                            <a href="profile.php">Thông tin cá nhân</a>
-                            <a href="my-orders.php">Đơn hàng';
-                    if($has_pending_orders) {
-                        echo ' <span class="order-badge">!</span>';
-                    }
-                    echo '</a>
-                            <a href="logout.php">Đăng xuất</a>
+                            <a href="profile.php"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
+                            <a href="address-book.php"><i class="fas fa-address-book"></i> Sổ địa chỉ</a>
+                            <a href="my-orders.php"><i class="fas fa-shopping-bag"></i> Lịch sử đơn hàng</a>
+                            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                         </div>
                     </div>';
                 } else {

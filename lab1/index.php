@@ -373,16 +373,24 @@ try {
         display: none;
         position: absolute;
         background-color: #3c2f2f;
-        min-width: 160px;
+        min-width: 170px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1;
+        border-radius: 4px;
+        margin-top: -2px;
+        padding-top: 10px;
     }
 
     .dropdown-content a {
         color: white;
-        padding: 12px 16px;
+        font-size: 16px;
+        padding: 12px 18px;
         text-decoration: none;
         display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #5a4b4b;
     }
 
     .dropdown:hover .dropdown-content {
@@ -493,15 +501,6 @@ try {
     .nav-user-icon:hover {
         background: #c49666;
         color: #fff;
-    }
-
-    .dropdown-content {
-        min-width: 170px;
-    }
-
-    .dropdown-content a {
-        font-size: 16px;
-        padding: 12px 18px;
     }
     </style>
 </head>

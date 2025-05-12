@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/db_connect.php';
 
 // Kiểm tra ID sản phẩm
@@ -104,6 +105,7 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($product) ? $product['name'] . ' - Cà Phê Đậm Đà' : 'Sản phẩm không tồn tại - Cà Phê Đậm Đà'; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { padding-top: 100px; line-height: 1.6; }
@@ -138,6 +140,10 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+        }
+        .dropdown-content i {
+            margin-right: 8px;
+            color: #d4a373;
         }
         .product-detail { 
             max-width: 1200px; 
@@ -302,6 +308,50 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
             margin: 0 auto;
         }
         
+        .nav-user-icon {
+            padding: 5px 10px;
+            font-size: 16px;
+            color: #fff;
+            background: #3c2f2f;
+            border-radius: 20px;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 15px;
+        }
+        
+        .nav-user-icon:hover {
+            background: #5a4b4b;
+            color: #fff;
+        }
+        
+        .nav-user-icon i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #d4a373;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
         .product-not-found h1 {
             font-size: 28px;
             color: #d9534f;
@@ -420,7 +470,33 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
                 </div>
                 <a href="#about">Giới thiệu</a>
                 <a href="#contact">Liên hệ</a>
-                <a href="cart.php">Giỏ hàng</a>
+                <a href="cart.php" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
+                    <span class="cart-count"><?php echo count($_SESSION['cart']); ?></span>
+                    <?php endif; ?>
+                </a>
+                <?php
+                if(isset($_SESSION['user_id'])) {
+                    echo '<div class="dropdown">
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i> ' . htmlspecialchars($_SESSION['fullname']) . '</a>
+                        <div class="dropdown-content">
+                            <a href="profile.php"><i class="fas fa-user-circle"></i> Thông tin tài khoản</a>
+                            <a href="address-book.php"><i class="fas fa-address-book"></i> Sổ địa chỉ</a>
+                            <a href="my-orders.php"><i class="fas fa-shopping-bag"></i> Lịch sử đơn hàng</a>
+                            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                        </div>
+                    </div>';
+                } else {
+                    echo '<div class="dropdown">
+                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i></a>
+                        <div class="dropdown-content">
+                            <a href="login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                            <a href="register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                        </div>
+                    </div>';
+                }
+                ?>
             </div>
         </nav>
     </header>
