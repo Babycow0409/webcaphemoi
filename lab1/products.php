@@ -523,7 +523,7 @@ if ($categories_result->num_rows > 0) {
                     }
 
                     echo '<div class="dropdown">
-                        <a href="#">Tài khoản</a>
+                        <a href="profile.php">Tài khoản</a>
                         <div class="dropdown-content">
                             <a href="profile.php">Thông tin cá nhân</a>
                             <a href="my-orders.php">Đơn hàng';
@@ -536,7 +536,7 @@ if ($categories_result->num_rows > 0) {
                     </div>';
                 } else {
                     echo '<div class="dropdown">
-                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i></a>
+                        <a href="profile.php" class="nav-user-icon"><i class="fas fa-user"></i></a>
                         <div class="dropdown-content">
                             <a href="login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
                             <a href="register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>

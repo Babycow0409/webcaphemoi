@@ -6448,3 +6448,84 @@
 2025-05-12 09:11:34 - Check cart session: true, count: 2
 2025-05-12 09:22:42 - Check cart session: true, count: 2
 2025-05-12 09:22:43 - Check cart session: true, count: 2
+2025-05-12 09:43:37 - Check cart session: true, count: 2
+2025-05-12 13:14:27 - Check cart session: true, count: 2
+2025-05-12 13:14:47 - Check cart session: true, count: 2
+2025-05-12 13:14:50 - Check cart session: true, count: 2
+2025-05-12 13:16:11 - Check cart session: true, count: 2
+2025-05-12 13:16:13 - Check cart session: true, count: 2
+2025-05-12 13:16:15 - Check cart session: true, count: 2
+2025-05-12 13:16:19 - Check cart session: true, count: 2
+2025-05-12 13:16:36 - Check cart session: true, count: 2
+2025-05-12 13:18:24 - Check cart session: true, count: 2
+2025-05-12 13:18:36 - Check cart session: false, count: 0
+2025-05-12 13:18:36 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":4}]
+)
+
+2025-05-12 13:18:36 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":4}]
+2025-05-12 13:18:36 - Sync cart success: 2 sản phẩm
+2025-05-12 13:19:02 - Check cart session: true, count: 2
+2025-05-12 13:19:28 - Check cart session: true, count: 2
+2025-05-12 13:20:19 - Check cart session: true, count: 2
+2025-05-12 13:20:20 - Check cart session: true, count: 2
+2025-05-12 13:20:20 - Check cart session: true, count: 2
+2025-05-12 13:20:21 - Check cart session: true, count: 2
+2025-05-12 13:20:24 - Check cart session: true, count: 2
+2025-05-12 13:20:26 - Check cart session: true, count: 2
+2025-05-12 13:20:29 - Check cart session: true, count: 2
+2025-05-12 13:20:33 - Check cart session: false, count: 0
+2025-05-12 13:20:33 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":4}]
+)
+
+2025-05-12 13:20:33 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":4}]
+2025-05-12 13:20:33 - Sync cart success: 2 sản phẩm
+2025-05-12 13:20:45 - Check cart session: true, count: 2
+2025-05-12 13:20:47 - Check cart session: true, count: 2
+2025-05-12 13:21:08 - Check cart session: true, count: 2
+2025-05-12 13:24:17 - Check cart session: true, count: 2
+2025-05-12 13:24:18 - Check cart session: true, count: 2
+2025-05-12 13:24:18 - Check cart session: true, count: 2
+2025-05-12 13:24:19 - Check cart session: true, count: 2
+2025-05-12 13:24:20 - Check cart session: true, count: 2
+2025-05-12 13:24:24 - Check cart session: true, count: 2
+2025-05-12 13:24:26 - Check cart session: true, count: 2
+2025-05-12 13:24:31 - Check cart session: true, count: 2
+2025-05-12 13:25:47 - Check cart session: true, count: 2
+2025-05-12 13:25:48 - Check cart session: true, count: 2
+2025-05-12 13:26:04 - Check cart session: true, count: 2
+2025-05-12 13:26:09 - Check cart session: true, count: 2
+2025-05-12 13:28:40 - Check cart session: true, count: 2
+2025-05-12 13:30:27 - Check cart session: true, count: 2
+2025-05-12 13:31:33 - Check cart session: true, count: 2
+2025-05-12 13:33:37 - Check cart session: true, count: 2
+2025-05-12 13:33:43 - Check cart session: true, count: 2
+2025-05-12 13:38:59 - Check cart session: true, count: 2
+2025-05-12 13:39:04 - Check cart session: true, count: 2
+2025-05-12 13:39:06 - Check cart session: true, count: 2
+2025-05-12 13:40:24 - Check cart session: true, count: 2
+2025-05-12 13:43:23 - Check cart session: true, count: 2
+2025-05-12 13:43:24 - Check cart session: true, count: 2
+2025-05-12 13:56:23 - Check cart session: true, count: 2
+2025-05-12 13:56:53 - Check cart session: true, count: 2
+2025-05-12 13:57:02 - Check cart session: true, count: 2
+2025-05-12 13:57:47 - Check cart session: true, count: 2
+2025-05-12 13:59:49 - Check cart session: true, count: 2
+2025-05-12 14:06:00 - Check cart session: true, count: 2
+2025-05-12 14:06:17 - Check cart session: true, count: 2
+2025-05-12 14:06:25 - Check cart session: true, count: 2
+2025-05-12 14:07:02 - Check cart session: true, count: 2
+2025-05-12 14:07:16 - Check cart session: true, count: 2
+2025-05-12 14:11:18 - Check cart session: true, count: 2
+2025-05-12 14:11:18 - Check cart session: true, count: 2
+2025-05-12 14:11:19 - Check cart session: true, count: 2
+2025-05-12 14:11:24 - Check cart session: true, count: 2
+2025-05-12 14:11:28 - Check cart session: true, count: 2
+2025-05-12 14:11:38 - Check cart session: true, count: 2
+2025-05-12 14:11:43 - Check cart session: true, count: 2
+2025-05-12 14:11:45 - Check cart session: true, count: 2
+2025-05-12 14:11:50 - Check cart session: true, count: 2
+2025-05-12 14:11:54 - Check cart session: true, count: 2

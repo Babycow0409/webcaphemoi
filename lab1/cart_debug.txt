@@ -5894,3 +5894,1083 @@
     [quantity] => 3
 )
 
+2025-05-12 13:12:45 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-12 13:12:45 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 3
+)
+
+2025-05-12 13:12:45 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 3
+)
+
+2025-05-12 13:12:48 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-12 13:12:48 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:12:48 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 3
+)
+
+2025-05-12 13:12:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:12:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:12:49 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:22 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:22 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:22 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:23 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:24 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:24 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:24 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:26 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:26 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:26 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:29 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:29 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:29 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:40 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:40 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:40 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:45 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:45 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:45 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:49 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:49 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:51 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:14:51 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:14:51 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:16:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:16:23 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:16:23 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:24:44 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:24:44 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:24:44 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:25:40 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:25:40 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:25:40 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:25:50 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:25:50 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:25:50 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:26:07 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:26:07 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:26:07 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:26:16 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:26:16 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:26:16 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:27:35 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:27:35 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:27:35 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:39:07 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:39:07 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:39:07 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:57:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 13:57:27 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 13:57:27 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:06:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:06:05 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:06:05 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:06:10 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:06:10 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:06:10 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:32 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:11:32 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:32 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:39 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:11:39 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:39 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:52 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:11:52 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:52 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:55 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-12 14:11:55 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 4
+)
+
+2025-05-12 14:11:55 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 4
+)
+

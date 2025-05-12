@@ -643,7 +643,7 @@ foreach($cart as $item) {
                         <a href="Khac.php">Khác</a>
                     </div>
                 </div>
-                <a href="#about">Giới thiệu</a>
+                <a href="about.php">Giới thiệu</a>
                 <a href="cart.php">Giỏ hàng</a>
                 <?php
                 if(isset($_SESSION['user_id'])) {
@@ -662,7 +662,7 @@ foreach($cart as $item) {
                     }
 
                     echo '<div class="dropdown">
-                        <a href="#">Tài khoản</a>
+                        <a href="profile.php">Tài khoản</a>
                         <div class="dropdown-content">
                             <a href="profile.php">Thông tin cá nhân</a>
                             <a href="my-orders.php">Đơn hàng';
@@ -675,7 +675,7 @@ foreach($cart as $item) {
                     </div>';
                 } else {
                     echo '<div class="dropdown">
-                        <a href="#" class="nav-user-icon"><i class="fas fa-user"></i></a>
+                        <a href="profile.php" class="nav-user-icon"><i class="fas fa-user"></i></a>
                         <div class="dropdown-content">
                             <a href="login.php"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
                             <a href="register.php"><i class="fas fa-user-plus"></i> Đăng ký</a>
