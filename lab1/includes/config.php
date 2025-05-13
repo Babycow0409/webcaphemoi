@@ -28,7 +28,7 @@ function set_message($message, $type = 'success') {
 function display_message() {
     if (isset($_SESSION['message'])) {
         $message = $_SESSION['message'];
-        $type = $_SESSION['message_type'];
+        $type = isset($_SESSION['message_type']) ? $_SESSION['message_type'] : 'info';
         
         echo '<div class="alert alert-' . $type . '">' . $message . '</div>';
         

@@ -9,9 +9,16 @@ if(!isset($_SESSION['order_id']) || !isset($_SESSION['order_total'])) {
 $order_id = $_SESSION['order_id'];
 $order_total = $_SESSION['order_total'];
 
+// Lấy custom_order_id nếu có
+$display_order_id = isset($_SESSION['custom_order_id']) ? $_SESSION['custom_order_id'] : $order_id;
+
 // Xóa thông tin đơn hàng khỏi session sau khi hiển thị
 unset($_SESSION['order_id']);
 unset($_SESSION['order_total']);
+unset($_SESSION['custom_order_id']);
+
+// Đảm bảo giỏ hàng đã được xóa hoàn toàn
+unset($_SESSION['cart']);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +29,25 @@ unset($_SESSION['order_total']);
     <title>Đặt hàng thành công - Cà Phê Đậm Đà</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Xóa giỏ hàng trong localStorage -->
+    <script>
+        // Xóa giỏ hàng trong localStorage khi trang tải
+        window.onload = function() {
+            // Xóa giỏ hàng trong localStorage
+            localStorage.removeItem('cart');
+            console.log('Giỏ hàng đã được xóa sau khi đặt hàng thành công');
+            
+            // Cập nhật hiển thị số lượng giỏ hàng
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            if (cartCountElements.length > 0) {
+                cartCountElements.forEach(function(element) {
+                    element.style.display = 'none';
+                });
+            }
+        };
+    </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { padding-top: 80px; line-height: 1.6; background-color: #f8f9fa; }
@@ -382,7 +408,7 @@ unset($_SESSION['order_total']);
             <h2>Thông tin đơn hàng</h2>
             <div class="order-detail-row">
                 <span><i class="fas fa-hashtag"></i> Mã đơn hàng:</span>
-                <span>#<?php echo $order_id; ?></span>
+                <span><?php echo htmlspecialchars($display_order_id); ?></span>
             </div>
             <div class="order-detail-row">
                 <span><i class="fas fa-money-bill-wave"></i> Tổng tiền:</span>

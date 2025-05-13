@@ -174,6 +174,24 @@ if (!$orders_exist) {
             $orders[] = $row;
         }
     }
+
+    // Kiểm tra và thêm cột custom_order_id nếu chưa tồn tại
+    $check_custom_id_column = $conn->query("SHOW COLUMNS FROM orders LIKE 'custom_order_id'");
+    if ($check_custom_id_column->num_rows == 0) {
+        $conn->query("ALTER TABLE orders ADD COLUMN custom_order_id VARCHAR(50) NULL UNIQUE AFTER id");
+    }
+
+    // Kiểm tra và thêm cột order_date nếu chưa tồn tại
+    $check_date_column = $conn->query("SHOW COLUMNS FROM orders LIKE 'order_date'");
+    if ($check_date_column->num_rows == 0) {
+        $conn->query("ALTER TABLE orders ADD COLUMN order_date datetime DEFAULT CURRENT_TIMESTAMP AFTER payment_method");
+        
+        // Cập nhật order_date từ cột created_at nếu có
+        $check_created_at = $conn->query("SHOW COLUMNS FROM orders LIKE 'created_at'");
+        if ($check_created_at->num_rows > 0) {
+            $conn->query("UPDATE orders SET order_date = created_at WHERE created_at IS NOT NULL");
+        }
+    }
 }
 ?>
 
@@ -454,7 +472,15 @@ if (!$orders_exist) {
                     <?php if (!empty($orders)): ?>
                         <?php foreach ($orders as $row): ?>
                             <tr>
-                                <td><?php echo isset($row['order_number']) ? $row['order_number'] : 'ĐH-' . $row['id']; ?></td>
+                                <td><?php 
+                                    if (!empty($row['custom_order_id'])) {
+                                        echo htmlspecialchars($row['custom_order_id']);
+                                    } elseif (isset($row['order_number'])) {
+                                        echo htmlspecialchars($row['order_number']);
+                                    } else {
+                                        echo 'ĐH-' . $row['id'];
+                                    }
+                                ?></td>
                                 <td><?php echo htmlspecialchars($row['customer_name'] ?? 'Khách vãng lai'); ?></td>
                                 <td><?php echo date('d/m/Y H:i', strtotime($row['order_date'])); ?></td>
                                 <td><?php echo number_format($row['total_amount'], 0, ',', '.'); ?> VNĐ</td>

@@ -16,6 +16,12 @@ if ($check_column->num_rows == 0) {
     $conn->query("ALTER TABLE orders ADD COLUMN order_number VARCHAR(30) UNIQUE AFTER id");
 }
 
+// Kiểm tra và thêm cột custom_order_id nếu chưa tồn tại
+$check_custom_id_column = $conn->query("SHOW COLUMNS FROM orders LIKE 'custom_order_id'");
+if ($check_custom_id_column->num_rows == 0) {
+    $conn->query("ALTER TABLE orders ADD COLUMN custom_order_id VARCHAR(50) NULL UNIQUE AFTER id");
+}
+
 // Kiểm tra và thêm cột order_date nếu chưa tồn tại
 $check_date_column = $conn->query("SHOW COLUMNS FROM orders LIKE 'order_date'");
 if ($check_date_column->num_rows == 0) {
@@ -73,6 +79,17 @@ if ($result->num_rows > 0) {
 
 // Cập nhật order_number cho các đơn hàng chưa có
 foreach ($orders as &$order) {
+    // Để hiển thị, ưu tiên sử dụng custom_order_id nếu có
+    if (empty($order['display_id'])) {
+        if (!empty($order['custom_order_id'])) {
+            $order['display_id'] = $order['custom_order_id'];
+        } elseif (!empty($order['order_number'])) {
+            $order['display_id'] = $order['order_number'];
+        } else {
+            $order['display_id'] = $order['id'];
+        }
+    }
+    
     if (empty($order['order_number'])) {
         $order_id = $order['id'];
         // Sử dụng order_date nếu có, nếu không dùng thời gian hiện tại
@@ -114,6 +131,15 @@ if (isset($_GET['order_id'])) {
     
     if ($result->num_rows > 0) {
         $order = $result->fetch_assoc();
+        
+        // Thiết lập display_id cho đơn hàng
+        if (!empty($order['custom_order_id'])) {
+            $order['display_id'] = $order['custom_order_id'];
+        } elseif (!empty($order['order_number'])) {
+            $order['display_id'] = $order['order_number'];
+        } else {
+            $order['display_id'] = $order['id'];
+        }
         
         // Lấy thông tin người dùng để hiển thị
         $user_stmt = $conn->prepare("SELECT fullname, email, phone FROM users WHERE id = ?");
@@ -525,11 +551,11 @@ if (isset($_GET['order_id'])) {
                 <div class="profile-card">
                     <?php if (!empty($order_details)): ?>
                         <a href="my-orders.php" class="back-link"><i class="fas fa-arrow-left"></i> Quay lại danh sách đơn hàng</a>
-                        <h2>Chi tiết đơn hàng #<?php echo $order_details['order']['order_number']; ?></h2>
+                        <h2>Chi tiết đơn hàng #<?php echo $order_details['order']['display_id']; ?></h2>
                         
                         <div class="order-detail">
                             <h3><i class="fas fa-info-circle"></i> Thông tin đơn hàng</h3>
-                            <p><strong>Mã đơn hàng:</strong> <?php echo $order_details['order']['order_number']; ?></p>
+                            <p><strong>Mã đơn hàng:</strong> <?php echo $order_details['order']['display_id']; ?></p>
                             <p><strong>Ngày đặt:</strong> <?php 
                                 $created_date = isset($order_details['order']['created_at']) ? $order_details['order']['created_at'] : 
                                                (isset($order_details['order']['order_date']) ? $order_details['order']['order_date'] : date('Y-m-d H:i:s'));
@@ -656,8 +682,8 @@ if (isset($_GET['order_id'])) {
                                         <tr>
                                             <td>
                                                 <?php 
-                                                if (isset($order['order_number'])) {
-                                                    echo $order['order_number'];
+                                                if (isset($order['display_id'])) {
+                                                    echo $order['display_id'];
                                                 } else {
                                                     echo 'N/A';
                                                 }

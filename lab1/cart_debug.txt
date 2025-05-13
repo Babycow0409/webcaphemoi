@@ -12247,3 +12247,2429 @@
     [quantity] => 2
 )
 
+2025-05-13 05:34:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:34:04 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:34:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:34:12 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:37 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 83
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2ad4b024.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:55:37 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:37 - Processing item: Array
+(
+    [id] => 83
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2ad4b024.jpg
+    [quantity] => 1
+)
+
+2025-05-13 05:55:39 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 83
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2ad4b024.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:55:39 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:39 - Processing item: Array
+(
+    [id] => 83
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2ad4b024.jpg
+    [quantity] => 2
+)
+
+2025-05-13 05:55:39 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 83
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2ad4b024.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:55:39 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:39 - Processing item: Array
+(
+    [id] => 83
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2ad4b024.jpg
+    [quantity] => 3
+)
+
+2025-05-13 05:55:41 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 83
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2ad4b024.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:55:41 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:41 - Processing item: Array
+(
+    [id] => 83
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2ad4b024.jpg
+    [quantity] => 3
+)
+
+2025-05-13 05:55:43 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 83
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2ad4b024.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:55:43 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:55:43 - Processing item: Array
+(
+    [id] => 83
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2ad4b024.jpg
+    [quantity] => 3
+)
+
+2025-05-13 05:55:53 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:55:53 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:56:45 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:56:45 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:57:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 84
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2eb5a1bb.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:57:00 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:57:00 - Processing item: Array
+(
+    [id] => 84
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2eb5a1bb.jpg
+    [quantity] => 2
+)
+
+2025-05-13 05:57:06 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 84
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822c2eb5a1bb.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:57:06 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:57:06 - Processing item: Array
+(
+    [id] => 84
+    [name] => 123
+    [price] => 123000
+    [image] => uploads/products/product_6822c2eb5a1bb.jpg
+    [quantity] => 2
+)
+
+2025-05-13 05:59:21 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:59:21 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:59:30 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:59:30 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 05:59:58 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:59:58 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 2
+)
+
+2025-05-13 05:59:59 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:59:59 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 3
+)
+
+2025-05-13 05:59:59 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 05:59:59 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 4
+)
+
+2025-05-13 06:00:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 06:00:00 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 5
+)
+
+2025-05-13 06:00:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 06:00:00 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 6
+)
+
+2025-05-13 06:00:00 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 06:00:00 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 7
+)
+
+2025-05-13 06:00:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 8
+        )
+
+)
+
+2025-05-13 06:00:01 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 8
+)
+
+2025-05-13 06:00:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:00:01 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:00:01 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 06:00:01 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 10
+)
+
+2025-05-13 06:00:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 11
+        )
+
+)
+
+2025-05-13 06:00:02 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 11
+)
+
+2025-05-13 06:00:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 12
+        )
+
+)
+
+2025-05-13 06:00:02 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 12
+)
+
+2025-05-13 06:00:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 13
+        )
+
+)
+
+2025-05-13 06:00:02 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 13
+)
+
+2025-05-13 06:00:02 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 14
+        )
+
+)
+
+2025-05-13 06:00:02 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 14
+)
+
+2025-05-13 06:00:03 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 15
+        )
+
+)
+
+2025-05-13 06:00:03 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 15
+)
+
+2025-05-13 06:00:03 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 16
+        )
+
+)
+
+2025-05-13 06:00:03 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 16
+)
+
+2025-05-13 06:00:03 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 17
+        )
+
+)
+
+2025-05-13 06:00:03 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 17
+)
+
+2025-05-13 06:00:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 18
+        )
+
+)
+
+2025-05-13 06:00:04 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 18
+)
+
+2025-05-13 06:00:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 19
+        )
+
+)
+
+2025-05-13 06:00:04 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 19
+)
+
+2025-05-13 06:00:04 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 20
+        )
+
+)
+
+2025-05-13 06:00:04 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 20
+)
+
+2025-05-13 06:00:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 21
+        )
+
+)
+
+2025-05-13 06:00:05 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 21
+)
+
+2025-05-13 06:00:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 22
+        )
+
+)
+
+2025-05-13 06:00:05 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 22
+)
+
+2025-05-13 06:00:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 23
+        )
+
+)
+
+2025-05-13 06:00:05 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 23
+)
+
+2025-05-13 06:00:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 24
+        )
+
+)
+
+2025-05-13 06:00:05 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 24
+)
+
+2025-05-13 06:00:06 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 25
+        )
+
+)
+
+2025-05-13 06:00:06 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 25
+)
+
+2025-05-13 06:00:06 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 26
+        )
+
+)
+
+2025-05-13 06:00:06 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 26
+)
+
+2025-05-13 06:00:06 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 27
+        )
+
+)
+
+2025-05-13 06:00:06 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 27
+)
+
+2025-05-13 06:00:07 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 28
+        )
+
+)
+
+2025-05-13 06:00:07 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 28
+)
+
+2025-05-13 06:00:13 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 27
+        )
+
+)
+
+2025-05-13 06:00:13 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 27
+)
+
+2025-05-13 06:00:13 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 26
+        )
+
+)
+
+2025-05-13 06:00:13 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 26
+)
+
+2025-05-13 06:00:13 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 25
+        )
+
+)
+
+2025-05-13 06:00:13 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 25
+)
+
+2025-05-13 06:00:14 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 24
+        )
+
+)
+
+2025-05-13 06:00:14 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 24
+)
+
+2025-05-13 06:00:14 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 23
+        )
+
+)
+
+2025-05-13 06:00:14 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 23
+)
+
+2025-05-13 06:00:14 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 22
+        )
+
+)
+
+2025-05-13 06:00:14 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 22
+)
+
+2025-05-13 06:00:14 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 21
+        )
+
+)
+
+2025-05-13 06:00:14 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 21
+)
+
+2025-05-13 06:00:15 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 20
+        )
+
+)
+
+2025-05-13 06:00:15 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 20
+)
+
+2025-05-13 06:00:15 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 19
+        )
+
+)
+
+2025-05-13 06:00:15 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 19
+)
+
+2025-05-13 06:00:26 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 18
+        )
+
+)
+
+2025-05-13 06:00:26 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 18
+)
+
+2025-05-13 06:00:26 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 17
+        )
+
+)
+
+2025-05-13 06:00:26 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 17
+)
+
+2025-05-13 06:00:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 16
+        )
+
+)
+
+2025-05-13 06:00:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 16
+)
+
+2025-05-13 06:00:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 15
+        )
+
+)
+
+2025-05-13 06:00:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 15
+)
+
+2025-05-13 06:00:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 14
+        )
+
+)
+
+2025-05-13 06:00:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 14
+)
+
+2025-05-13 06:00:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 13
+        )
+
+)
+
+2025-05-13 06:00:28 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 13
+)
+
+2025-05-13 06:00:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 12
+        )
+
+)
+
+2025-05-13 06:00:28 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 12
+)
+
+2025-05-13 06:00:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 11
+        )
+
+)
+
+2025-05-13 06:00:28 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 11
+)
+
+2025-05-13 06:00:28 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 06:00:28 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 10
+)
+
+2025-05-13 06:00:29 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:00:29 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:00:29 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 8
+        )
+
+)
+
+2025-05-13 06:00:29 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 8
+)
+
+2025-05-13 06:00:29 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 06:00:29 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 7
+)
+
+2025-05-13 06:00:30 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 06:00:30 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 6
+)
+
+2025-05-13 06:00:30 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 06:00:30 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 5
+)
+
+2025-05-13 06:00:30 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 06:00:30 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 4
+)
+
+2025-05-13 06:00:30 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 06:00:30 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 3
+)
+
+2025-05-13 06:00:31 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 06:00:31 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 2
+)
+
+2025-05-13 06:00:32 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:00:32 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 06:02:22 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:02:22 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 1
+)
+
+2025-05-13 06:02:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 06:02:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 3
+)
+
+2025-05-13 06:02:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 06:02:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 3
+)
+
+2025-05-13 06:02:27 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 06:02:27 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 3
+)
+
+2025-05-13 06:02:45 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:02:45 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:02:45 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:02:45 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:02:46 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:02:46 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:02:46 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:02:46 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:02:46 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:02:46 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 9
+)
+
+2025-05-13 06:03:58 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 06:03:58 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 10
+)
+
+2025-05-13 06:04:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 06:04:23 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 10
+)
+
+2025-05-13 06:07:53 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 15
+        )
+
+)
+
+2025-05-13 06:07:53 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 15
+)
+
+2025-05-13 06:09:19 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 19
+        )
+
+)
+
+2025-05-13 06:09:19 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 19
+)
+
+2025-05-13 06:10:25 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 19
+        )
+
+)
+
+2025-05-13 06:10:25 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 19
+)
+
+2025-05-13 06:10:29 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 26
+            [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+            [price] => 350000
+            [image] => uploads/products/product_68204dc0ae5fb.png
+            [quantity] => 19
+        )
+
+)
+
+2025-05-13 06:10:29 - Processing item: Array
+(
+    [id] => 26
+    [name] => Robusta Congo (DRC – Democratic Republic of Congo)
+    [price] => 350000
+    [image] => uploads/products/product_68204dc0ae5fb.png
+    [quantity] => 19
+)
+
+2025-05-13 06:22:50 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:22:50 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:23:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 06:23:05 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 9
+)
+
+2025-05-13 06:23:12 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 9
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:23:12 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 9
+)
+
+2025-05-13 06:23:12 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-13 06:30:14 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:30:14 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:30:23 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 24
+            [name] => Robusta Indonesia (Java, Sumatra)
+            [price] => 300000
+            [image] => uploads/products/product_682041dee6967.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 06:30:23 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:30:23 - Processing item: Array
+(
+    [id] => 25
+    [name] => Robusta Brazil (Conilon)
+    [price] => 350000
+    [image] => uploads/products/product_6820472686640.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:30:23 - Processing item: Array
+(
+    [id] => 24
+    [name] => Robusta Indonesia (Java, Sumatra)
+    [price] => 300000
+    [image] => uploads/products/product_682041dee6967.jpg
+    [quantity] => 3
+)
+
+2025-05-13 06:48:35 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:48:35 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:48:35 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-13 06:52:51 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:52:51 - Processing item: Array
+(
+    [id] => 22
+    [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+    [price] => 350000
+    [image] => uploads/products/product_6805da1d277cd.png
+    [quantity] => 1
+)
+
+2025-05-13 06:52:51 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:52:51 - Processing item: Array
+(
+    [id] => 23
+    [name] => Robusta Buôn Ma Thuột
+    [price] => 150000
+    [image] => uploads/products/product_6820415606312.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:54:49 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:54:49 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:55:11 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:55:11 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 06:58:43 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 06:58:43 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:00:43 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 07:00:43 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:00:43 - Processing item: Array
+(
+    [id] => 20
+    [name] => Robusta Uganda
+    [price] => 200000
+    [image] => uploads/products/product_6805d87d6a14b.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:03:03 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 07:03:03 - Processing item: Array
+(
+    [id] => 21
+    [name] => Robusta Việt Nam (Cà phê Vối)
+    [price] => 150000
+    [image] => uploads/products/product_6805d8b4a0501.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:10:10 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 85
+            [name] => ethiopia
+            [price] => 800000
+            [image] => uploads/products/product_6822d3366be4e.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 07:10:10 - Processing item: Array
+(
+    [id] => 85
+    [name] => ethiopia
+    [price] => 800000
+    [image] => uploads/products/product_6822d3366be4e.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:11:05 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 85
+            [name] => ethiopia
+            [price] => 800000
+            [image] => uploads/products/product_6822d3366be4e.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 40
+            [name] => Gesha
+            [price] => 400000
+            [image] => uploads/products/product_682196bf88b90.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 07:11:05 - Processing item: Array
+(
+    [id] => 85
+    [name] => ethiopia
+    [price] => 800000
+    [image] => uploads/products/product_6822d3366be4e.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:11:05 - Processing item: Array
+(
+    [id] => 40
+    [name] => Gesha
+    [price] => 400000
+    [image] => uploads/products/product_682196bf88b90.jpg
+    [quantity] => 2
+)
+
+2025-05-13 07:11:34 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 23
+            [name] => Robusta Buôn Ma Thuột
+            [price] => 150000
+            [image] => uploads/products/product_6820415606312.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 07:11:34 - Processing item: Array
+(
+    [id] => 23
+    [name] => Robusta Buôn Ma Thuột
+    [price] => 150000
+    [image] => uploads/products/product_6820415606312.jpg
+    [quantity] => 1
+)
+
+2025-05-13 07:14:39 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 85
+            [name] => ethiopia
+            [price] => 800000
+            [image] => uploads/products/product_6822d3366be4e.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 07:14:39 - Processing item: Array
+(
+    [id] => 85
+    [name] => ethiopia
+    [price] => 800000
+    [image] => uploads/products/product_6822d3366be4e.jpg
+    [quantity] => 1
+)
+

@@ -133,9 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $error = "Có lỗi xảy ra khi upload file.";
         }
-    } else {
-        // Không bắt buộc upload ảnh
-        $image = '';
     }
     
     // Thêm sản phẩm vào database
@@ -330,6 +327,13 @@ while ($row = $result->fetch_assoc()) {
                                         <label class="custom-file-label" for="image">Chọn file ảnh</label>
                                     </div>
                                     <small class="form-text text-muted">Chỉ chấp nhận file ảnh JPG, JPEG, PNG, GIF. Tối đa 5MB.</small>
+                                    
+                                    <div class="mt-3 text-center">
+                                        <div id="image_preview_container" style="display: none; margin-top: 15px;">
+                                            <h6>Xem trước hình ảnh:</h6>
+                                            <img id="image_preview" src="#" alt="Xem trước" style="max-width: 100%; max-height: 300px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="text-center mt-4">
@@ -368,6 +372,19 @@ while ($row = $result->fetch_assoc()) {
                     ['insert', ['link']],
                     ['view', ['fullscreen', 'codeview', 'help']]
                 ]
+            });
+            
+            // Hiển thị xem trước hình ảnh khi chọn file
+            $('#image').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#image_preview').attr('src', e.target.result);
+                        $('#image_preview_container').show();
+                    }
+                    reader.readAsDataURL(file);
+                }
             });
         });
     </script>

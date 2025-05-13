@@ -12485,3 +12485,88 @@
 2025-05-13 05:28:02 - Check cart session: false, count: 0
 2025-05-13 05:28:02 - Check cart session: false, count: 0
 2025-05-13 05:28:02 - Check cart session: false, count: 0
+2025-05-13 05:33:51 - Check cart session: false, count: 0
+2025-05-13 05:34:13 - Check cart session: true, count: 1
+2025-05-13 05:34:15 - Check cart session: true, count: 1
+2025-05-13 05:34:17 - Check cart session: true, count: 1
+2025-05-13 05:34:20 - Check cart session: true, count: 1
+2025-05-13 05:36:36 - Check cart session: true, count: 1
+2025-05-13 05:36:44 - Check cart session: true, count: 1
+2025-05-13 05:36:48 - Check cart session: true, count: 1
+2025-05-13 05:37:22 - Check cart session: true, count: 1
+2025-05-13 05:55:31 - Check cart session: true, count: 1
+2025-05-13 05:55:33 - Check cart session: true, count: 1
+2025-05-13 05:56:48 - Check cart session: true, count: 1
+2025-05-13 05:56:50 - Check cart session: true, count: 1
+2025-05-13 05:56:53 - Check cart session: true, count: 1
+2025-05-13 06:04:36 - Check cart session: false, count: 0
+2025-05-13 06:04:36 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":26,"name":"Robusta Congo (DRC – Democratic Republic of Congo)","price":350000,"image":"uploads/products/product_68204dc0ae5fb.png","quantity":15}]
+)
+
+2025-05-13 06:04:36 - Cart data received: [{"id":26,"name":"Robusta Congo (DRC – Democratic Republic of Congo)","price":350000,"image":"uploads/products/product_68204dc0ae5fb.png","quantity":15}]
+2025-05-13 06:04:36 - Sync cart success: 1 sản phẩm
+2025-05-13 06:04:39 - Check cart session: true, count: 1
+2025-05-13 06:04:47 - Check cart session: true, count: 1
+2025-05-13 06:07:50 - Check cart session: true, count: 1
+2025-05-13 06:09:19 - Sync cart data: [{"id":26,"name":"Robusta Congo (DRC – Democratic Republic of Congo)","price":350000,"image":"uploads/products/product_68204dc0ae5fb.png","quantity":19}]
+2025-05-13 06:09:19 - Synced cart count: 1
+2025-05-13 06:11:13 - Check cart session: false, count: 0
+2025-05-13 06:22:57 - Check cart session: true, count: 1
+2025-05-13 06:23:09 - Check cart session: true, count: 1
+2025-05-13 06:29:42 - Check cart session: false, count: 0
+2025-05-13 06:30:16 - Check cart session: true, count: 1
+2025-05-13 06:30:22 - Check cart session: true, count: 3
+2025-05-13 06:30:46 - Check cart session: false, count: 0
+2025-05-13 06:36:19 - Check cart session: false, count: 0
+2025-05-13 06:36:38 - Check cart session: false, count: 0
+2025-05-13 06:40:20 - Check cart session: false, count: 0
+2025-05-13 06:41:36 - Check cart session: false, count: 0
+2025-05-13 06:42:25 - Check cart session: false, count: 0
+2025-05-13 06:43:09 - Check cart session: false, count: 0
+2025-05-13 06:43:15 - Check cart session: false, count: 0
+2025-05-13 06:43:40 - Check cart session: true, count: 1
+2025-05-13 06:48:31 - Check cart session: false, count: 0
+2025-05-13 06:52:46 - Check cart session: false, count: 0
+2025-05-13 06:54:44 - Check cart session: false, count: 0
+2025-05-13 06:54:55 - Check cart session: false, count: 0
+2025-05-13 06:55:07 - Check cart session: false, count: 0
+2025-05-13 06:58:40 - Check cart session: false, count: 0
+2025-05-13 06:58:50 - Check cart session: false, count: 0
+2025-05-13 07:00:10 - Check cart session: false, count: 0
+2025-05-13 07:00:29 - Check cart session: false, count: 0
+2025-05-13 07:00:39 - Check cart session: false, count: 0
+2025-05-13 07:01:50 - Check cart session: false, count: 0
+2025-05-13 07:01:55 - Check cart session: false, count: 0
+2025-05-13 07:02:25 - Check cart session: false, count: 0
+2025-05-13 07:02:49 - Check cart session: false, count: 0
+2025-05-13 07:02:52 - Check cart session: false, count: 0
+2025-05-13 07:03:00 - Check cart session: false, count: 0
+2025-05-13 07:03:49 - Check cart session: false, count: 0
+2025-05-13 07:06:32 - Check cart session: false, count: 0
+2025-05-13 07:07:26 - Check cart session: false, count: 0
+2025-05-13 07:07:29 - Check cart session: false, count: 0
+2025-05-13 07:07:50 - Check cart session: false, count: 0
+2025-05-13 07:07:56 - Check cart session: false, count: 0
+2025-05-13 07:08:02 - Check cart session: false, count: 0
+2025-05-13 07:08:06 - Check cart session: false, count: 0
+2025-05-13 07:08:24 - Check cart session: false, count: 0
+2025-05-13 07:09:49 - Check cart session: false, count: 0
+2025-05-13 07:10:51 - Check cart session: true, count: 2
+2025-05-13 07:10:55 - Check cart session: true, count: 2
+2025-05-13 07:11:26 - Check cart session: false, count: 0
+2025-05-13 07:11:48 - Check cart session: false, count: 0
+2025-05-13 07:11:50 - Check cart session: false, count: 0
+2025-05-13 07:12:01 - Check cart session: false, count: 0
+2025-05-13 07:12:09 - Check cart session: false, count: 0
+2025-05-13 07:12:20 - Check cart session: false, count: 0
+2025-05-13 07:12:23 - Check cart session: false, count: 0
+2025-05-13 07:12:32 - Check cart session: false, count: 0
+2025-05-13 07:13:59 - Check cart session: false, count: 0
+2025-05-13 07:14:21 - Check cart session: false, count: 0
+2025-05-13 07:14:50 - Check cart session: false, count: 0
+2025-05-13 07:15:06 - Check cart session: false, count: 0
+2025-05-13 07:19:10 - Check cart session: false, count: 0
+2025-05-13 07:19:13 - Check cart session: false, count: 0
+2025-05-13 07:19:52 - Check cart session: false, count: 0

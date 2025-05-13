@@ -2,6 +2,10 @@
 session_start();
 include 'includes/db_connect.php';
 require_once 'includes/cart_functions.php';
+require_once 'includes/db_checks.php';
+
+// Đảm bảo các cột cần thiết đã tồn tại trong database
+checkOrderSystemDb($conn);
 
 // Kiểm tra đăng nhập
 if (!isset($_SESSION['user_id'])) {
@@ -644,12 +648,52 @@ if(isset($_SESSION['error'])) {
             font-size: 16px;
             padding: 12px 18px;
         }
+        
+        .empty-state p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        /* Error message styling */
+        .error-container {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            color: #856404;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .error-container h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .error-container h4 i {
+            margin-right: 10px;
+            color: #ffc107;
+        }
+        
+        .error-container p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Cà Phê Đậm Đà</div>
+         <div class="logo">
+    <a href="index.php" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://res.cloudinary.com/dczuwkvok/image/upload/v1747069387/Brown_Beige_Modern_Coffee_Logo_xeceb8.png" alt="LOGO" width="70" height="70" style="border-radius: 50%; margin-right: 10px;">
+        <span style="font-family: 'Playfair Display', serif; font-size: 1em; color: white; font-weight: bold;">Cà Phê Đậm Đà</span>
+    </a>
+            </div>
             <div class="nav-links">
                 <a href="index.php"><i class="fas fa-home nav-icon"></i>Trang chủ</a>
                 <div class="dropdown">
@@ -714,8 +758,9 @@ if(isset($_SESSION['error'])) {
             <h2>Thông tin thanh toán</h2>
             
             <?php if(isset($error)): ?>
-            <div class="error-message">
-                <?php echo $error; ?>
+            <div class="error-container">
+                <h4><i class="fas fa-exclamation-triangle"></i> Đã xảy ra lỗi</h4>
+                <p><?php echo $error; ?></p>
             </div>
             <?php endif; ?>
             

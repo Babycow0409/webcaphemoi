@@ -134,7 +134,15 @@ $status_classes = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết đơn hàng #<?php echo $order_id; ?> - Admin</title>
+    <title>Chi tiết đơn hàng <?php 
+        if (!empty($order['custom_order_id'])) {
+            echo htmlspecialchars($order['custom_order_id']);
+        } elseif (isset($order['order_number'])) {
+            echo htmlspecialchars($order['order_number']);
+        } else {
+            echo '#' . $order_id;
+        } 
+    ?> - Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
@@ -277,7 +285,15 @@ $status_classes = [
             <!-- Main content -->
             <div class="col-md-10">
                 <div class="header d-flex justify-content-between align-items-center">
-                    <h2>Chi tiết đơn hàng #<?php echo $order_id; ?></h2>
+                    <h2>Chi tiết đơn hàng <?php 
+                        if (!empty($order['custom_order_id'])) {
+                            echo htmlspecialchars($order['custom_order_id']);
+                        } elseif (isset($order['order_number'])) {
+                            echo htmlspecialchars($order['order_number']);
+                        } else {
+                            echo '#' . $order_id;
+                        } 
+                    ?></h2>
                     <a href="index.php" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Quay lại danh sách
                     </a>
@@ -306,7 +322,17 @@ $status_classes = [
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <p><strong>Mã đơn hàng:</strong> #<?php echo $order_id; ?></p>
+                                            <p><strong>Mã đơn hàng:</strong> 
+                                                <?php 
+                                                    if (!empty($order['custom_order_id'])) {
+                                                        echo htmlspecialchars($order['custom_order_id']);
+                                                    } elseif (isset($order['order_number'])) {
+                                                        echo htmlspecialchars($order['order_number']);
+                                                    } else {
+                                                        echo '#' . $order_id;
+                                                    } 
+                                                ?>
+                                            </p>
                                             <p><strong>Ngày đặt:</strong> <?php echo isset($order['order_date']) ? date('d/m/Y H:i', strtotime($order['order_date'])) : 'N/A'; ?></p>
                                             <p><strong>Cập nhật lần cuối:</strong> <?php echo isset($order['updated_at']) ? date('d/m/Y H:i', strtotime($order['updated_at'])) : 'N/A'; ?></p>
                                         </div>

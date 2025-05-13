@@ -16,7 +16,8 @@ $adjustedProducts = validateCartStock($cart, $conn);
 // Hiển thị thông báo nếu có sản phẩm bị xóa
 if(!empty($removedProducts)) {
     $message = "Một số sản phẩm đã bị xóa khỏi giỏ hàng vì không còn tồn tại: " . implode(", ", $removedProducts);
-    echo "<script>alert('" . addslashes($message) . "');</script>";
+    // Thay vì dùng alert, lưu thông báo này vào session để hiển thị đẹp hơn
+    $_SESSION['removed_products_message'] = $message;
     
     // Cập nhật lại session và localStorage
     $_SESSION['cart'] = $cart;
@@ -34,8 +35,9 @@ if(!empty($adjustedProducts)) {
         }
     }
     
-    $message = implode("\n", $messages);
-    echo "<script>alert('" . addslashes($message) . "');</script>";
+    $message = implode("<br>", $messages);
+    // Lưu thông báo vào session để hiển thị đẹp hơn
+    $_SESSION['adjusted_products_message'] = $message;
     
     // Cập nhật lại session và localStorage
     $_SESSION['cart'] = $cart;
@@ -647,6 +649,65 @@ foreach($cart as $item) {
         margin-right: 8px;
         color: #d4a373;
     }
+
+    /* Notification alerts styles */
+    .alert-notification {
+        position: relative;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+        0% { transform: translateY(-20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .alert-warning {
+        background-color: #fff3cd;
+        border-left: 5px solid #ffc107;
+        color: #856404;
+    }
+
+    .alert-info {
+        background-color: #d1ecf1;
+        border-left: 5px solid #17a2b8;
+        color: #0c5460;
+    }
+
+    .alert-notification i {
+        font-size: 20px;
+        margin-right: 15px;
+        margin-top: 2px;
+    }
+
+    .alert-content {
+        flex: 1;
+    }
+
+    .alert-content p {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .close-alert {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: inherit;
+        opacity: 0.7;
+        cursor: pointer;
+        padding: 0 5px;
+        transition: opacity 0.2s;
+    }
+
+    .close-alert:hover {
+        opacity: 1;
+    }
     </style>
 </head>
 
@@ -701,6 +762,28 @@ foreach($cart as $item) {
 
     <div class="cart-container">
         <h1>Giỏ hàng của bạn</h1>
+
+        <?php if(isset($_SESSION['removed_products_message'])): ?>
+            <div class="alert-notification alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="alert-content">
+                    <p><?php echo $_SESSION['removed_products_message']; ?></p>
+                </div>
+                <button class="close-alert" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+            <?php unset($_SESSION['removed_products_message']); ?>
+        <?php endif; ?>
+        
+        <?php if(isset($_SESSION['adjusted_products_message'])): ?>
+            <div class="alert-notification alert-info">
+                <i class="fas fa-info-circle"></i>
+                <div class="alert-content">
+                    <p><?php echo $_SESSION['adjusted_products_message']; ?></p>
+                </div>
+                <button class="close-alert" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+            <?php unset($_SESSION['adjusted_products_message']); ?>
+        <?php endif; ?>
 
         <?php
         // Kiểm tra xem có hình ảnh nào bị thiếu không
@@ -772,12 +855,12 @@ foreach($cart as $item) {
                         echo '<td>' . number_format($item['price'], 0, ',', '.') . ' VNĐ</td>';
                         echo '<td>
                                 <div class="quantity-control">
-                                    <button class="quantity-btn" onclick="updateCartItem(\'' . $item['id'] . '\', \'' . ($item['quantity'] - 1) . '\')">-</button>
+                                    <button class="quantity-btn" onclick="updateQuantity(\'' . $item['id'] . '\', -1)">-</button>
                                     <input type="text" value="' . $item['quantity'] . '" id="quantity-' . $item['id'] . '" readonly class="quantity-input">
-                                    <button class="quantity-btn" onclick="updateCartItem(\'' . $item['id'] . '\', \'' . ($item['quantity'] + 1) . '\')">+</button>
+                                    <button class="quantity-btn" onclick="updateQuantity(\'' . $item['id'] . '\', 1)">+</button>
                                 </div>
                               </td>';
-                        echo '<td>' . number_format($itemTotal, 0, ',', '.') . ' VNĐ</td>';
+                        echo '<td class="item-total" data-id="' . $item['id'] . '" data-price="' . $item['price'] . '">' . number_format($itemTotal, 0, ',', '.') . ' VNĐ</td>';
                         echo '<td>
                                 <button class="remove-btn" onclick="removeFromCart(\'' . $item['id'] . '\')">
                                     <i class="fas fa-trash"></i>
@@ -799,14 +882,20 @@ foreach($cart as $item) {
                 echo '<div class="cart-summary-box">';
                 echo '<h3>Tóm tắt đơn hàng</h3>';
                 
+                // Tính tổng số lượng sản phẩm
+                $totalQuantity = 0;
+                foreach($_SESSION['cart'] as $item) {
+                    $totalQuantity += $item['quantity'];
+                }
+                
                 echo '<div class="summary-line">';
                 echo '<span>Số lượng sản phẩm:</span>';
-                echo '<span>' . count($_SESSION['cart']) . '</span>';
+                echo '<span id="product-count">' . $totalQuantity . '</span>';
                 echo '</div>';
                 
                 echo '<div class="summary-line">';
                 echo '<span>Tạm tính:</span>';
-                echo '<span>' . number_format($totalAmount, 0, ',', '.') . ' VNĐ</span>';
+                echo '<span id="subtotal-amount">' . number_format($totalAmount, 0, ',', '.') . ' VNĐ</span>';
                 echo '</div>';
                 
                 echo '<div class="summary-line">';
@@ -816,7 +905,7 @@ foreach($cart as $item) {
                 
                 echo '<div class="summary-line total">';
                 echo '<span>Tổng cộng:</span>';
-                echo '<span>' . number_format($totalAmount, 0, ',', '.') . ' VNĐ</span>';
+                echo '<span id="total-amount">' . number_format($totalAmount, 0, ',', '.') . ' VNĐ</span>';
                 echo '</div>';
                 
                 echo '<a href="checkout.php" class="checkout-btn">Tiến hành thanh toán</a>';
@@ -848,7 +937,99 @@ foreach($cart as $item) {
         updateCartCount();
     });
 
-    // Hàm cập nhật số lượng sản phẩm
+    // Hàm cập nhật số lượng sản phẩm trực tiếp trên trang
+    function updateQuantity(id, change) {
+        const quantityInput = document.getElementById('quantity-' + id);
+        let currentQuantity = parseInt(quantityInput.value);
+        let newQuantity = currentQuantity + change;
+        
+        // Đảm bảo số lượng không nhỏ hơn 1
+        if (newQuantity < 1) {
+            // Xác nhận xóa sản phẩm
+            removeFromCart(id);
+            return;
+        }
+        
+        // Cập nhật giá trị hiển thị
+        quantityInput.value = newQuantity;
+        
+        // Cập nhật thành tiền của sản phẩm
+        const itemTotalElement = document.querySelector(`.item-total[data-id="${id}"]`);
+        const itemPrice = parseFloat(itemTotalElement.getAttribute('data-price'));
+        const newItemTotal = itemPrice * newQuantity;
+        itemTotalElement.textContent = formatCurrency(newItemTotal) + ' VNĐ';
+        
+        // Cập nhật tổng tiền và cập nhật giỏ hàng
+        updateTotalAmount();
+        
+        // Cập nhật giỏ hàng trên server (gửi AJAX request)
+        // Dùng AJAX để không phải reload trang
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `process-cart.php?action=update&id=${id}&quantity=${newQuantity}&ajax=1`, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Cập nhật localStorage
+                        localStorage.setItem('cart', JSON.stringify(response.cart));
+                        
+                        // Nếu có thông báo (ví dụ: về tồn kho), hiển thị
+                        if (response.message) {
+                            alert(response.message);
+                            // Reload trang để cập nhật số lượng nếu có điều chỉnh do tồn kho
+                            window.location.reload();
+                        }
+                    }
+                } catch (e) {
+                    console.error('Lỗi khi xử lý phản hồi:', e);
+                }
+            }
+        };
+        xhr.send();
+    }
+    
+    // Hàm cập nhật tổng tiền
+    function updateTotalAmount() {
+        let totalAmount = 0;
+        let totalQuantity = 0;
+        const itemTotalElements = document.querySelectorAll('.item-total');
+        
+        // Tính tổng tiền và số lượng từ tất cả các sản phẩm
+        itemTotalElements.forEach(element => {
+            const itemId = element.getAttribute('data-id');
+            const quantityInput = document.getElementById('quantity-' + itemId);
+            const quantity = parseInt(quantityInput.value);
+            
+            // Cộng dồn số lượng
+            totalQuantity += quantity;
+            
+            const itemTotal = parseInt(element.textContent.replace(/[^0-9]/g, ''));
+            totalAmount += itemTotal;
+        });
+        
+        // Cập nhật hiển thị
+        const productCountElement = document.getElementById('product-count');
+        const subtotalElement = document.getElementById('subtotal-amount');
+        const totalElement = document.getElementById('total-amount');
+        
+        if (productCountElement) {
+            productCountElement.textContent = totalQuantity;
+        }
+        
+        if (subtotalElement && totalElement) {
+            const formattedAmount = formatCurrency(totalAmount) + ' VNĐ';
+            subtotalElement.textContent = formattedAmount;
+            totalElement.textContent = formattedAmount;
+        }
+    }
+    
+    // Hàm định dạng tiền tệ
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('vi-VN').format(amount);
+    }
+
+    // Hàm cập nhật số lượng sản phẩm (chuyển hướng trang)
     function updateCartItem(id, quantity) {
         if (quantity <= 0) {
             // Tìm tên sản phẩm để hiển thị trong thông báo xác nhận
