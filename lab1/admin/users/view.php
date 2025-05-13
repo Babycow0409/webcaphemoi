@@ -326,7 +326,11 @@ $conn->close();
                                                                     $status_class = 'badge-info';
                                                                     $status_text = 'Đang xử lý';
                                                                     break;
-                                                                case 'shipped':
+                                                                case 'confirmed':
+                                                                    $status_class = 'badge-primary';
+                                                                    $status_text = 'Đã xác nhận';
+                                                                    break;
+                                                                case 'shipping':
                                                                     $status_class = 'badge-primary';
                                                                     $status_text = 'Đang giao hàng';
                                                                     break;
@@ -339,13 +343,14 @@ $conn->close();
                                                                     $status_text = 'Đã hủy';
                                                                     break;
                                                                 default:
-                                                                    $status_class = 'badge-secondary';
-                                                                    $status_text = 'Không xác định';
+                                                                  $status_class = 'badge-warning';
+                                                                    $status_text = 'Chờ xử lý';
                                                             }
-                                                        } else {
-                                                            $status_class = 'badge-secondary';
-                                                            $status_text = 'Không xác định';
                                                         }
+                                                        //  else {
+                                                        //     $status_class = 'badge-secondary';
+                                                        //     $status_text = 'Không xác định';
+                                                        // }
                                                         ?>
                                                         <span class="badge <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
                                                     </td>
