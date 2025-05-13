@@ -38,6 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['fullname'] = $fullname;
             $success_msg = "Thông tin cá nhân đã được cập nhật";
             
+            // Cập nhật recipient_name và phone trong bảng addresses
+            $update_addresses = $conn->prepare("UPDATE addresses SET recipient_name = ?, phone = ? WHERE user_id = ?");
+            $update_addresses->bind_param("ssi", $fullname, $phone, $user_id);
+            $update_addresses->execute();
+            
             // Cập nhật lại thông tin người dùng
             $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
             $stmt->bind_param("i", $user_id);
@@ -69,8 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Lấy địa chỉ của người dùng
-/*
-$stmt = $conn->prepare("SELECT * FROM addresses WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT * FROM addresses WHERE user_id = ? ORDER BY is_default DESC, id DESC LIMIT 2");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -78,9 +82,6 @@ $addresses = [];
 while ($row = $result->fetch_assoc()) {
     $addresses[] = $row;
 }
-*/
-// Khởi tạo mảng addresses trống
-$addresses = [];
 ?>
 
 <!DOCTYPE html>
@@ -473,8 +474,18 @@ $addresses = [];
                                     <span class="default-badge">Mặc định</span>
                                 <?php endif; ?>
                                 
-                                <p><strong>Địa chỉ:</strong> <?php echo htmlspecialchars($address['address']); ?></p>
-                                <p><strong>Thành phố:</strong> <?php echo htmlspecialchars($address['city']); ?></p>
+                                <div class="address-info">
+                                    <h3><?php echo htmlspecialchars($address['recipient_name']); ?></h3>
+                                    <p><i class="fas fa-phone"></i> <?php echo htmlspecialchars($address['phone']); ?></p>
+                                    <p class="address-line"><i class="fas fa-map-marker-alt"></i>
+                                        <?php
+                                            echo htmlspecialchars($address['address_detail']);
+                                            if (!empty($address['ward'])) echo ', ' . htmlspecialchars($address['ward']);
+                                            if (!empty($address['district'])) echo ', ' . htmlspecialchars($address['district']);
+                                            if (!empty($address['province'])) echo ', ' . htmlspecialchars($address['province']);
+                                        ?>
+                                    </p>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                         

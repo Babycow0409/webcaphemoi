@@ -189,7 +189,7 @@ unset($_SESSION['order_total']);
         .success-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #d4a373, #c68b59);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -197,13 +197,18 @@ unset($_SESSION['order_total']);
             margin: 0 auto 30px;
             color: white;
             font-size: 50px;
-            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+            transition: transform 0.5s;
+        }
+        
+        .success-icon:hover {
+            transform: scale(1.05) rotate(5deg);
         }
         
         .order-details {
             margin: 30px auto;
             max-width: 400px;
-            background-color: #f8f9fa;
+            background-color: #f8f6f2;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.03);
@@ -213,37 +218,95 @@ unset($_SESSION['order_total']);
             display: flex;
             justify-content: space-between;
             padding: 15px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e5e0d8;
         }
         
         .order-detail-row:last-child {
             border-bottom: none;
             font-weight: bold;
+            color: #5d4037;
         }
         
         .btn {
             display: inline-block;
             padding: 14px 30px;
-            background: linear-gradient(135deg, #5d4037, #8b5a2b);
+            background: #d4a373;
             color: white;
             text-decoration: none;
             border-radius: 50px;
             margin-top: 25px;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(93, 64, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
         }
         
         .btn:hover {
-            background: linear-gradient(135deg, #8b5a2b, #5d4037);
+            background: #b6894c;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(93, 64, 55, 0.4);
+            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4);
         }
         
         .btn:active {
             transform: translateY(0);
-            box-shadow: 0 4px 12px rgba(93, 64, 55, 0.3);
+            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.3);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+            margin: 50px auto 30px;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: #e5e0d8;
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f8f6f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4a373;
+            font-size: 20px;
+            border: 3px solid #d4a373;
+            margin-bottom: 15px;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: #5d4037;
+            font-weight: 500;
+        }
+        
+        .step.active .step-icon {
+            background: #d4a373;
+            color: white;
+        }
+        
+        .step.active .step-text {
+            color: #d4a373;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -296,18 +359,38 @@ unset($_SESSION['order_total']);
         <h1>Đặt hàng thành công!</h1>
         <p>Cảm ơn bạn đã đặt hàng tại Cà Phê Đậm Đà. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
         
+        <div class="steps-container">
+            <div class="step active">
+                <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="step-text">Đặt hàng</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+                <div class="step-text">Xác nhận</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-box-open"></i></div>
+                <div class="step-text">Đóng gói</div>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fas fa-shipping-fast"></i></div>
+                <div class="step-text">Giao hàng</div>
+            </div>
+        </div>
+        
         <div class="order-details">
             <h2>Thông tin đơn hàng</h2>
             <div class="order-detail-row">
-                <span>Mã đơn hàng:</span>
+                <span><i class="fas fa-hashtag"></i> Mã đơn hàng:</span>
                 <span>#<?php echo $order_id; ?></span>
             </div>
             <div class="order-detail-row">
-                <span>Tổng tiền:</span>
+                <span><i class="fas fa-money-bill-wave"></i> Tổng tiền:</span>
                 <span><?php echo number_format($order_total, 0, ',', '.'); ?> VNĐ</span>
             </div>
         </div>
         
+        <a href="my-orders.php" class="btn" style="margin-right: 10px;"><i class="fas fa-clipboard-list"></i> Xem đơn hàng</a>
         <a href="products.php" class="btn"><i class="fas fa-store"></i> Tiếp tục mua sắm</a>
     </div>
 

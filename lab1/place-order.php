@@ -16,10 +16,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Đảm bảo user_id được đặt đúng
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    $_SESSION['error'] = "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại.";
+    header("Location: login.php");
+    exit;
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Lấy thông tin người dùng từ cơ sở dữ liệu
+$user_stmt = $conn->prepare("SELECT fullname, phone FROM users WHERE id = ?");
+$user_stmt->bind_param("i", $user_id);
+$user_stmt->execute();
+$user_result = $user_stmt->get_result();
+$user_data = $user_result->fetch_assoc();
+
 // Lấy dữ liệu từ form
-$fullname = trim($_POST['fullname']);
+$fullname = $user_data['fullname']; // Lấy từ cơ sở dữ liệu
 $email = trim($_POST['email']);
-$phone = trim($_POST['phone']);
+$phone = $user_data['phone']; // Lấy từ cơ sở dữ liệu
 $address = trim($_POST['address']);
 $city = "Không rõ"; // Thêm giá trị mặc định cho city
 $payment = $_POST['payment'];
@@ -41,15 +57,6 @@ $debug_info = "User ID: " . (isset($_SESSION['user_id']) ? $_SESSION['user_id'] 
 $debug_info .= "Email: " . (isset($_SESSION['email']) ? $_SESSION['email'] : 'NULL') . "\n";
 $debug_info .= "Fullname: " . (isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 'NULL') . "\n";
 file_put_contents('order_debug.log', date('Y-m-d H:i:s') . " - PRE-ORDER: " . $debug_info, FILE_APPEND);
-
-// Đảm bảo user_id được đặt đúng
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
-    $_SESSION['error'] = "Phiên đăng nhập của bạn đã hết hạn. Vui lòng đăng nhập lại.";
-    header("Location: login.php");
-    exit;
-}
-
-$user_id = $_SESSION['user_id'];
 
 try {
     // Bắt đầu transaction
@@ -80,9 +87,30 @@ try {
         $product_id = $item['id'];
         $price = $item['price'];
         $quantity = $item['quantity'];
+        $product_image = isset($item['image']) ? $item['image'] : '';
         
-        $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_name, quantity, price) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isid", $order_id, $item['name'], $quantity, $price);
+        // Kiểm tra xem cột product_id và image có tồn tại trong bảng order_items không
+        $check_product_id = $conn->query("SHOW COLUMNS FROM order_items LIKE 'product_id'");
+        $check_image = $conn->query("SHOW COLUMNS FROM order_items LIKE 'image'");
+        
+        // Chuẩn bị câu truy vấn dựa trên các cột có sẵn
+        if ($check_product_id->num_rows > 0 && $check_image->num_rows > 0) {
+            // Nếu cả product_id và image tồn tại
+            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, product_name, quantity, price, image) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("iisids", $order_id, $product_id, $item['name'], $quantity, $price, $product_image);
+        } elseif ($check_product_id->num_rows > 0) {
+            // Nếu chỉ có product_id tồn tại
+            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, product_name, quantity, price) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("iisid", $order_id, $product_id, $item['name'], $quantity, $price);
+        } elseif ($check_image->num_rows > 0) {
+            // Nếu chỉ có image tồn tại
+            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_name, quantity, price, image) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("isids", $order_id, $item['name'], $quantity, $price, $product_image);
+        } else {
+            // Nếu không có cột nào tồn tại
+            $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_name, quantity, price) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("isid", $order_id, $item['name'], $quantity, $price);
+        }
         $stmt->execute();
     }
     

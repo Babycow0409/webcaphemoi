@@ -11,6 +11,16 @@ $user_id = $_SESSION['user_id'];
 $success_msg = '';
 $error_msg = '';
 
+// Lấy thông tin người dùng
+$user_sql = "SELECT fullname, phone FROM users WHERE id = ?";
+$user_stmt = $conn->prepare($user_sql);
+$user_stmt->bind_param('i', $user_id);
+$user_stmt->execute();
+$user_result = $user_stmt->get_result();
+$user_data = $user_result->fetch_assoc();
+$user_fullname = $user_data['fullname'] ?? '';
+$user_phone = $user_data['phone'] ?? '';
+
 // Kiểm tra bảng addresses đã tồn tại chưa
 $table_exists = $conn->query("SHOW TABLES LIKE 'addresses'");
 if ($table_exists->num_rows == 0) {
@@ -18,10 +28,12 @@ if ($table_exists->num_rows == 0) {
     $sql = "CREATE TABLE IF NOT EXISTS `addresses` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `user_id` int(11) NOT NULL,
-        `fullname` varchar(100) NOT NULL,
+        `recipient_name` varchar(100) NOT NULL,
         `phone` varchar(20) NOT NULL,
-        `address` varchar(255) NOT NULL,
-        `city` varchar(100) NOT NULL,
+        `address_detail` varchar(255) NOT NULL,
+        `ward` varchar(100) NOT NULL,
+        `district` varchar(100) NOT NULL,
+        `province` varchar(100) NOT NULL,
         `is_default` tinyint(1) NOT NULL DEFAULT 0,
         `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
         PRIMARY KEY (`id`),
@@ -52,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_address'])) {
             $update_stmt->bind_param('i', $user_id);
             $update_stmt->execute();
         }
-        $sql = "INSERT INTO addresses (user_id, address_detail, ward, district, province, is_default) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO addresses (user_id, recipient_name, phone, address_detail, ward, district, province, is_default) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('issssi', $user_id, $address_detail, $ward, $district, $province, $is_default);
+        $stmt->bind_param('issssssi', $user_id, $user_fullname, $user_phone, $address_detail, $ward, $district, $province, $is_default);
         
         if ($stmt->execute()) {
             set_message('Thêm địa chỉ mới thành công!', 'success');
@@ -108,14 +120,14 @@ if (isset($_GET['default_id'])) {
 // Xử lý chỉnh sửa địa chỉ
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_address_submit'])) {
     $address_id = $_POST['edit_id'];
-    $fullname = trim($_POST['edit_fullname']);
-    $phone = trim($_POST['edit_phone']);
-    $address = trim($_POST['edit_address']);
-    $city = trim($_POST['edit_city']);
+    $address_detail = trim($_POST['edit_address']);
+    $ward = trim($_POST['edit_ward']);
+    $district = trim($_POST['edit_district']);
+    $province = trim($_POST['edit_city']);
     $is_default = isset($_POST['edit_is_default']) ? 1 : 0;
     
     // Validate dữ liệu đầu vào
-    if (empty($fullname) || empty($phone) || empty($address) || empty($city)) {
+    if (empty($address_detail) || empty($province)) {
         $error_msg = 'Vui lòng điền đầy đủ thông tin địa chỉ!';
     } else {
         // Nếu đây là địa chỉ mặc định, cập nhật tất cả các địa chỉ khác thành không mặc định
@@ -127,9 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_address_submit']
         }
         
         // Cập nhật địa chỉ
-        $sql = "UPDATE addresses SET recipient_name = ?, phone = ?, province = ?, district = ?, ward = ?, address_detail = ?, is_default = ? WHERE id = ? AND user_id = ?";
+        $sql = "UPDATE addresses SET address_detail = ?, province = ?, district = ?, ward = ?, recipient_name = ?, phone = ?, is_default = ? WHERE id = ? AND user_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('ssssssiis', $fullname, $phone, $city, $city, $city, $address, $is_default, $address_id, $user_id);
+        $stmt->bind_param('ssssssiiii', $address_detail, $province, $district, $ward, $user_fullname, $user_phone, $is_default, $address_id, $user_id);
         
         if ($stmt->execute()) {
             set_message('Cập nhật địa chỉ thành công!', 'success');
@@ -206,8 +218,8 @@ include 'includes/header.php';
                                 <?php endif; ?>
                                 
                                 <div class="address-info">
-                                    <h3 class="recipient-name"><?php echo htmlspecialchars($address['recipient_name']); ?></h3>
-                                    <p class="phone-number"><i class="fas fa-phone"></i> <?php echo htmlspecialchars($address['phone']); ?></p>
+                                    <h3><?php echo htmlspecialchars($address['recipient_name']); ?></h3>
+                                    <p><i class="fas fa-phone"></i> <?php echo htmlspecialchars($address['phone']); ?></p>
                                     <p class="address-line"><i class="fas fa-map-marker-alt"></i>
                                         <?php
                                             echo htmlspecialchars($address['address_detail']);
@@ -216,11 +228,10 @@ include 'includes/header.php';
                                             if (!empty($address['province'])) echo ', ' . htmlspecialchars($address['province']);
                                         ?>
                                     </p>
-                                    <p class="city-line"><i class="fas fa-city"></i> <?php echo htmlspecialchars($address['province']); ?></p>
                                 </div>
                                 
                                 <div class="address-actions">
-                                    <button class="action-btn edit-btn" onclick="editAddress(<?php echo $address['id']; ?>, '<?php echo addslashes($address['recipient_name']); ?>', '<?php echo addslashes($address['phone']); ?>', '<?php echo addslashes($address['address_detail']); ?>', '<?php echo addslashes($address['province']); ?>', <?php echo $address['is_default']; ?>)">
+                                    <button class="action-btn edit-btn" onclick="editAddress(<?php echo $address['id']; ?>, '<?php echo addslashes($address['address_detail']); ?>', '<?php echo addslashes($address['province']); ?>', <?php echo $address['is_default']; ?>)">
                                         <i class="fas fa-edit"></i> Sửa
                                     </button>
                                     
@@ -250,6 +261,9 @@ include 'includes/header.php';
     <div class="modal-content">
         <span class="close" onclick="hideAddAddressModal()">&times;</span>
         <h2>Thêm địa chỉ mới</h2>
+        <div class="recipient-info-note" style="background-color: #f0f8ff; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #5d4037;">
+            <p style="margin: 0; color: #333;"><i class="fas fa-info-circle" style="color: #5d4037; margin-right: 8px;"></i> Địa chỉ sẽ sử dụng thông tin cá nhân của bạn</p>
+        </div>
         <form method="POST" action="" class="payment-form">
             <div class="form-group">
                 <label for="address_detail" class="required">Địa chỉ chi tiết</label>
@@ -268,6 +282,12 @@ include 'includes/header.php';
                 <input type="text" id="province" name="province" required>
             </div>
             <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="is_default" name="is_default" value="1">
+                    <span>Đặt làm địa chỉ mặc định</span>
+                </label>
+            </div>
+            <div class="form-group">
                 <button type="submit" name="add_address" class="payment-btn">Thêm địa chỉ</button>
             </div>
         </form>
@@ -279,28 +299,29 @@ include 'includes/header.php';
     <div class="modal-content">
         <span class="close" onclick="hideEditAddressModal()">&times;</span>
         <h2>Chỉnh sửa địa chỉ</h2>
+        <div class="recipient-info-note" style="background-color: #f0f8ff; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #5d4037;">
+            <p style="margin: 0; color: #333;"><i class="fas fa-info-circle" style="color: #5d4037; margin-right: 8px;"></i> Địa chỉ sẽ sử dụng thông tin cá nhân của bạn</p>
+        </div>
         <form id="editAddressForm" method="post" action="" class="payment-form">
             <input type="hidden" id="edit_id" name="edit_id">
             
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="edit_fullname" class="required">Họ tên</label>
-                    <input type="text" id="edit_fullname" name="edit_fullname" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="edit_phone" class="required">Số điện thoại</label>
-                    <input type="tel" id="edit_phone" name="edit_phone" required>
-                </div>
-            </div>
-            
             <div class="form-group">
-                <label for="edit_address" class="required">Địa chỉ</label>
+                <label for="edit_address" class="required">Địa chỉ chi tiết</label>
                 <input type="text" id="edit_address" name="edit_address" required>
             </div>
             
             <div class="form-group">
-                <label for="edit_city" class="required">Thành phố</label>
+                <label for="edit_ward" class="required">Phường/Xã</label>
+                <input type="text" id="edit_ward" name="edit_ward" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit_district" class="required">Quận/Huyện</label>
+                <input type="text" id="edit_district" name="edit_district" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit_city" class="required">Tỉnh/Thành phố</label>
                 <input type="text" id="edit_city" name="edit_city" required>
             </div>
             
@@ -331,24 +352,34 @@ include 'includes/header.php';
     }
     
     // Modal chỉnh sửa địa chỉ
-    function editAddress(id, fullname, phone, address, city, isDefault) {
-        console.log("Editing address:", id, fullname, phone, address, city, isDefault);
+    function editAddress(id, address, city, isDefault) {
         document.getElementById('edit_id').value = id;
         
-        // Kiểm tra xem các element có tồn tại không
-        const fullnameElem = document.getElementById('edit_fullname');
-        const phoneElem = document.getElementById('edit_phone');
-        const addressElem = document.getElementById('edit_address');
-        const cityElem = document.getElementById('edit_city');
-        const defaultElem = document.getElementById('edit_is_default');
-        
-        console.log("Elements:", fullnameElem, phoneElem, addressElem, cityElem, defaultElem);
-        
-        if (fullnameElem) fullnameElem.value = fullname || '';
-        if (phoneElem) phoneElem.value = phone || '';
-        if (addressElem) addressElem.value = address || '';
-        if (cityElem) cityElem.value = city || '';
-        if (defaultElem) defaultElem.checked = isDefault === 1;
+        // Tìm địa chỉ chi tiết trong DB bằng Ajax
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_address.php?id=' + id, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    var addressData = JSON.parse(xhr.responseText);
+                    document.getElementById('edit_address').value = addressData.address_detail || '';
+                    document.getElementById('edit_ward').value = addressData.ward || '';
+                    document.getElementById('edit_district').value = addressData.district || '';
+                    document.getElementById('edit_city').value = addressData.province || '';
+                    document.getElementById('edit_is_default').checked = addressData.is_default == 1;
+                } catch (e) {
+                    console.error('Error parsing JSON response', e);
+                    
+                    // Fallback to simple form
+                    document.getElementById('edit_address').value = address || '';
+                    document.getElementById('edit_ward').value = city || '';
+                    document.getElementById('edit_district').value = city || '';
+                    document.getElementById('edit_city').value = city || '';
+                    document.getElementById('edit_is_default').checked = isDefault === 1;
+                }
+            }
+        };
+        xhr.send();
         
         document.getElementById('editAddressModal').style.display = 'block';
     }
@@ -463,12 +494,6 @@ include 'includes/header.php';
         padding: 4px 12px;
         border-radius: 8px;
         font-weight: 600;
-    }
-
-    .address-info h3 {
-        margin: 0 0 8px 0;
-        font-size: 1.1rem;
-        color: #3c2f2f;
     }
 
     .address-info p {

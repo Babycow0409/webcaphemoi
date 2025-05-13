@@ -775,7 +775,7 @@ foreach($cart as $item) {
                 
                 echo '<div class="cart-actions">';
                 echo '<a href="products.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>';
-                echo '<a href="cart.php?reset=1" class="btn btn-secondary btn-clear"><i class="fas fa-trash"></i> Xóa giỏ hàng</a>';
+                echo '<a href="javascript:void(0)" onclick="clearCart()" class="btn btn-secondary btn-clear"><i class="fas fa-trash"></i> Xóa giỏ hàng</a>';
                 echo '</div>';
                 echo '</div>';
             }
@@ -802,7 +802,25 @@ foreach($cart as $item) {
     // Hàm cập nhật số lượng sản phẩm
     function updateCartItem(id, quantity) {
         if (quantity <= 0) {
-            if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+            // Tìm tên sản phẩm để hiển thị trong thông báo xác nhận
+            let productName = '';
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart'));
+                if (cart) {
+                    const product = cart.find(item => item.id == id);
+                    if (product) {
+                        productName = product.name;
+                    }
+                }
+            } catch (e) {
+                console.error('Lỗi khi đọc giỏ hàng:', e);
+            }
+            
+            const confirmMessage = productName 
+                ? `Bạn có chắc muốn xóa sản phẩm "${productName}" khỏi giỏ hàng?` 
+                : 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?';
+                
+            if (confirm(confirmMessage)) {
                 window.location.href = 'cart.php?action=remove&id=' + id;
             }
             return;
@@ -811,8 +829,32 @@ foreach($cart as $item) {
     }
 
     function removeFromCart(id) {
-        if (confirm('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+        // Tìm tên sản phẩm để hiển thị trong thông báo xác nhận
+        let productName = '';
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            if (cart) {
+                const product = cart.find(item => item.id == id);
+                if (product) {
+                    productName = product.name;
+                }
+            }
+        } catch (e) {
+            console.error('Lỗi khi đọc giỏ hàng:', e);
+        }
+        
+        const confirmMessage = productName 
+            ? `Bạn có chắc muốn xóa sản phẩm "${productName}" khỏi giỏ hàng?` 
+            : 'Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?';
+            
+        if (confirm(confirmMessage)) {
             window.location.href = 'cart.php?action=remove&id=' + id;
+        }
+    }
+    
+    function clearCart() {
+        if (confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng? Tất cả các sản phẩm sẽ bị xóa.')) {
+            window.location.href = 'cart.php?reset=1';
         }
     }
 

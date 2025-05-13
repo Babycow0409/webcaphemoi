@@ -8452,3 +8452,2811 @@
 2025-05-12 23:20:46 - Cart data received: [{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":2},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":2},{"id":23,"name":"Robusta Buôn Ma Thuột","price":150000,"image":"uploads/products/product_6820415606312.jpg","quantity":1},{"id":25,"name":"Robusta Brazil (Conilon)","price":350000,"image":"uploads/products/product_6820472686640.jpg","quantity":2},{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":1},{"id":24,"name":"Robusta Indonesia (Java, Sumatra)","price":300000,"image":"uploads/products/product_682041dee6967.jpg","quantity":1},{"id":26,"name":"Robusta Congo (DRC – Democratic Republic of Congo)","price":350000,"image":"uploads/products/product_68204dc0ae5fb.png","quantity":1},{"id":27,"name":"Robusta Cameroon","price":400000,"image":"uploads/products/product_68204e70a7ab8.jpg","quantity":1}]
 2025-05-12 23:20:46 - Sync cart success: 8 sản phẩm
 2025-05-12 23:20:51 - Check cart session: true, count: 8
+2025-05-13 00:13:19 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:13:19 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:13:19 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 00:13:19 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:13:19 - Cart before: Array
+(
+)
+
+2025-05-13 00:13:19 - Adding product with ID: 20 (type: integer)
+2025-05-13 00:13:19 - Final product ID type check: integer, value: 20
+2025-05-13 00:13:19 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 00:13:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:13:19 - Cart count: 1
+2025-05-13 00:13:21 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:13:21 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:13:21 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 00:13:21 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:13:21 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:13:21 - Adding product with ID: 20 (type: integer)
+2025-05-13 00:13:21 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:13:21 - Comparing with product ID: 20 (type: integer)
+2025-05-13 00:13:21 - Found matching product ID: 20 == 20
+2025-05-13 00:13:21 - Updated quantity to: 2
+2025-05-13 00:13:21 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 00:13:21 - Cart count: 1
+2025-05-13 00:13:39 - Check cart session: false, count: 0
+2025-05-13 00:13:39 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":5}]
+)
+
+2025-05-13 00:13:39 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":5}]
+2025-05-13 00:13:39 - Sync cart success: 1 sản phẩm
+2025-05-13 00:13:45 - Check cart session: true, count: 1
+2025-05-13 00:13:49 - Check cart session: true, count: 1
+2025-05-13 00:14:02 - Check cart session: true, count: 1
+2025-05-13 00:14:05 - Check cart session: true, count: 1
+2025-05-13 00:14:13 - Check cart session: true, count: 1
+2025-05-13 00:14:41 - Check cart session: true, count: 1
+2025-05-13 00:14:43 - Check cart session: true, count: 1
+2025-05-13 00:15:08 - Check cart session: true, count: 1
+2025-05-13 00:15:10 - Check cart session: true, count: 1
+2025-05-13 00:17:27 - Check cart session: true, count: 1
+2025-05-13 00:19:07 - Check cart session: true, count: 1
+2025-05-13 00:19:11 - Check cart session: true, count: 1
+2025-05-13 00:19:19 - Check cart session: true, count: 1
+2025-05-13 00:19:23 - Check cart session: true, count: 1
+2025-05-13 00:21:07 - Check cart session: true, count: 1
+2025-05-13 00:21:12 - Check cart session: true, count: 1
+2025-05-13 00:21:44 - Check cart session: true, count: 1
+2025-05-13 00:21:48 - Check cart session: true, count: 1
+2025-05-13 00:26:26 - Check cart session: true, count: 1
+2025-05-13 00:26:28 - Check cart session: true, count: 1
+2025-05-13 00:26:32 - Check cart session: true, count: 1
+2025-05-13 00:26:37 - Check cart session: true, count: 1
+2025-05-13 00:26:40 - Check cart session: true, count: 1
+2025-05-13 00:26:51 - Check cart session: true, count: 1
+2025-05-13 00:31:08 - Check cart session: true, count: 1
+2025-05-13 00:31:09 - Check cart session: true, count: 1
+2025-05-13 00:31:09 - Check cart session: true, count: 1
+2025-05-13 00:31:13 - Check cart session: true, count: 1
+2025-05-13 00:31:15 - Check cart session: true, count: 1
+2025-05-13 00:31:30 - Check cart session: true, count: 1
+2025-05-13 00:31:31 - Check cart session: true, count: 1
+2025-05-13 00:31:33 - Check cart session: true, count: 1
+2025-05-13 00:31:39 - Check cart session: true, count: 1
+2025-05-13 00:31:41 - Check cart session: true, count: 1
+2025-05-13 00:34:20 - Check cart session: true, count: 1
+2025-05-13 00:34:25 - Check cart session: true, count: 1
+2025-05-13 00:35:13 - Check cart session: true, count: 1
+2025-05-13 00:35:15 - Check cart session: true, count: 1
+2025-05-13 00:35:19 - Check cart session: true, count: 1
+2025-05-13 00:35:57 - Check cart session: true, count: 1
+2025-05-13 00:35:58 - Check cart session: true, count: 1
+2025-05-13 00:35:58 - Check cart session: true, count: 1
+2025-05-13 00:35:58 - Check cart session: true, count: 1
+2025-05-13 00:35:58 - Check cart session: true, count: 1
+2025-05-13 00:35:59 - Check cart session: true, count: 1
+2025-05-13 00:35:59 - Check cart session: true, count: 1
+2025-05-13 00:37:46 - Check cart session: true, count: 1
+2025-05-13 00:37:51 - Check cart session: true, count: 1
+2025-05-13 00:39:26 - Check cart session: true, count: 1
+2025-05-13 00:39:29 - Check cart session: true, count: 1
+2025-05-13 00:39:49 - Check cart session: true, count: 1
+2025-05-13 00:43:53 - Check cart session: true, count: 1
+2025-05-13 00:44:46 - Check cart session: false, count: 0
+2025-05-13 00:44:46 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":9}]
+)
+
+2025-05-13 00:44:46 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":9}]
+2025-05-13 00:44:46 - Sync cart success: 1 sản phẩm
+2025-05-13 00:44:49 - Check cart session: true, count: 1
+2025-05-13 00:44:50 - Check cart session: true, count: 1
+2025-05-13 00:46:07 - Check cart session: true, count: 1
+2025-05-13 00:48:08 - Check cart session: true, count: 1
+2025-05-13 00:48:20 - Check cart session: true, count: 1
+2025-05-13 00:49:13 - Check cart session: true, count: 1
+2025-05-13 00:53:16 - Check cart session: true, count: 1
+2025-05-13 00:53:23 - Check cart session: true, count: 1
+2025-05-13 00:53:25 - Check cart session: true, count: 1
+2025-05-13 00:53:41 - Check cart session: true, count: 1
+2025-05-13 00:54:00 - Check cart session: false, count: 0
+2025-05-13 00:54:00 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":10}]
+)
+
+2025-05-13 00:54:00 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":10}]
+2025-05-13 00:54:00 - Sync cart success: 1 sản phẩm
+2025-05-13 00:54:02 - Check cart session: true, count: 1
+2025-05-13 00:54:04 - Check cart session: true, count: 1
+2025-05-13 00:54:07 - Check cart session: true, count: 1
+2025-05-13 00:55:34 - Check cart session: true, count: 1
+2025-05-13 00:56:15 - Check cart session: false, count: 0
+2025-05-13 00:56:15 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":10}]
+)
+
+2025-05-13 00:56:15 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":10}]
+2025-05-13 00:56:15 - Sync cart success: 1 sản phẩm
+2025-05-13 00:56:18 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:18 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:18 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:18 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:18 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 00:56:18 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:18 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:18 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:18 - Final product ID type check: integer, value: 37
+2025-05-13 00:56:18 - Added new product to cart with ID: 37 (type: integer)
+2025-05-13 00:56:18 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:56:18 - Cart count: 2
+2025-05-13 00:56:19 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:19 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:19 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:56:19 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Found matching product ID: 37 == 37
+2025-05-13 00:56:19 - Updated quantity to: 2
+2025-05-13 00:56:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 00:56:19 - Cart count: 2
+2025-05-13 00:56:19 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:19 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:19 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 00:56:19 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Found matching product ID: 37 == 37
+2025-05-13 00:56:19 - Updated quantity to: 3
+2025-05-13 00:56:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 00:56:19 - Cart count: 2
+2025-05-13 00:56:19 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:19 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:19 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 00:56:19 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Found matching product ID: 37 == 37
+2025-05-13 00:56:19 - Updated quantity to: 4
+2025-05-13 00:56:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 00:56:19 - Cart count: 2
+2025-05-13 00:56:19 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:19 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:19 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:19 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 00:56:19 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:19 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:19 - Found matching product ID: 37 == 37
+2025-05-13 00:56:19 - Updated quantity to: 5
+2025-05-13 00:56:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 00:56:19 - Cart count: 2
+2025-05-13 00:56:20 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:20 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:20 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:20 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:20 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 00:56:20 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:20 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:20 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:20 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:20 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:20 - Found matching product ID: 37 == 37
+2025-05-13 00:56:20 - Updated quantity to: 6
+2025-05-13 00:56:20 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 00:56:20 - Cart count: 2
+2025-05-13 00:56:20 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:20 - Product data: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:20 - Product found in database: ID: 37, Name: Bourbon, Price: 300000.00, Image: uploads/products/product_68219596c2a5d.jpg
+2025-05-13 00:56:20 - Final product data for cart: ID: 37, Name: Bourbon, Price: 300000, Image: uploads/products/product_68219596c2a5d.jpg, Quantity: 1
+2025-05-13 00:56:20 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 00:56:20 - Adding product with ID: 37 (type: integer)
+2025-05-13 00:56:20 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:20 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:20 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:20 - Comparing with product ID: 37 (type: integer)
+2025-05-13 00:56:20 - Found matching product ID: 37 == 37
+2025-05-13 00:56:20 - Updated quantity to: 7
+2025-05-13 00:56:20 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 00:56:20 - Cart count: 2
+2025-05-13 00:56:21 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:21 - Product data: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Product found in database: ID: 38, Name: SL28, Price: 300000.00, Image: uploads/products/product_682196070202f.jpg
+2025-05-13 00:56:21 - Final product data for cart: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 00:56:21 - Adding product with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Final product ID type check: integer, value: 38
+2025-05-13 00:56:21 - Added new product to cart with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+    [2] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:56:21 - Cart count: 3
+2025-05-13 00:56:21 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:21 - Product data: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Product found in database: ID: 38, Name: SL28, Price: 300000.00, Image: uploads/products/product_682196070202f.jpg
+2025-05-13 00:56:21 - Final product data for cart: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+    [2] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:56:21 - Adding product with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Found matching product ID: 38 == 38
+2025-05-13 00:56:21 - Updated quantity to: 2
+2025-05-13 00:56:21 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+    [2] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 00:56:21 - Cart count: 3
+2025-05-13 00:56:21 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:56:21 - Product data: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Product found in database: ID: 38, Name: SL28, Price: 300000.00, Image: uploads/products/product_682196070202f.jpg
+2025-05-13 00:56:21 - Final product data for cart: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:56:21 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+    [2] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 00:56:21 - Adding product with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 37 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Checking cart item with ID: 38 (type: integer)
+2025-05-13 00:56:21 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:56:21 - Found matching product ID: 38 == 38
+2025-05-13 00:56:21 - Updated quantity to: 3
+2025-05-13 00:56:21 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 10
+        )
+
+    [1] => Array
+        (
+            [id] => 37
+            [name] => Bourbon
+            [price] => 300000
+            [image] => uploads/products/product_68219596c2a5d.jpg
+            [quantity] => 7
+        )
+
+    [2] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 00:56:21 - Cart count: 3
+2025-05-13 00:56:52 - Check cart session: false, count: 0
+2025-05-13 00:57:50 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:50 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:57:50 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 00:57:50 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 00:57:50 - Cart before: Array
+(
+)
+
+2025-05-13 00:57:50 - Adding product with ID: 20 (type: integer)
+2025-05-13 00:57:50 - Final product ID type check: integer, value: 20
+2025-05-13 00:57:50 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 00:57:50 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:50 - Cart count: 1
+2025-05-13 00:57:56 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:56 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 00:57:56 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-13 00:57:56 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 00:57:56 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:56 - Adding product with ID: 21 (type: integer)
+2025-05-13 00:57:56 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:57:56 - Comparing with product ID: 21 (type: integer)
+2025-05-13 00:57:56 - Final product ID type check: integer, value: 21
+2025-05-13 00:57:56 - Added new product to cart with ID: 21 (type: integer)
+2025-05-13 00:57:56 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:56 - Cart count: 2
+2025-05-13 00:57:59 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000.00
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000.00
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:59 - Product data: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-13 00:57:59 - Product found in database: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000.00, Image: uploads/products/product_6805da1d277cd.png
+2025-05-13 00:57:59 - Final product data for cart: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-13 00:57:59 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:59 - Adding product with ID: 22 (type: integer)
+2025-05-13 00:57:59 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:57:59 - Comparing with product ID: 22 (type: integer)
+2025-05-13 00:57:59 - Checking cart item with ID: 21 (type: integer)
+2025-05-13 00:57:59 - Comparing with product ID: 22 (type: integer)
+2025-05-13 00:57:59 - Final product ID type check: integer, value: 22
+2025-05-13 00:57:59 - Added new product to cart with ID: 22 (type: integer)
+2025-05-13 00:57:59 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:57:59 - Cart count: 3
+2025-05-13 00:58:01 - Check cart session: true, count: 3
+2025-05-13 00:58:05 - Check cart session: true, count: 3
+2025-05-13 00:58:10 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 00:58:10 - Product data: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:58:10 - Product found in database: ID: 38, Name: SL28, Price: 300000.00, Image: uploads/products/product_682196070202f.jpg
+2025-05-13 00:58:10 - Final product data for cart: ID: 38, Name: SL28, Price: 300000, Image: uploads/products/product_682196070202f.jpg, Quantity: 1
+2025-05-13 00:58:10 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:58:10 - Adding product with ID: 38 (type: integer)
+2025-05-13 00:58:10 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 00:58:10 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:58:10 - Checking cart item with ID: 21 (type: integer)
+2025-05-13 00:58:10 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:58:10 - Checking cart item with ID: 22 (type: integer)
+2025-05-13 00:58:10 - Comparing with product ID: 38 (type: integer)
+2025-05-13 00:58:10 - Final product ID type check: integer, value: 38
+2025-05-13 00:58:10 - Added new product to cart with ID: 38 (type: integer)
+2025-05-13 00:58:10 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 38
+            [name] => SL28
+            [price] => 300000
+            [image] => uploads/products/product_682196070202f.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 00:58:10 - Cart count: 4
+2025-05-13 00:58:23 - Check cart session: false, count: 0
+2025-05-13 00:58:23 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":1},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1},{"id":38,"name":"SL28","price":300000,"image":"uploads/products/product_682196070202f.jpg","quantity":1}]
+)
+
+2025-05-13 00:58:23 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":1},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1},{"id":38,"name":"SL28","price":300000,"image":"uploads/products/product_682196070202f.jpg","quantity":1}]
+2025-05-13 00:58:23 - Sync cart success: 4 sản phẩm
+2025-05-13 01:05:41 - Check cart session: true, count: 4
+2025-05-13 01:05:43 - Check cart session: true, count: 4
+2025-05-13 01:06:34 - Check cart session: false, count: 0
+2025-05-13 01:06:39 - Check cart session: false, count: 0
+2025-05-13 01:10:22 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:22 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:22 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:22 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:22 - Cart before: Array
+(
+)
+
+2025-05-13 01:10:22 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:22 - Final product ID type check: integer, value: 25
+2025-05-13 01:10:22 - Added new product to cart with ID: 25 (type: integer)
+2025-05-13 01:10:22 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 01:10:22 - Cart count: 1
+2025-05-13 01:10:23 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:23 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:23 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 01:10:23 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:23 - Found matching product ID: 25 == 25
+2025-05-13 01:10:23 - Updated quantity to: 2
+2025-05-13 01:10:23 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 01:10:23 - Cart count: 1
+2025-05-13 01:10:23 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:23 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:23 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 01:10:23 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:23 - Found matching product ID: 25 == 25
+2025-05-13 01:10:23 - Updated quantity to: 3
+2025-05-13 01:10:23 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 01:10:23 - Cart count: 1
+2025-05-13 01:10:23 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:23 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:23 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 01:10:23 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:23 - Found matching product ID: 25 == 25
+2025-05-13 01:10:23 - Updated quantity to: 4
+2025-05-13 01:10:23 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 01:10:23 - Cart count: 1
+2025-05-13 01:10:23 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:23 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:23 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:23 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 01:10:23 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:23 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:23 - Found matching product ID: 25 == 25
+2025-05-13 01:10:23 - Updated quantity to: 5
+2025-05-13 01:10:23 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 01:10:23 - Cart count: 1
+2025-05-13 01:10:24 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:24 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:24 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:24 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:24 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 01:10:24 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:24 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:24 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:24 - Found matching product ID: 25 == 25
+2025-05-13 01:10:24 - Updated quantity to: 6
+2025-05-13 01:10:24 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 01:10:24 - Cart count: 1
+2025-05-13 01:10:24 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 01:10:24 - Product data: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:24 - Product found in database: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000.00, Image: uploads/products/product_6820472686640.jpg
+2025-05-13 01:10:24 - Final product data for cart: ID: 25, Name: Robusta Brazil (Conilon), Price: 350000, Image: uploads/products/product_6820472686640.jpg, Quantity: 1
+2025-05-13 01:10:24 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 01:10:24 - Adding product with ID: 25 (type: integer)
+2025-05-13 01:10:24 - Checking cart item with ID: 25 (type: integer)
+2025-05-13 01:10:24 - Comparing with product ID: 25 (type: integer)
+2025-05-13 01:10:24 - Found matching product ID: 25 == 25
+2025-05-13 01:10:24 - Updated quantity to: 7
+2025-05-13 01:10:24 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 25
+            [name] => Robusta Brazil (Conilon)
+            [price] => 350000
+            [image] => uploads/products/product_6820472686640.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 01:10:24 - Cart count: 1
+2025-05-13 01:10:28 - Check cart session: false, count: 0
+2025-05-13 01:10:38 - Check cart session: false, count: 0
+2025-05-13 01:10:40 - Check cart session: false, count: 0
+2025-05-13 01:10:47 - Check cart session: false, count: 0
+2025-05-13 01:10:48 - Check cart session: false, count: 0
+2025-05-13 01:15:52 - Check cart session: false, count: 0
+2025-05-13 01:16:06 - Check cart session: false, count: 0
+2025-05-13 01:25:43 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 01:25:43 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 01:25:43 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-13 01:25:43 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 01:25:43 - Cart before: Array
+(
+)
+
+2025-05-13 01:25:43 - Adding product with ID: 21 (type: integer)
+2025-05-13 01:25:43 - Final product ID type check: integer, value: 21
+2025-05-13 01:25:43 - Added new product to cart with ID: 21 (type: integer)
+2025-05-13 01:25:43 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 01:25:43 - Cart count: 1
+2025-05-13 03:01:02 - Check cart session: false, count: 0
+2025-05-13 03:01:02 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1}]
+)
+
+2025-05-13 03:01:02 - Cart data received: [{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1}]
+2025-05-13 03:01:02 - Sync cart success: 1 sản phẩm
+2025-05-13 03:02:21 - Check cart session: false, count: 0
+2025-05-13 03:02:24 - Check cart session: false, count: 0
+2025-05-13 03:02:25 - Check cart session: false, count: 0
+2025-05-13 03:02:26 - Check cart session: false, count: 0
+2025-05-13 03:02:29 - Check cart session: false, count: 0
+2025-05-13 03:02:30 - Check cart session: false, count: 0
+2025-05-13 03:02:41 - Check cart session: false, count: 0
+2025-05-13 03:03:19 - Check cart session: false, count: 0
+2025-05-13 03:03:39 - Check cart session: false, count: 0
+2025-05-13 03:09:10 - Check cart session: false, count: 0
+2025-05-13 03:09:32 - Check cart session: false, count: 0
+2025-05-13 03:09:36 - Check cart session: false, count: 0
+2025-05-13 03:09:38 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 03:09:38 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:38 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 03:09:38 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:38 - Cart before: Array
+(
+)
+
+2025-05-13 03:09:38 - Adding product with ID: 20 (type: integer)
+2025-05-13 03:09:38 - Final product ID type check: integer, value: 20
+2025-05-13 03:09:38 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 03:09:38 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 03:09:38 - Cart count: 1
+2025-05-13 03:09:39 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 03:09:39 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 03:09:39 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 03:09:39 - Adding product with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Comparing with product ID: 20 (type: integer)
+2025-05-13 03:09:39 - Found matching product ID: 20 == 20
+2025-05-13 03:09:39 - Updated quantity to: 2
+2025-05-13 03:09:39 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 03:09:39 - Cart count: 1
+2025-05-13 03:09:39 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 03:09:39 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 03:09:39 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 03:09:39 - Adding product with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Comparing with product ID: 20 (type: integer)
+2025-05-13 03:09:39 - Found matching product ID: 20 == 20
+2025-05-13 03:09:39 - Updated quantity to: 3
+2025-05-13 03:09:39 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 03:09:39 - Cart count: 1
+2025-05-13 03:09:39 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 03:09:39 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 03:09:39 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:39 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 03:09:39 - Adding product with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 03:09:39 - Comparing with product ID: 20 (type: integer)
+2025-05-13 03:09:39 - Found matching product ID: 20 == 20
+2025-05-13 03:09:39 - Updated quantity to: 4
+2025-05-13 03:09:39 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 03:09:39 - Cart count: 1
+2025-05-13 03:09:40 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 03:09:40 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:40 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 03:09:40 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 03:09:40 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 03:09:40 - Adding product with ID: 20 (type: integer)
+2025-05-13 03:09:40 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 03:09:40 - Comparing with product ID: 20 (type: integer)
+2025-05-13 03:09:40 - Found matching product ID: 20 == 20
+2025-05-13 03:09:40 - Updated quantity to: 5
+2025-05-13 03:09:40 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 03:09:40 - Cart count: 1
+2025-05-13 03:09:52 - Check cart session: false, count: 0
+2025-05-13 03:09:52 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":5}]
+)
+
+2025-05-13 03:09:52 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":5}]
+2025-05-13 03:09:52 - Sync cart success: 1 sản phẩm
+2025-05-13 03:13:07 - Check cart session: true, count: 1
+2025-05-13 03:13:13 - Check cart session: true, count: 1
+2025-05-13 03:13:25 - Check cart session: false, count: 0
+2025-05-13 03:13:25 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+)
+
+2025-05-13 03:13:25 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:13:25 - Sync cart success: 1 sản phẩm
+2025-05-13 03:14:04 - Check cart session: true, count: 1
+2025-05-13 03:14:06 - Check cart session: true, count: 1
+2025-05-13 03:14:13 - Check cart session: true, count: 1
+2025-05-13 03:14:57 - Check cart session: true, count: 1
+2025-05-13 03:18:06 - Check cart session: true, count: 1
+2025-05-13 03:18:14 - Check cart session: true, count: 1
+2025-05-13 03:18:19 - Check cart session: true, count: 1
+2025-05-13 03:18:29 - Check cart session: true, count: 1
+2025-05-13 03:18:30 - Check cart session: true, count: 1
+2025-05-13 03:18:31 - Check cart session: true, count: 1
+2025-05-13 03:18:32 - Check cart session: true, count: 1
+2025-05-13 03:19:09 - Check cart session: true, count: 1
+2025-05-13 03:19:58 - Check cart session: true, count: 1
+2025-05-13 03:20:03 - Check cart session: true, count: 1
+2025-05-13 03:20:15 - Check cart session: true, count: 1
+2025-05-13 03:20:17 - Check cart session: true, count: 1
+2025-05-13 03:20:20 - Check cart session: true, count: 1
+2025-05-13 03:20:24 - Check cart session: true, count: 1
+2025-05-13 03:20:33 - Check cart session: true, count: 1
+2025-05-13 03:20:45 - Check cart session: true, count: 1
+2025-05-13 03:20:52 - Check cart session: true, count: 1
+2025-05-13 03:20:54 - Check cart session: true, count: 1
+2025-05-13 03:25:24 - Check cart session: true, count: 1
+2025-05-13 03:26:04 - Check cart session: true, count: 1
+2025-05-13 03:26:28 - Check cart session: true, count: 1
+2025-05-13 03:29:25 - Check cart session: false, count: 0
+2025-05-13 03:29:25 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+)
+
+2025-05-13 03:29:25 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:29:25 - Sync cart success: 1 sản phẩm
+2025-05-13 03:33:39 - Check cart session: true, count: 1
+2025-05-13 03:33:45 - Check cart session: true, count: 1
+2025-05-13 03:33:47 - Check cart session: true, count: 1
+2025-05-13 03:35:22 - Check cart session: false, count: 0
+2025-05-13 03:35:22 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+)
+
+2025-05-13 03:35:22 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:35:22 - Sync cart success: 1 sản phẩm
+2025-05-13 03:35:27 - Check cart session: true, count: 1
+2025-05-13 03:35:33 - Check cart session: true, count: 1
+2025-05-13 03:40:51 - Check cart session: true, count: 1
+2025-05-13 03:45:58 - Check cart session: false, count: 0
+2025-05-13 03:45:58 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+)
+
+2025-05-13 03:45:58 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:45:58 - Sync cart success: 1 sản phẩm
+2025-05-13 03:46:24 - Check cart session: true, count: 1
+2025-05-13 03:46:32 - Check cart session: true, count: 1
+2025-05-13 03:54:44 - Sync cart data: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:54:44 - Synced cart count: 1
+2025-05-13 03:55:28 - Check cart session: false, count: 0
+2025-05-13 03:55:28 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+)
+
+2025-05-13 03:55:28 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":4}]
+2025-05-13 03:55:28 - Sync cart success: 1 sản phẩm
+2025-05-13 03:55:51 - Check cart session: true, count: 1
+2025-05-13 03:56:27 - Check cart session: true, count: 1
+2025-05-13 03:57:16 - Check cart session: true, count: 1
+2025-05-13 04:27:44 - Check cart session: true, count: 1
+2025-05-13 04:33:39 - Check cart session: true, count: 1
+2025-05-13 04:36:21 - Check cart session: true, count: 1
+2025-05-13 04:36:57 - Check cart session: false, count: 0
+2025-05-13 04:36:57 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7}]
+)
+
+2025-05-13 04:36:57 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7}]
+2025-05-13 04:36:57 - Sync cart success: 1 sản phẩm
+2025-05-13 04:37:10 - Check cart session: true, count: 1
+2025-05-13 04:37:47 - Check cart session: true, count: 1
+2025-05-13 04:37:50 - Check cart session: true, count: 1
+2025-05-13 04:37:50 - Check cart session: true, count: 1
+2025-05-13 04:37:50 - Check cart session: true, count: 1
+2025-05-13 04:37:51 - Check cart session: true, count: 1
+2025-05-13 04:37:51 - Check cart session: true, count: 1
+2025-05-13 04:37:51 - Check cart session: true, count: 1
+2025-05-13 04:37:51 - Check cart session: true, count: 1
+2025-05-13 04:38:16 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:38:16 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:38:16 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-13 04:38:16 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:38:16 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 04:38:16 - Adding product with ID: 21 (type: integer)
+2025-05-13 04:38:16 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 04:38:16 - Comparing with product ID: 21 (type: integer)
+2025-05-13 04:38:16 - Final product ID type check: integer, value: 21
+2025-05-13 04:38:16 - Added new product to cart with ID: 21 (type: integer)
+2025-05-13 04:38:16 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 7
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:38:16 - Cart count: 2
+2025-05-13 04:38:19 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000.00
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000.00
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:38:19 - Product data: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-13 04:38:19 - Product found in database: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000.00, Image: uploads/products/product_6805da1d277cd.png
+2025-05-13 04:38:19 - Final product data for cart: ID: 22, Name: Robusta Ấn Độ (Indian Robusta Cherry), Price: 350000, Image: uploads/products/product_6805da1d277cd.png, Quantity: 1
+2025-05-13 04:38:19 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 7
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:38:19 - Adding product with ID: 22 (type: integer)
+2025-05-13 04:38:19 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 04:38:19 - Comparing with product ID: 22 (type: integer)
+2025-05-13 04:38:19 - Checking cart item with ID: 21 (type: integer)
+2025-05-13 04:38:19 - Comparing with product ID: 22 (type: integer)
+2025-05-13 04:38:19 - Final product ID type check: integer, value: 22
+2025-05-13 04:38:19 - Added new product to cart with ID: 22 (type: integer)
+2025-05-13 04:38:19 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 7
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 22
+            [name] => Robusta Ấn Độ (Indian Robusta Cherry)
+            [price] => 350000
+            [image] => uploads/products/product_6805da1d277cd.png
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:38:19 - Cart count: 3
+2025-05-13 04:38:32 - Check cart session: false, count: 0
+2025-05-13 04:38:32 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1}]
+)
+
+2025-05-13 04:38:32 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1}]
+2025-05-13 04:38:32 - Sync cart success: 3 sản phẩm
+2025-05-13 04:38:53 - Check cart session: true, count: 3
+2025-05-13 04:43:44 - Sync cart data: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1}]
+2025-05-13 04:43:44 - Synced cart count: 3
+2025-05-13 04:44:32 - Check cart session: false, count: 0
+2025-05-13 04:44:32 - Sync cart request received, POST data: Array
+(
+    [cart_data] => [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1}]
+)
+
+2025-05-13 04:44:32 - Cart data received: [{"id":20,"name":"Robusta Uganda","price":200000,"image":"uploads/products/product_6805d87d6a14b.jpg","quantity":7},{"id":21,"name":"Robusta Việt Nam (Cà phê Vối)","price":150000,"image":"uploads/products/product_6805d8b4a0501.jpg","quantity":1},{"id":22,"name":"Robusta Ấn Độ (Indian Robusta Cherry)","price":350000,"image":"uploads/products/product_6805da1d277cd.png","quantity":1}]
+2025-05-13 04:44:32 - Sync cart success: 3 sản phẩm
+2025-05-13 04:44:35 - Check cart session: true, count: 3
+2025-05-13 04:44:58 - Check cart session: true, count: 3
+2025-05-13 04:45:02 - Check cart session: true, count: 3
+2025-05-13 04:45:16 - Check cart session: true, count: 3
+2025-05-13 04:45:18 - Check cart session: true, count: 3
+2025-05-13 04:48:38 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:48:38 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:48:38 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 04:48:38 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:48:38 - Cart before: Array
+(
+)
+
+2025-05-13 04:48:38 - Adding product with ID: 20 (type: integer)
+2025-05-13 04:48:38 - Final product ID type check: integer, value: 20
+2025-05-13 04:48:38 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 04:48:38 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:48:38 - Cart count: 1
+2025-05-13 04:48:40 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:48:40 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:48:40 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-13 04:48:40 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:48:40 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:48:40 - Adding product with ID: 21 (type: integer)
+2025-05-13 04:48:40 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 04:48:40 - Comparing with product ID: 21 (type: integer)
+2025-05-13 04:48:40 - Final product ID type check: integer, value: 21
+2025-05-13 04:48:40 - Added new product to cart with ID: 21 (type: integer)
+2025-05-13 04:48:40 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:48:40 - Cart count: 2
+2025-05-13 04:49:56 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:49:56 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:49:56 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 04:49:56 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:49:56 - Cart before: Array
+(
+)
+
+2025-05-13 04:49:56 - Adding product with ID: 20 (type: integer)
+2025-05-13 04:49:56 - Final product ID type check: integer, value: 20
+2025-05-13 04:49:56 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 04:49:56 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:49:56 - Cart count: 1
+2025-05-13 04:49:58 - Check cart session: true, count: 1
+2025-05-13 04:50:02 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000.00
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:50:02 - Product data: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:50:02 - Product found in database: ID: 20, Name: Robusta Uganda, Price: 200000.00, Image: uploads/products/product_6805d87d6a14b.jpg
+2025-05-13 04:50:02 - Final product data for cart: ID: 20, Name: Robusta Uganda, Price: 200000, Image: uploads/products/product_6805d87d6a14b.jpg, Quantity: 1
+2025-05-13 04:50:02 - Cart before: Array
+(
+)
+
+2025-05-13 04:50:02 - Adding product with ID: 20 (type: integer)
+2025-05-13 04:50:02 - Final product ID type check: integer, value: 20
+2025-05-13 04:50:02 - Added new product to cart with ID: 20 (type: integer)
+2025-05-13 04:50:02 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:50:02 - Cart count: 1
+2025-05-13 04:50:05 - Request: Array
+(
+    [POST] => Array
+        (
+        )
+
+    [GET] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000.00
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:50:05 - Product data: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:50:05 - Product found in database: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000.00, Image: uploads/products/product_6805d8b4a0501.jpg
+2025-05-13 04:50:05 - Final product data for cart: ID: 21, Name: Robusta Việt Nam (Cà phê Vối), Price: 150000, Image: uploads/products/product_6805d8b4a0501.jpg, Quantity: 1
+2025-05-13 04:50:05 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:50:05 - Adding product with ID: 21 (type: integer)
+2025-05-13 04:50:05 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 04:50:05 - Comparing with product ID: 21 (type: integer)
+2025-05-13 04:50:05 - Final product ID type check: integer, value: 21
+2025-05-13 04:50:05 - Added new product to cart with ID: 21 (type: integer)
+2025-05-13 04:50:05 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:50:05 - Cart count: 2

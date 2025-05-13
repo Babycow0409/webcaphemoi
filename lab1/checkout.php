@@ -46,6 +46,24 @@ if(isset($_SESSION['user_id'])) {
         $user['phone'] = $user_data['phone'] ?? '';
         $user['address'] = $user_data['address'] ?? '';
     }
+    
+    // Lấy địa chỉ mặc định từ sổ địa chỉ
+    $stmt = $conn->prepare("SELECT address_detail, ward, district, province FROM addresses WHERE user_id = ? AND is_default = 1 LIMIT 1");
+    $stmt->bind_param("i", $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if($result->num_rows > 0) {
+        $default_address = $result->fetch_assoc();
+        
+        // Tạo địa chỉ đầy đủ từ các thành phần
+        $full_address = $default_address['address_detail'];
+        if (!empty($default_address['ward'])) $full_address .= ', ' . $default_address['ward'];
+        if (!empty($default_address['district'])) $full_address .= ', ' . $default_address['district'];
+        if (!empty($default_address['province'])) $full_address .= ', ' . $default_address['province'];
+        
+        $user['address'] = $full_address;
+    }
 }
 
 // Hiển thị thông báo lỗi nếu có
@@ -685,7 +703,10 @@ if(isset($_SESSION['error'])) {
             <form action="place-order.php" method="post">
                 <div class="form-group">
                     <label for="fullname">Họ tên</label>
-                    <input type="text" id="fullname" name="fullname" class="form-control" required value="<?php echo htmlspecialchars($user['fullname']); ?>">
+                    <input type="text" id="fullname" name="fullname" class="form-control" readonly value="<?php echo htmlspecialchars($user['fullname']); ?>">
+                    <p class="field-note" style="margin-top: 8px; color: #666; font-size: 14px;">
+                        <i class="fas fa-info-circle"></i> Thông tin này được lấy từ hồ sơ cá nhân của bạn. Để thay đổi, vui lòng cập nhật trong <a href="profile.php" style="color: #d4a373; text-decoration: underline;">thông tin cá nhân</a>.
+                    </p>
                 </div>
                 
                 <div class="form-group">
@@ -695,7 +716,10 @@ if(isset($_SESSION['error'])) {
                 
                 <div class="form-group">
                     <label for="phone">Số điện thoại</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required value="<?php echo htmlspecialchars($user['phone']); ?>">
+                    <input type="tel" id="phone" name="phone" class="form-control" readonly value="<?php echo htmlspecialchars($user['phone']); ?>">
+                    <p class="field-note" style="margin-top: 8px; color: #666; font-size: 14px;">
+                        <i class="fas fa-info-circle"></i> Thông tin này được lấy từ hồ sơ cá nhân của bạn. Để thay đổi, vui lòng cập nhật trong <a href="profile.php" style="color: #d4a373; text-decoration: underline;">thông tin cá nhân</a>.
+                    </p>
                 </div>
                 
                 <div class="form-group">

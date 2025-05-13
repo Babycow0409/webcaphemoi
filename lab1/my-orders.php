@@ -128,8 +128,13 @@ if (isset($_GET['order_id'])) {
             $order['city'] = 'Không có thông tin';
         }
         
-        // Lấy chi tiết đơn hàng
-        $stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
+        // Lấy chi tiết đơn hàng với hình ảnh sản phẩm
+        $stmt = $conn->prepare("
+            SELECT oi.*, p.image 
+            FROM order_items oi 
+            LEFT JOIN products p ON oi.id = p.id 
+            WHERE oi.order_id = ?
+        ");
         $stmt->bind_param("i", $order_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -156,129 +161,346 @@ if (isset($_GET['order_id'])) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Main container styles */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        /* Profile layout */
         .profile-container {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
             margin: 30px 0;
         }
+        
         .profile-sidebar {
             flex: 1;
             min-width: 250px;
             max-width: 300px;
         }
+        
         .profile-content {
             flex: 3;
             min-width: 300px;
         }
+        
+        /* Sidebar styling */
         .profile-menu {
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            padding: 20px;
+            background-color: #f8f6f2;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(60,47,47,0.04);
         }
+        
+        .profile-menu h3 {
+            font-size: 1.2rem;
+            color: #3c2f2f;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
         .profile-menu ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
+        
         .profile-menu li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
+        
         .profile-menu a {
-            display: block;
-            padding: 10px 15px;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 8px;
             text-decoration: none;
-            color: #333;
+            color: #5d4037;
+            font-weight: 500;
             transition: all 0.3s;
         }
-        .profile-menu a:hover {
-            background-color: #ddd;
+        
+        .profile-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
         }
+        
+        .profile-menu a:hover {
+            background-color: rgba(212, 163, 115, 0.1);
+            color: #d4a373;
+        }
+        
         .profile-menu a.active {
-            background-color: #6f4e37;
+            background-color: #d4a373;
             color: white;
         }
+        
+        /* Content area styling */
         .profile-card {
             background-color: #fff;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 24px rgba(60,47,47,0.08);
         }
+        
+        .profile-card h2 {
+            color: #3c2f2f;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        /* Button styling */
         .btn-primary {
-            background-color: #6f4e37;
+            background-color: #d4a373;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
+            font-weight: 600;
+            transition: background 0.2s;
+            font-size: 0.95rem;
         }
+        
         .btn-primary:hover {
-            background-color: #5d4229;
+            background-color: #b6894c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 163, 115, 0.2);
         }
+        
+        /* Order list table styling */
         .order-list {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
         }
+        
         .order-list th, .order-list td {
-            padding: 12px 15px;
+            padding: 15px 20px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
+        
         .order-list th {
-            background-color: #f5f5f5;
-            font-weight: bold;
+            background-color: #f8f6f2;
+            font-weight: 600;
+            color: #3c2f2f;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
+        
+        .order-list td {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-list tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .order-list tr:hover td {
+            background-color: rgba(248, 246, 242, 0.5);
+        }
+        
+        /* Order status badge styling */
         .order-status {
             display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: white;
+            text-align: center;
+            min-width: 100px;
         }
+        
         .status-pending {
             background-color: #ffc107;
         }
-        .status-processing {
+        
+        .status-confirmed {
             background-color: #17a2b8;
         }
-        .status-shipped {
+        
+        .status-processing {
+            background-color: #007bff;
+        }
+        
+        .status-shipping, .status-shipped {
             background-color: #6f42c1;
         }
+        
         .status-delivered {
             background-color: #28a745;
         }
+        
         .status-cancelled {
             background-color: #dc3545;
         }
+        
+        /* Order detail styling */
         .order-detail {
-            background-color: #f9f9f9;
-            padding: 20px;
+            background-color: #f8f6f2;
+            padding: 25px;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
+        
+        .order-detail h3 {
+            color: #3c2f2f;
+            font-size: 1.2rem;
+            margin: 20px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .order-detail h3:first-child {
+            margin-top: 0;
+        }
+        
+        .order-detail p {
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #5d4037;
+        }
+        
+        .order-detail strong {
+            color: #3c2f2f;
+            font-weight: 600;
+        }
+        
+        /* Order items table styling */
         .order-items {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            background-color: white;
         }
+        
         .order-items th, .order-items td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
         }
+        
         .order-items th {
             background-color: #f0f0f0;
+            color: #3c2f2f;
+            font-weight: 600;
         }
+        
+        .order-items td {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-items tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .order-items tfoot td {
+            background-color: #f8f6f2;
+            font-weight: 600;
+        }
+        
+        /* Back link styling */
         .back-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             margin-bottom: 20px;
-            color: #6f4e37;
+            color: #d4a373;
             text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+        }
+        
+        .back-link:hover {
+            color: #b6894c;
+            transform: translateX(-3px);
+        }
+        
+        /* Product info styling */
+        .product-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            color: #3c2f2f;
+        }
+        
+        /* Empty state styling */
+        .empty-state {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .empty-state i {
+            font-size: 60px;
+            color: #d4a373;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: #3c2f2f;
+            margin-bottom: 15px;
+        }
+        
+        .empty-state p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+            }
+            
+            .profile-sidebar {
+                max-width: 100%;
+            }
+            
+            .order-list, .order-items {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .order-status {
+                min-width: 80px;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
@@ -291,10 +513,10 @@ if (isset($_GET['order_id'])) {
                 <div class="profile-menu">
                     <h3>Tài khoản của tôi</h3>
                     <ul>
-                        <li><a href="profile.php">Thông tin cá nhân</a></li>
-                        <li><a href="address-book.php">Sổ địa chỉ</a></li>
-                        <li><a href="my-orders.php" class="active">Đơn hàng của tôi</a></li>
-                        <li><a href="logout.php">Đăng xuất</a></li>
+                        <li><a href="profile.php"><i class="fas fa-user"></i> Thông tin cá nhân</a></li>
+                        <li><a href="address-book.php"><i class="fas fa-map-marker-alt"></i> Sổ địa chỉ</a></li>
+                        <li><a href="my-orders.php" class="active"><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</a></li>
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
                     </ul>
                 </div>
             </div>
@@ -306,7 +528,7 @@ if (isset($_GET['order_id'])) {
                         <h2>Chi tiết đơn hàng #<?php echo $order_details['order']['order_number']; ?></h2>
                         
                         <div class="order-detail">
-                            <h3>Thông tin đơn hàng</h3>
+                            <h3><i class="fas fa-info-circle"></i> Thông tin đơn hàng</h3>
                             <p><strong>Mã đơn hàng:</strong> <?php echo $order_details['order']['order_number']; ?></p>
                             <p><strong>Ngày đặt:</strong> <?php 
                                 $created_date = isset($order_details['order']['created_at']) ? $order_details['order']['created_at'] : 
@@ -315,19 +537,61 @@ if (isset($_GET['order_id'])) {
                             ?></p>
                             <p><strong>Trạng thái:</strong> 
                                 <span class="order-status status-<?php echo strtolower($order_details['order']['status']); ?>">
-                                    <?php echo ucfirst($order_details['order']['status']); ?>
+                                    <?php
+                                    $status_text = '';
+                                    switch ($order_details['order']['status']) {
+                                        case 'pending':
+                                            $status_text = 'Chờ xác nhận';
+                                            break;
+                                        case 'confirmed':
+                                            $status_text = 'Đã xác nhận';
+                                            break;
+                                        case 'processing':
+                                            $status_text = 'Đang xử lý';
+                                            break;
+                                        case 'shipping':
+                                            $status_text = 'Đang giao hàng';
+                                            break;
+                                        case 'delivered':
+                                            $status_text = 'Đã giao hàng';
+                                            break;
+                                        case 'cancelled':
+                                            $status_text = 'Đã hủy';
+                                            break;
+                                        default:
+                                            $status_text = ucfirst($order_details['order']['status']);
+                                    }
+                                    echo $status_text;
+                                    ?>
                                 </span>
                             </p>
                             <p><strong>Tổng tiền:</strong> <?php echo number_format($order_details['order']['total_amount'], 0, ',', '.'); ?>đ</p>
-                            <p><strong>Phương thức thanh toán:</strong> <?php echo $order_details['order']['payment_method']; ?></p>
+                            <p><strong>Phương thức thanh toán:</strong> 
+                                <?php 
+                                $payment_method = $order_details['order']['payment_method'];
+                                switch(strtolower($payment_method)) {
+                                    case 'cod':
+                                        echo '<i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng';
+                                        break;
+                                    case 'bank_transfer':
+                                        echo '<i class="fas fa-university"></i> Chuyển khoản ngân hàng';
+                                        break;
+                                    case 'credit_card':
+                                        echo '<i class="far fa-credit-card"></i> Thẻ tín dụng';
+                                        break;
+                                    default:
+                                        echo $payment_method;
+                                }
+                                ?>
+                            </p>
                             
-                            <h3>Thông tin giao hàng</h3>
+                            <h3><i class="fas fa-shipping-fast"></i> Thông tin giao hàng</h3>
                             <p><strong>Họ tên:</strong> <?php echo $order_details['order']['fullname']; ?></p>
                             <p><strong>Email:</strong> <?php echo $order_details['order']['email']; ?></p>
                             <p><strong>Số điện thoại:</strong> <?php echo $order_details['order']['phone']; ?></p>
-                            <p><strong>Địa chỉ:</strong> <?php echo $order_details['order']['address']; ?>, <?php echo $order_details['order']['city']; ?></p>
+                            <p><strong>Địa chỉ:</strong> <?php echo $order_details['order']['shipping_address']; ?></p>
                             
-                            <h3>Sản phẩm đã đặt</h3>
+                            <h3><i class="fas fa-box-open"></i> Sản phẩm đã đặt</h3>
                             <table class="order-items">
                                 <thead>
                                     <tr>
@@ -340,7 +604,16 @@ if (isset($_GET['order_id'])) {
                                 <tbody>
                                     <?php foreach ($order_details['items'] as $item): ?>
                                         <tr>
-                                            <td><?php echo $item['product_name']; ?></td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <?php if (!empty($item['image'])): ?>
+                                                        <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['product_name']; ?>" class="product-image" onerror="this.src='images/default-product.jpg'">
+                                                    <?php else: ?>
+                                                        <img src="images/default-product.jpg" alt="<?php echo $item['product_name']; ?>" class="product-image">
+                                                    <?php endif; ?>
+                                                    <span class="product-name"><?php echo $item['product_name']; ?></span>
+                                                </div>
+                                            </td>
                                             <td><?php echo $item['quantity']; ?></td>
                                             <td><?php echo number_format($item['price'], 0, ',', '.'); ?>đ</td>
                                             <td><?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?>đ</td>
@@ -356,11 +629,17 @@ if (isset($_GET['order_id'])) {
                             </table>
                         </div>
                     <?php else: ?>
-                        <h2>Đơn hàng của tôi</h2>
+                        <h2><i class="fas fa-shopping-bag"></i> Đơn hàng của tôi</h2>
                         
                         <?php if (empty($orders)): ?>
-                            <p>Bạn chưa có đơn hàng nào.</p>
-                            <a href="products.php" class="btn-primary">Tiếp tục mua sắm</a>
+                            <div class="empty-state">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h3>Bạn chưa có đơn hàng nào</h3>
+                                <p>Hãy mua sắm và trải nghiệm dịch vụ của chúng tôi</p>
+                                <a href="products.php" class="btn-primary">
+                                    <i class="fas fa-shopping-bag"></i> Tiếp tục mua sắm
+                                </a>
+                            </div>
                         <?php else: ?>
                             <table class="order-list">
                                 <thead>
@@ -402,10 +681,13 @@ if (isset($_GET['order_id'])) {
                                                         case 'pending':
                                                             $status_text = 'Chờ xác nhận';
                                                             break;
+                                                        case 'confirmed':
+                                                            $status_text = 'Đã xác nhận';
+                                                            break;
                                                         case 'processing':
                                                             $status_text = 'Đang xử lý';
                                                             break;
-                                                        case 'shipped':
+                                                        case 'shipping':
                                                             $status_text = 'Đang giao hàng';
                                                             break;
                                                         case 'delivered':
@@ -423,7 +705,7 @@ if (isset($_GET['order_id'])) {
                                             </td>
                                             <td>
                                                 <a href="my-orders.php?order_id=<?php echo $order['id']; ?>" class="btn-primary">
-                                                    Xem chi tiết
+                                                    <i class="fas fa-eye"></i> Xem chi tiết
                                                 </a>
                                             </td>
                                         </tr>

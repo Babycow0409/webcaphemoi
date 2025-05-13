@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
     
     // Truy vấn thông tin đăng nhập từ bảng users (kiểm tra cả email và username)
-    $stmt = $conn->prepare("SELECT id, username, email, password, fullname, role FROM users WHERE email = ? OR username = ?");
+    $stmt = $conn->prepare("SELECT id, username, email, password, fullname, role, active FROM users WHERE email = ? OR username = ?");
     $stmt->bind_param("ss", $emailOrUsername, $emailOrUsername);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -30,23 +30,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         
-        // Tạo mật khẩu mã hóa với cùng định dạng trong DB
-        $hashed_input_password = '*' . strtoupper(sha1(sha1($password, true)));
-        
-        // Kiểm tra mật khẩu
-        if ($hashed_input_password === $user['password']) {
-            // Đăng nhập thành công
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['fullname'] = $user['fullname'] ?? $user['username'];
-            $_SESSION['role'] = $user['role'] ?? 'user';
-            
-            // Chuyển hướng đến trang chủ
-            header("Location: index.php");
-            exit;
+        // Kiểm tra trạng thái tài khoản
+        if ($user['active'] == 0) {
+            $error = "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để được hỗ trợ.";
         } else {
-            $error = "Mật khẩu không chính xác.";
+            $login_success = false;
+            
+            // Kiểm tra mật khẩu với bcrypt (dùng cho người dùng tạo từ admin panel)
+            if (password_verify($password, $user['password'])) {
+                $login_success = true;
+            } else {
+                // Kiểm tra mật khẩu với định dạng SHA1 (dùng cho người dùng cũ)
+                $hashed_input_password = '*' . strtoupper(sha1(sha1($password, true)));
+                if ($hashed_input_password === $user['password']) {
+                    $login_success = true;
+                }
+            }
+            
+            if ($login_success) {
+                // Đăng nhập thành công
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['fullname'] = $user['fullname'] ?? $user['username'];
+                $_SESSION['role'] = $user['role'] ?? 'user';
+                
+                // Chuyển hướng đến trang chủ
+                header("Location: index.php");
+                exit;
+            } else {
+                $error = "Mật khẩu không chính xác.";
+            }
         }
     } else {
         $error = "Email hoặc tên đăng nhập không tồn tại trong hệ thống.";
