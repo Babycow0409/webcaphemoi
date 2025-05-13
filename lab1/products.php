@@ -600,11 +600,7 @@ if ($categories_result->num_rows > 0) {
                 echo "<p class='price'>" . number_format($product['price'], 0, ',', '.') . " VNĐ</p>
                     <div class='product-actions'>
                         <a href='product-detail.php?id=" . $product['id'] . "' class='btn'>Xem chi tiết</a>
-                        <a href='add-to-cart.php?id=" . urlencode($product['id']) . 
-                           "&name=" . urlencode($product['name']) . 
-                           "&price=" . urlencode($product['price']) . 
-                           "&image=" . urlencode($imagePath) . 
-                           "&quantity=1' class='btn'>Thêm vào giỏ hàng</a>
+                        <button onclick='addToCart(" . $product['id'] . ", \"" . addslashes($product['name']) . "\", " . $product['price'] . ", \"" . addslashes($imagePath) . "\")' class='btn'>Thêm vào giỏ hàng</button>
                     </div>
                 </div>";
             }
@@ -704,6 +700,73 @@ if ($categories_result->num_rows > 0) {
     document.addEventListener('DOMContentLoaded', function() {
         updateCartCount();
     });
+    
+    // Hàm thêm sản phẩm vào giỏ hàng với kiểm tra tồn kho
+    function addToCart(id, name, price, image) {
+        // Sử dụng AJAX thay vì chuyển trang
+        fetch('process-cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `action=add&id=${id}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}&quantity=1&ajax=1`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Kết quả thêm vào giỏ hàng:", data);
+                
+                // Cập nhật localStorage
+                localStorage.setItem("cart", JSON.stringify(data.cart));
+                
+                // Cập nhật số lượng trong biểu tượng giỏ hàng
+                const cartCountElement = document.querySelector(".cart-count");
+                if (cartCountElement) {
+                    cartCountElement.textContent = data.count;
+                    cartCountElement.style.display = data.count > 0 ? 'inline-flex' : 'none';
+                }
+                
+                // Hiển thị thông báo
+                const messageElement = document.getElementById('cart-message');
+                if (messageElement) {
+                    // Kiểm tra nếu có thông báo về tồn kho
+                    if (data.message && data.message.length > 0) {
+                        messageElement.textContent = data.message;
+                        messageElement.style.backgroundColor = "#ff9800"; // Màu cảnh báo
+                    } else {
+                        messageElement.textContent = `${name} đã được thêm vào giỏ hàng!`;
+                        messageElement.style.backgroundColor = "#4CAF50"; // Màu thành công
+                    }
+                    messageElement.style.display = 'block';
+                    // Ẩn thông báo sau 5 giây
+                    setTimeout(() => {
+                        messageElement.style.display = 'none';
+                    }, 5000);
+                } else if (data.message && data.message.length > 0) {
+                    alert(data.message);
+                } else {
+                    alert(`${name} đã được thêm vào giỏ hàng!`);
+                }
+            } else {
+                console.error("Lỗi thêm vào giỏ hàng:", data.message);
+                alert("Có lỗi xảy ra: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            alert("Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.");
+        });
+    }
+    
+    // Hàm cập nhật số lượng trong biểu tượng giỏ hàng
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartCountElement = document.querySelector(".cart-count");
+        if (cartCountElement) {
+            cartCountElement.textContent = cart.length;
+            cartCountElement.style.display = cart.length > 0 ? 'inline-flex' : 'none';
+        }
+    }
     </script>
 </body>
 

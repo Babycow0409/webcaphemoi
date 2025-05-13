@@ -4,6 +4,44 @@ include 'includes/db_connect.php';
 require_once 'includes/cart_functions.php';
 $page_title = "Giỏ hàng";
 
+// Lấy giỏ hàng từ session
+$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+// Kiểm tra và lọc bỏ các sản phẩm đã bị xóa
+$removedProducts = validateCartProducts($cart, $conn);
+
+// Kiểm tra và điều chỉnh số lượng dựa trên tồn kho
+$adjustedProducts = validateCartStock($cart, $conn);
+
+// Hiển thị thông báo nếu có sản phẩm bị xóa
+if(!empty($removedProducts)) {
+    $message = "Một số sản phẩm đã bị xóa khỏi giỏ hàng vì không còn tồn tại: " . implode(", ", $removedProducts);
+    echo "<script>alert('" . addslashes($message) . "');</script>";
+    
+    // Cập nhật lại session và localStorage
+    $_SESSION['cart'] = $cart;
+    echo "<script>localStorage.setItem('cart', JSON.stringify(" . json_encode($cart) . "));</script>";
+}
+
+// Hiển thị thông báo nếu có sản phẩm bị điều chỉnh số lượng
+if(!empty($adjustedProducts)) {
+    $messages = [];
+    foreach($adjustedProducts as $product) {
+        if($product['available'] <= 0) {
+            $messages[] = "Sản phẩm '{$product['name']}' đã hết hàng và đã được xóa khỏi giỏ hàng.";
+        } else {
+            $messages[] = "Số lượng sản phẩm '{$product['name']}' đã được điều chỉnh từ {$product['requested']} về {$product['available']} do tồn kho không đủ.";
+        }
+    }
+    
+    $message = implode("\n", $messages);
+    echo "<script>alert('" . addslashes($message) . "');</script>";
+    
+    // Cập nhật lại session và localStorage
+    $_SESSION['cart'] = $cart;
+    echo "<script>localStorage.setItem('cart', JSON.stringify(" . json_encode($cart) . "));</script>";
+}
+
 // Sửa lỗi đường dẫn ảnh
 if(isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
     foreach($_SESSION['cart'] as &$item) {
@@ -89,7 +127,13 @@ if(isset($_GET['action']) && isset($_GET['id'])) {
     else if($action == 'update' && isset($_GET['quantity'])) {
         $quantity = (int)$_GET['quantity'];
         try {
-            $_SESSION['cart'] = updateCartItemQuantity($cart, $id, $quantity);
+            $result = updateCartItemQuantity($cart, $id, $quantity, $conn);
+            $_SESSION['cart'] = $result['cart'];
+            
+            // Hiển thị thông báo nếu có
+            if(!empty($result['message'])) {
+                echo "<script>alert('" . addslashes($result['message']) . "');</script>";
+            }
         } catch (Exception $e) {
             // Có thể xử lý lỗi nếu cần
         }
@@ -122,20 +166,28 @@ if(isset($_POST['sync_cart'])) {
                 // Đảm bảo ID là số nguyên
                 $item['id'] = (int)$item['id'];
                 
-                // Kiểm tra xem sản phẩm đã có trong giỏ hàng mới chưa
-                $found = false;
-                foreach($validCart as $key => $validItem) {
-                    if($validItem['id'] == $item['id']) {
-                        // Hợp nhất số lượng
-                        $validCart[$key]['quantity'] += $item['quantity'];
-                        $found = true;
-                        break;
-                    }
-                }
+                // Kiểm tra xem sản phẩm có tồn tại trong database không
+                $stmt = $conn->prepare("SELECT id FROM products WHERE id = ?");
+                $stmt->bind_param("i", $item['id']);
+                $stmt->execute();
+                $result = $stmt->get_result();
                 
-                // Nếu không tìm thấy, thêm mới
-                if(!$found) {
-                    $validCart[] = $item;
+                if($result && $result->num_rows > 0) {
+                    // Kiểm tra xem sản phẩm đã có trong giỏ hàng mới chưa
+                    $found = false;
+                    foreach($validCart as $key => $validItem) {
+                        if($validItem['id'] == $item['id']) {
+                            // Hợp nhất số lượng
+                            $validCart[$key]['quantity'] += $item['quantity'];
+                            $found = true;
+                            break;
+                        }
+                    }
+                    
+                    // Nếu không tìm thấy, thêm mới
+                    if(!$found) {
+                        $validCart[] = $item;
+                    }
                 }
             }
         }
@@ -179,9 +231,6 @@ function consolidateCart(&$cart) {
     $cart = array_values($mergedCart);
     return;
 }
-
-// Lấy giỏ hàng từ session
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
 // Hợp nhất các sản phẩm trùng ID
 consolidateCart($cart);

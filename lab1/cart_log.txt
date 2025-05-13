@@ -11260,3 +11260,1219 @@
 )
 
 2025-05-13 04:50:05 - Cart count: 2
+2025-05-13 04:56:46 - Check cart session: true, count: 2
+2025-05-13 04:56:49 - Check cart session: true, count: 2
+2025-05-13 04:56:51 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 75
+            [name] => cf
+            [price] => 1000000
+            [image] => uploads/products/product_6822b4e5499a6.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 75
+            [name] => cf
+            [price] => 1000000
+            [image] => uploads/products/product_6822b4e5499a6.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 04:56:51 - Product data: ID: 75, Name: cf, Price: 1000000, Image: uploads/products/product_6822b4e5499a6.jpg, Quantity: 1
+2025-05-13 04:56:51 - Product found in database: ID: 75, Name: cf, Price: 1000000.00, Image: uploads/products/product_6822b4e5499a6.jpg
+2025-05-13 04:56:51 - Final product data for cart: ID: 75, Name: cf, Price: 1000000, Image: uploads/products/product_6822b4e5499a6.jpg, Quantity: 1
+2025-05-13 04:56:51 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:56:51 - Adding product with ID: 75 (type: integer)
+2025-05-13 04:56:51 - Checking cart item with ID: 20 (type: integer)
+2025-05-13 04:56:51 - Comparing with product ID: 75 (type: integer)
+2025-05-13 04:56:51 - Checking cart item with ID: 21 (type: integer)
+2025-05-13 04:56:51 - Comparing with product ID: 75 (type: integer)
+2025-05-13 04:56:51 - Final product ID type check: integer, value: 75
+2025-05-13 04:56:51 - Added new product to cart with ID: 75 (type: integer)
+2025-05-13 04:56:51 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 20
+            [name] => Robusta Uganda
+            [price] => 200000
+            [image] => uploads/products/product_6805d87d6a14b.jpg
+            [quantity] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 21
+            [name] => Robusta Việt Nam (Cà phê Vối)
+            [price] => 150000
+            [image] => uploads/products/product_6805d8b4a0501.jpg
+            [quantity] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 75
+            [name] => cf
+            [price] => 1000000
+            [image] => uploads/products/product_6822b4e5499a6.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 04:56:51 - Cart count: 3
+2025-05-13 04:57:23 - Check cart session: true, count: 3
+2025-05-13 04:57:25 - Check cart session: true, count: 3
+2025-05-13 04:59:42 - Check cart session: false, count: 0
+2025-05-13 05:07:36 - Check cart session: false, count: 0
+2025-05-13 05:07:39 - Check cart session: false, count: 0
+2025-05-13 05:07:41 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:07:41 - Product data: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:41 - Product found in database: ID: 76, Name: 123, Price: 123000.00, Image: uploads/products/product_6822b7723e04a.jpg
+2025-05-13 05:07:41 - Final product data for cart: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:41 - Cart before: Array
+(
+)
+
+2025-05-13 05:07:41 - Adding product with ID: 76 (type: integer)
+2025-05-13 05:07:41 - Final product ID type check: integer, value: 76
+2025-05-13 05:07:41 - Added new product to cart with ID: 76 (type: integer)
+2025-05-13 05:07:41 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:07:41 - Cart count: 1
+2025-05-13 05:07:42 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:07:42 - Product data: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Product found in database: ID: 76, Name: 123, Price: 123000.00, Image: uploads/products/product_6822b7723e04a.jpg
+2025-05-13 05:07:42 - Final product data for cart: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:07:42 - Adding product with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Checking cart item with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Comparing with product ID: 76 (type: integer)
+2025-05-13 05:07:42 - Found matching product ID: 76 == 76
+2025-05-13 05:07:42 - Updated quantity to: 2
+2025-05-13 05:07:42 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:07:42 - Cart count: 1
+2025-05-13 05:07:42 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:07:42 - Product data: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Product found in database: ID: 76, Name: 123, Price: 123000.00, Image: uploads/products/product_6822b7723e04a.jpg
+2025-05-13 05:07:42 - Final product data for cart: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:07:42 - Adding product with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Checking cart item with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Comparing with product ID: 76 (type: integer)
+2025-05-13 05:07:42 - Found matching product ID: 76 == 76
+2025-05-13 05:07:42 - Updated quantity to: 3
+2025-05-13 05:07:42 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:07:42 - Cart count: 1
+2025-05-13 05:07:42 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:07:42 - Product data: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Product found in database: ID: 76, Name: 123, Price: 123000.00, Image: uploads/products/product_6822b7723e04a.jpg
+2025-05-13 05:07:42 - Final product data for cart: ID: 76, Name: 123, Price: 123000, Image: uploads/products/product_6822b7723e04a.jpg, Quantity: 1
+2025-05-13 05:07:42 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:07:42 - Adding product with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Checking cart item with ID: 76 (type: integer)
+2025-05-13 05:07:42 - Comparing with product ID: 76 (type: integer)
+2025-05-13 05:07:42 - Found matching product ID: 76 == 76
+2025-05-13 05:07:42 - Updated quantity to: 4
+2025-05-13 05:07:42 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 76
+            [name] => 123
+            [price] => 123000
+            [image] => uploads/products/product_6822b7723e04a.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 05:07:42 - Cart count: 1
+2025-05-13 05:09:58 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:09:58 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:09:58 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:09:58 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:09:58 - Cart before: Array
+(
+)
+
+2025-05-13 05:09:58 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:09:58 - Final product ID type check: integer, value: 77
+2025-05-13 05:09:58 - Added new product to cart with ID: 77 (type: integer)
+2025-05-13 05:09:58 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:09:58 - Cart count: 1
+2025-05-13 05:09:59 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:09:59 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:09:59 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:09:59 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:09:59 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-05-13 05:09:59 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:09:59 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:09:59 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:09:59 - Found matching product ID: 77 == 77
+2025-05-13 05:09:59 - Updated quantity to: 2
+2025-05-13 05:09:59 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:09:59 - Cart count: 1
+2025-05-13 05:10:00 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:00 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:00 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 2
+        )
+
+)
+
+2025-05-13 05:10:00 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:00 - Found matching product ID: 77 == 77
+2025-05-13 05:10:00 - Updated quantity to: 3
+2025-05-13 05:10:00 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:10:00 - Cart count: 1
+2025-05-13 05:10:00 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:00 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:00 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 3
+        )
+
+)
+
+2025-05-13 05:10:00 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:00 - Found matching product ID: 77 == 77
+2025-05-13 05:10:00 - Updated quantity to: 4
+2025-05-13 05:10:00 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 05:10:00 - Cart count: 1
+2025-05-13 05:10:00 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:00 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:00 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 4
+        )
+
+)
+
+2025-05-13 05:10:00 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:00 - Found matching product ID: 77 == 77
+2025-05-13 05:10:00 - Updated quantity to: 5
+2025-05-13 05:10:00 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 05:10:00 - Cart count: 1
+2025-05-13 05:10:00 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:00 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:00 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 5
+        )
+
+)
+
+2025-05-13 05:10:00 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:00 - Found matching product ID: 77 == 77
+2025-05-13 05:10:00 - Updated quantity to: 6
+2025-05-13 05:10:00 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 05:10:00 - Cart count: 1
+2025-05-13 05:10:00 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:00 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:00 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:00 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 6
+        )
+
+)
+
+2025-05-13 05:10:00 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:00 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:00 - Found matching product ID: 77 == 77
+2025-05-13 05:10:00 - Updated quantity to: 7
+2025-05-13 05:10:00 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 05:10:00 - Cart count: 1
+2025-05-13 05:10:01 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:01 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:01 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 7
+        )
+
+)
+
+2025-05-13 05:10:01 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:01 - Found matching product ID: 77 == 77
+2025-05-13 05:10:01 - Updated quantity to: 8
+2025-05-13 05:10:01 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 8
+        )
+
+)
+
+2025-05-13 05:10:01 - Cart count: 1
+2025-05-13 05:10:01 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:01 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:01 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 8
+        )
+
+)
+
+2025-05-13 05:10:01 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:01 - Found matching product ID: 77 == 77
+2025-05-13 05:10:01 - Updated quantity to: 9
+2025-05-13 05:10:01 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 05:10:01 - Cart count: 1
+2025-05-13 05:10:01 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:01 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:01 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 9
+        )
+
+)
+
+2025-05-13 05:10:01 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:01 - Found matching product ID: 77 == 77
+2025-05-13 05:10:01 - Updated quantity to: 10
+2025-05-13 05:10:01 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 05:10:01 - Cart count: 1
+2025-05-13 05:10:01 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:01 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:01 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:01 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 10
+        )
+
+)
+
+2025-05-13 05:10:01 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:01 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:01 - Found matching product ID: 77 == 77
+2025-05-13 05:10:01 - Updated quantity to: 11
+2025-05-13 05:10:01 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 11
+        )
+
+)
+
+2025-05-13 05:10:01 - Cart count: 1
+2025-05-13 05:10:02 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:02 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:02 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 11
+        )
+
+)
+
+2025-05-13 05:10:02 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:02 - Found matching product ID: 77 == 77
+2025-05-13 05:10:02 - Updated quantity to: 12
+2025-05-13 05:10:02 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 12
+        )
+
+)
+
+2025-05-13 05:10:02 - Cart count: 1
+2025-05-13 05:10:02 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:02 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:02 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 12
+        )
+
+)
+
+2025-05-13 05:10:02 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:02 - Found matching product ID: 77 == 77
+2025-05-13 05:10:02 - Updated quantity to: 13
+2025-05-13 05:10:02 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 13
+        )
+
+)
+
+2025-05-13 05:10:02 - Cart count: 1
+2025-05-13 05:10:02 - Request: Array
+(
+    [POST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+    [GET] => Array
+        (
+        )
+
+    [REQUEST] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 1
+            [ajax] => 1
+        )
+
+)
+
+2025-05-13 05:10:02 - Product data: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Product found in database: ID: 77, Name: cf, Price: 123000.00, Image: uploads/products/product_6822b7f372948.jpg
+2025-05-13 05:10:02 - Final product data for cart: ID: 77, Name: cf, Price: 123000, Image: uploads/products/product_6822b7f372948.jpg, Quantity: 1
+2025-05-13 05:10:02 - Cart before: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 13
+        )
+
+)
+
+2025-05-13 05:10:02 - Adding product with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Checking cart item with ID: 77 (type: integer)
+2025-05-13 05:10:02 - Comparing with product ID: 77 (type: integer)
+2025-05-13 05:10:02 - Found matching product ID: 77 == 77
+2025-05-13 05:10:02 - Updated quantity to: 14
+2025-05-13 05:10:02 - Cart after update: Array
+(
+    [0] => Array
+        (
+            [id] => 77
+            [name] => cf
+            [price] => 123000
+            [image] => uploads/products/product_6822b7f372948.jpg
+            [quantity] => 14
+        )
+
+)
+
+2025-05-13 05:10:02 - Cart count: 1
+2025-05-13 05:14:31 - Check cart session: true, count: 1
+2025-05-13 05:21:22 - Check cart session: false, count: 0
+2025-05-13 05:21:27 - Check cart session: false, count: 0
+2025-05-13 05:21:29 - Check cart session: false, count: 0
+2025-05-13 05:22:56 - Check cart session: false, count: 0

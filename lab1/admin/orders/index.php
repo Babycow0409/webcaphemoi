@@ -202,7 +202,7 @@ if (!$orders_exist) {
         }
         .sidebar {
             width: 250px;
-            background-color: #3c2f2f;
+            background-color: #343a40;
             color: white;
             padding: 20px 0;
             height: 100vh;

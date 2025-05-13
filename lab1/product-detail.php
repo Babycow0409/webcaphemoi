@@ -601,12 +601,12 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
         var image = "<?php echo isset($product['image']) ? $product['image'] : 'images/default-product.jpg'; ?>";
         
         // Sử dụng AJAX thay vì chuyển trang
-        fetch('add-to-cart.php', {
+        fetch('process-cart.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `id=${id}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}&quantity=${encodeURIComponent(quantity)}&ajax=1`
+            body: `action=add&id=${id}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}&quantity=${encodeURIComponent(quantity)}&ajax=1`
         })
         .then(response => response.json())
         .then(data => {
@@ -622,20 +622,30 @@ $product_image = isset($product['image']) && !empty($product['image']) ? $produc
                 localStorage.setItem("cart", JSON.stringify(data.cart));
                 
                 // Cập nhật số lượng trong biểu tượng giỏ hàng
-                const cartCountElement = document.getElementById("cartCount");
+                const cartCountElement = document.querySelector(".cart-count");
                 if (cartCountElement) {
                     cartCountElement.textContent = data.count;
+                    cartCountElement.style.display = data.count > 0 ? 'inline-flex' : 'none';
                 }
                 
-                // Hiển thị thông báo thành công
+                // Hiển thị thông báo
                 const messageElement = document.getElementById('cart-message');
                 if (messageElement) {
-                    messageElement.textContent = `${name} đã được thêm vào giỏ hàng!`;
+                    // Kiểm tra nếu có thông báo về tồn kho
+                    if (data.message && data.message.length > 0) {
+                        messageElement.textContent = data.message;
+                        messageElement.style.backgroundColor = "#ff9800"; // Màu cảnh báo
+                    } else {
+                        messageElement.textContent = `${name} đã được thêm vào giỏ hàng!`;
+                        messageElement.style.backgroundColor = "#4CAF50"; // Màu thành công
+                    }
                     messageElement.style.display = 'block';
-                    // Ẩn thông báo sau 3 giây
+                    // Ẩn thông báo sau 5 giây
                     setTimeout(() => {
                         messageElement.style.display = 'none';
-                    }, 3000);
+                    }, 5000);
+                } else if (data.message && data.message.length > 0) {
+                    alert(data.message);
                 } else {
                     alert(`${name} đã được thêm vào giỏ hàng!`);
                 }

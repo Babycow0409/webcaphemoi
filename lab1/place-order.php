@@ -48,8 +48,49 @@ if (empty($fullname) || empty($email) || empty($phone) || empty($address)) {
     exit;
 }
 
-// Lấy thông tin giỏ hàng và tính tổng tiền
+// Lấy thông tin giỏ hàng
 $cart = $_SESSION['cart'];
+
+// Kiểm tra tồn kho trước khi đặt hàng
+$stockIssues = [];
+$stockOk = true;
+
+foreach ($cart as $key => $item) {
+    if (!isset($item['id'])) continue;
+    
+    // Kiểm tra tồn kho
+    $stmt = $conn->prepare("SELECT stock FROM products WHERE id = ?");
+    $stmt->bind_param("i", $item['id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result && $result->num_rows > 0) {
+        $product = $result->fetch_assoc();
+        $availableStock = (int)$product['stock'];
+        
+        // Nếu số lượng vượt quá tồn kho
+        if ($item['quantity'] > $availableStock) {
+            $stockOk = false;
+            if ($availableStock <= 0) {
+                $stockIssues[] = "Sản phẩm '{$item['name']}' đã hết hàng.";
+            } else {
+                $stockIssues[] = "Chỉ còn {$availableStock} sản phẩm '{$item['name']}' trong kho. Bạn đã đặt {$item['quantity']}.";
+                // Cập nhật lại số lượng
+                $cart[$key]['quantity'] = $availableStock;
+            }
+        }
+    }
+}
+
+// Nếu có vấn đề về tồn kho, thông báo và chuyển hướng về trang giỏ hàng
+if (!$stockOk) {
+    $_SESSION['cart'] = $cart; // Cập nhật lại giỏ hàng với số lượng đã điều chỉnh
+    $_SESSION['error'] = "Đã có vấn đề với tồn kho: " . implode(" ", $stockIssues);
+    header("Location: cart.php");
+    exit;
+}
+
+// Tính tổng tiền
 $totalAmount = calculateCartTotal($cart);
 
 // Ghi log thông tin user_id
@@ -82,7 +123,7 @@ try {
     $log_result = "Created order ID: $order_id\n";
     file_put_contents('order_debug.log', date('Y-m-d H:i:s') . " - ORDER CREATED: " . $log_result, FILE_APPEND);
     
-    // Lưu chi tiết đơn hàng
+    // Lưu chi tiết đơn hàng và cập nhật tồn kho
     foreach ($cart as $item) {
         $product_id = $item['id'];
         $price = $item['price'];
@@ -112,6 +153,13 @@ try {
             $stmt->bind_param("isid", $order_id, $item['name'], $quantity, $price);
         }
         $stmt->execute();
+        
+        // Cập nhật tồn kho sản phẩm
+        if (isset($item['id'])) {
+            $update_stock = $conn->prepare("UPDATE products SET stock = stock - ? WHERE id = ? AND stock >= ?");
+            $update_stock->bind_param("iii", $quantity, $product_id, $quantity);
+            $update_stock->execute();
+        }
     }
     
     // Hoàn tất transaction

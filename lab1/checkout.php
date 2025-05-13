@@ -24,6 +24,25 @@ if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 
 // Lấy dữ liệu giỏ hàng
 $cart = $_SESSION['cart'];
+
+// Kiểm tra và lọc bỏ các sản phẩm đã bị xóa
+$removedProducts = validateCartProducts($cart, $conn);
+
+// Nếu có sản phẩm bị xóa
+if(!empty($removedProducts)) {
+    $_SESSION['cart'] = $cart;
+    $_SESSION['message'] = "Một số sản phẩm đã bị xóa khỏi giỏ hàng vì không còn tồn tại: " . implode(", ", $removedProducts);
+    
+    // Nếu giỏ hàng trống sau khi lọc, chuyển hướng về trang giỏ hàng
+    if(empty($cart)) {
+        header("Location: cart.php");
+        exit;
+    }
+    
+    // Cập nhật localStorage
+    echo "<script>localStorage.setItem('cart', JSON.stringify(" . json_encode($cart) . "));</script>";
+}
+
 $totalAmount = calculateCartTotal($cart);
 
 // Lấy thông tin người dùng nếu đã đăng nhập
