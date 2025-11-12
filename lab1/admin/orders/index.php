@@ -197,176 +197,212 @@ if (!$orders_exist) {
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý đơn hàng - Cà Phê Đậm Đà</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap"
+        rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-        body {
-            background-color: #f8f9fa;
-            color: #212529;
-            line-height: 1.6;
-        }
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
-            height: 100vh;
-            position: fixed;
-        }
-        .sidebar-header {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-        }
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        .sidebar-menu {
-            padding: 20px 0;
-        }
-        .menu-item {
-            padding: 10px 20px;
-            display: block;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .menu-item:hover, .menu-item.active {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-        }
-        .main-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 20px;
-        }
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            color: #3c2f2f;
-            font-size: 24px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 5px;
-            margin-bottom: 30px;
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #e9ecef;
-        }
-        th {
-            background-color: #f8f9fa;
-            color: #495057;
-            font-weight: bold;
-        }
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-        .status {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            text-align: center;
-            display: inline-block;
-            min-width: 100px;
-        }
-        .pending {
-            background-color: rgba(255, 193, 7, 0.2);
-            color: #ff9800;
-        }
-        .confirmed {
-            background-color: rgba(0, 123, 255, 0.2);
-            color: #007bff;
-        }
-        .processing {
-            background-color: rgba(13, 110, 253, 0.2);
-            color: #0d6efd;
-        }
-        .shipping {
-            background-color: rgba(23, 162, 184, 0.2);
-            color: #17a2b8;
-        }
-        .delivered, .completed {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-        }
-        .cancelled {
-            background-color: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
-        }
-        .action-btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-block;
-            margin-right: 5px;
-            text-align: center;
-        }
-        .view-btn {
-            background-color: #17a2b8;
-            color: white;
-        }
-        .edit-btn {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        .delete-btn {
-            background-color: #dc3545;
-            color: white;
-        }
-        .status-select {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-        }
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .alert-success {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-        }
-        .alert-danger {
-            background-color: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        background-color: #f8f9fa;
+        color: #212529;
+        line-height: 1.6;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        width: 250px;
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+        height: 100vh;
+        position: fixed;
+    }
+
+    .sidebar-header {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .logo {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-menu {
+        padding: 20px 0;
+    }
+
+    .menu-item {
+        padding: 10px 20px;
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .main-content {
+        flex: 1;
+        margin-left: 250px;
+        padding: 20px;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+        font-family: 'Playfair Display', serif;
+        color: #3c2f2f;
+        font-size: 24px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        margin-bottom: 30px;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        display: inline-block;
+        min-width: 100px;
+    }
+
+    .pending {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #ff9800;
+    }
+
+    .confirmed {
+        background-color: rgba(0, 123, 255, 0.2);
+        color: #007bff;
+    }
+
+    .processing {
+        background-color: rgba(13, 110, 253, 0.2);
+        color: #0d6efd;
+    }
+
+    .shipping {
+        background-color: rgba(23, 162, 184, 0.2);
+        color: #17a2b8;
+    }
+
+    .delivered,
+    .completed {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+    }
+
+    .cancelled {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+    }
+
+    .action-btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        margin-right: 5px;
+        text-align: center;
+    }
+
+    .view-btn {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .edit-btn {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+    .delete-btn {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .status-select {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    .alert-success {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+    }
+
+    .alert-danger {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+    }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -377,24 +413,25 @@ if (!$orders_exist) {
             <div class="sidebar-menu">
                 <a href="../index.php" class="menu-item">Tổng quan</a>
                 <a href="../products/index.php" class="menu-item">Sản phẩm</a>
+                <a href="../employees/index.php" class="menu-item">Nhân viên</a>
                 <a href="index.php" class="menu-item active">Đơn hàng</a>
                 <a href="../users/index.php" class="menu-item">Người dùng</a>
                 <a href="../statistics/top-customers.php" class="menu-item">Thống kê</a>
                 <a href="../logout.php" class="menu-item">Đăng xuất</a>
             </div>
         </div>
-        
+
         <div class="main-content">
             <div class="page-header">
                 <h1 class="page-title">Quản lý đơn hàng</h1>
             </div>
-            
+
             <?php if (isset($success_message)): ?>
-                <div class="alert alert-success"><?php echo $success_message; ?></div>
+            <div class="alert alert-success"><?php echo $success_message; ?></div>
             <?php endif; ?>
-            
+
             <?php if (isset($error_message)): ?>
-                <div class="alert alert-danger"><?php echo $error_message; ?></div>
+            <div class="alert alert-danger"><?php echo $error_message; ?></div>
             <?php endif; ?>
 
             <!-- Form lọc đơn hàng -->
@@ -410,39 +447,40 @@ if (!$orders_exist) {
                                 <select name="status" id="status" class="form-control form-control-sm">
                                     <option value="">-- Tất cả trạng thái --</option>
                                     <?php foreach ($statuses as $value => $label): ?>
-                                        <option value="<?php echo $value; ?>" <?php echo isset($_GET['status']) && $_GET['status'] === $value ? 'selected' : ''; ?>>
-                                            <?php echo $label; ?>
-                                        </option>
+                                    <option value="<?php echo $value; ?>"
+                                        <?php echo isset($_GET['status']) && $_GET['status'] === $value ? 'selected' : ''; ?>>
+                                        <?php echo $label; ?>
+                                    </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
                                 <label for="date_from"><i class="far fa-calendar-alt mr-1"></i>Từ ngày</label>
-                                <input type="date" name="date_from" id="date_from" class="form-control form-control-sm" 
-                                       value="<?php echo isset($_GET['date_from']) ? $_GET['date_from'] : ''; ?>">
+                                <input type="date" name="date_from" id="date_from" class="form-control form-control-sm"
+                                    value="<?php echo isset($_GET['date_from']) ? $_GET['date_from'] : ''; ?>">
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
                                 <label for="date_to"><i class="far fa-calendar-alt mr-1"></i>Đến ngày</label>
                                 <input type="date" name="date_to" id="date_to" class="form-control form-control-sm"
-                                       value="<?php echo isset($_GET['date_to']) ? $_GET['date_to'] : ''; ?>">
+                                    value="<?php echo isset($_GET['date_to']) ? $_GET['date_to'] : ''; ?>">
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
                                 <label for="location"><i class="fas fa-map-marker-alt mr-1"></i>Địa điểm</label>
-                                <input type="text" name="location" id="location" class="form-control form-control-sm" 
-                                       placeholder="Quận/Huyện/Thành phố"
-                                       value="<?php echo isset($_GET['location']) ? $_GET['location'] : ''; ?>">
+                                <input type="text" name="location" id="location" class="form-control form-control-sm"
+                                    placeholder="Quận/Huyện/Thành phố"
+                                    value="<?php echo isset($_GET['location']) ? $_GET['location'] : ''; ?>">
                             </div>
                         </div>
-                        
+
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-primary btn-sm px-4">
                                 <i class="fas fa-search mr-1"></i>Tìm kiếm
@@ -470,9 +508,9 @@ if (!$orders_exist) {
                 </thead>
                 <tbody>
                     <?php if (!empty($orders)): ?>
-                        <?php foreach ($orders as $row): ?>
-                            <tr>
-                                <td><?php 
+                    <?php foreach ($orders as $row): ?>
+                    <tr>
+                        <td><?php 
                                     if (!empty($row['custom_order_id'])) {
                                         echo htmlspecialchars($row['custom_order_id']);
                                     } elseif (isset($row['order_number'])) {
@@ -481,11 +519,11 @@ if (!$orders_exist) {
                                         echo 'ĐH-' . $row['id'];
                                     }
                                 ?></td>
-                                <td><?php echo htmlspecialchars($row['customer_name'] ?? 'Khách vãng lai'); ?></td>
-                                <td><?php echo date('d/m/Y H:i', strtotime($row['order_date'])); ?></td>
-                                <td><?php echo number_format($row['total_amount'], 0, ',', '.'); ?> VNĐ</td>
-                                <td>
-                                    <?php 
+                        <td><?php echo htmlspecialchars($row['customer_name'] ?? 'Khách vãng lai'); ?></td>
+                        <td><?php echo date('d/m/Y H:i', strtotime($row['order_date'])); ?></td>
+                        <td><?php echo number_format($row['total_amount'], 0, ',', '.'); ?> VNĐ</td>
+                        <td>
+                            <?php 
                                     $payment_methods = [
                                         'cod' => 'Thanh toán khi nhận hàng',
                                         'banking' => 'Chuyển khoản ngân hàng',
@@ -494,9 +532,9 @@ if (!$orders_exist) {
                                     ];
                                     echo isset($payment_methods[$row['payment_method']]) ? $payment_methods[$row['payment_method']] : $row['payment_method'];
                                     ?>
-                                </td>
-                                <td>
-                                    <?php
+                        </td>
+                        <td>
+                            <?php
                                     $status_class = '';
                                     $status_text = '';
                                     
@@ -531,23 +569,24 @@ if (!$orders_exist) {
                                             $status_text = $row['status'] ?? 'Chờ xác nhận';
                                     }
                                     ?>
-                                    <span class="status <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
-                                </td>
-                                <td><?php echo htmlspecialchars($row['shipping_address'] ?? ''); ?></td>
-                                <td>
-                                    <a href="view.php?id=<?php echo $row['id']; ?>" class="action-btn view-btn">Xem</a>
-                                
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                            <span class="status <?php echo $status_class; ?>"><?php echo $status_text; ?></span>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['shipping_address'] ?? ''); ?></td>
+                        <td>
+                            <a href="view.php?id=<?php echo $row['id']; ?>" class="action-btn view-btn">Xem</a>
+
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
                     <?php else: ?>
-                        <tr>
-                            <td colspan="7" style="text-align: center;">Không có đơn hàng nào</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" style="text-align: center;">Không có đơn hàng nào</td>
+                    </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </body>
+
 </html>

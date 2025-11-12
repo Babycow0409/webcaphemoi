@@ -70,6 +70,7 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,56 +78,67 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container-fluid {
-            padding: 0;
-        }
-        .sidebar {
-            background-color: #343a40;
-            color: white;
-            min-height: 100vh;
-            padding-top: 20px;
-        }
-        .sidebar .nav-link {
-            color: rgba(255,255,255,.75);
-            padding: 10px 20px;
-        }
-        .sidebar .nav-link:hover {
-            color: white;
-            background-color: rgba(255,255,255,.1);
-        }
-        .content {
-            padding: 20px;
-        }
-        .header {
-            background-color: #f8f9fa;
-            padding: 15px 20px;
-            border-bottom: 1px solid #dee2e6;
-            margin-bottom: 20px;
-        }
-        .card {
-            margin-bottom: 20px;
-        }
-        .stats-card {
-            color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .stats-card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .stats-card p {
-            font-size: 24px;
-            margin: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .sidebar {
+        background-color: #343a40;
+        color: white;
+        min-height: 100vh;
+        padding-top: 20px;
+    }
+
+    .sidebar .nav-link {
+        color: rgba(255, 255, 255, .75);
+        padding: 10px 20px;
+    }
+
+    .sidebar .nav-link:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, .1);
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header {
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-bottom: 1px solid #dee2e6;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .stats-card {
+        color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .stats-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .stats-card p {
+        font-size: 24px;
+        margin: 0;
+    }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -142,6 +154,11 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
                     <li class="nav-item">
                         <a class="nav-link" href="products/index.php">
                             <i class="fas fa-coffee mr-2"></i> Sản phẩm
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="employees/index.php">
+                            <i class="fas fa-employees mr-2"></i> Nhân viên
                         </a>
                     </li>
                     <li class="nav-item">
@@ -166,21 +183,21 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
                     </li>
                 </ul>
             </div>
-            
+
             <!-- Main content -->
             <div class="col-md-10">
                 <div class="header d-flex justify-content-between align-items-center">
                     <h2>Dashboard</h2>
                     <div>
-                        <i class="fas fa-user mr-1"></i> 
+                        <i class="fas fa-user mr-1"></i>
                         <?php echo $admin["name"]; ?>
                     </div>
                 </div>
-                
+
                 <div class="content">
                     <h3>Chào mừng đến với trang quản trị!</h3>
                     <p>Đây là trang quản trị của website Cà Phê Đậm Đà.</p>
-                    
+
                     <!-- Thống kê -->
                     <div class="row mt-4">
                         <div class="col-md-3">
@@ -189,6 +206,8 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
                                 <p><?php echo $totalProducts; ?></p>
                             </div>
                         </div>
+
+
                         <div class="col-md-3">
                             <div class="stats-card" style="background-color: #2ecc71;">
                                 <h3>Người dùng</h3>
@@ -208,7 +227,7 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card mt-4">
                         <div class="card-header">
                             <h5 class="m-0">Chức năng có sẵn</h5>
@@ -220,7 +239,7 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
                                 <li>Quản lý người dùng: Xem danh sách người dùng đã đăng ký</li>
                                 <li>Thống kê: Xem thống kê top khách hàng theo doanh số</li>
                             </ul>
-                            
+
                             <p>Hãy sử dụng menu bên trái để truy cập các chức năng quản trị.</p>
                         </div>
                     </div>
@@ -228,9 +247,10 @@ $topProducts = $conn->query("SELECT id, name, price, 0 as order_count
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

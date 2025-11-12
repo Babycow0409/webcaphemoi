@@ -416,6 +416,121 @@ ALTER TABLE `order_items`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `employees`
+--
+
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_code` varchar(20) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `position` varchar(100) DEFAULT NULL,
+  `department` varchar(100) DEFAULT NULL,
+  `salary` decimal(10,2) DEFAULT NULL,
+  `hire_date` date DEFAULT NULL,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `role` enum('employee','manager') DEFAULT 'employee',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `employee_code` (`employee_code`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `work_shifts`
+--
+
+CREATE TABLE IF NOT EXISTS `work_shifts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shift_name` varchar(50) NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `hourly_rate` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `description` text DEFAULT NULL,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `shift_assignments`
+--
+
+CREATE TABLE IF NOT EXISTS `shift_assignments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `shift_id` int(11) NOT NULL,
+  `work_date` date NOT NULL,
+  `check_in_time` datetime DEFAULT NULL,
+  `check_out_time` datetime DEFAULT NULL,
+  `hours_worked` decimal(4,2) DEFAULT 0.00,
+  `status` enum('scheduled','completed','absent','cancelled') DEFAULT 'scheduled',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `employee_id` (`employee_id`),
+  KEY `shift_id` (`shift_id`),
+  KEY `work_date` (`work_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `salary_calculations`
+--
+
+CREATE TABLE IF NOT EXISTS `salary_calculations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `calculation_month` varchar(7) NOT NULL COMMENT 'Format: YYYY-MM',
+  `base_salary` decimal(10,2) DEFAULT 0.00,
+  `total_shifts` int(11) DEFAULT 0,
+  `total_hours` decimal(6,2) DEFAULT 0.00,
+  `shift_earnings` decimal(10,2) DEFAULT 0.00,
+  `bonus` decimal(10,2) DEFAULT 0.00,
+  `deductions` decimal(10,2) DEFAULT 0.00,
+  `total_salary` decimal(10,2) DEFAULT 0.00,
+  `status` enum('draft','calculated','paid') DEFAULT 'draft',
+  `notes` text DEFAULT NULL,
+  `calculated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `employee_month` (`employee_id`,`calculation_month`),
+  KEY `calculation_month` (`calculation_month`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `shift_assignments`
+--
+ALTER TABLE `shift_assignments`
+  ADD CONSTRAINT `shift_assignments_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `shift_assignments_ibfk_2` FOREIGN KEY (`shift_id`) REFERENCES `work_shifts` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `salary_calculations`
+--
+ALTER TABLE `salary_calculations`
+  ADD CONSTRAINT `salary_calculations_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE CASCADE;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

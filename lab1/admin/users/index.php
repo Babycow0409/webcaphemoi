@@ -129,6 +129,11 @@ $conn->close();
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="../employees/index.php">
+                            <i class="fas fa-employees mr-2"></i> Nhân viên
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../orders/index.php">
                             <i class="fas fa-shopping-cart mr-2"></i> Đơn hàng
                         </a>

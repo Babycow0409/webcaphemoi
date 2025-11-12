@@ -1,4 +1,4 @@
-                </div><!-- /.main-content -->
+</div><!-- /.main-content -->
             </div><!-- /.content -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -47,5 +47,6 @@
             }
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>
