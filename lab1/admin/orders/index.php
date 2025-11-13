@@ -413,7 +413,6 @@ if (!$orders_exist) {
             <div class="sidebar-menu">
                 <a href="../index.php" class="menu-item">Tổng quan</a>
                 <a href="../products/index.php" class="menu-item">Sản phẩm</a>
-                <a href="../employees/index.php" class="menu-item">Nhân viên</a>
                 <a href="index.php" class="menu-item active">Đơn hàng</a>
                 <a href="../users/index.php" class="menu-item">Người dùng</a>
                 <a href="../statistics/top-customers.php" class="menu-item">Thống kê</a>

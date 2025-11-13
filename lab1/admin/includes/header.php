@@ -98,7 +98,6 @@ $admin = $result->fetch_assoc();
             <ul class="menu">
                 <li><a href="../index.php">Dashboard</a></li>
                 <li><a href="../products/index.php">Sản phẩm</a></li>
-                <li><a href="../employees/index.php">Nhân viên</a></li>
                 <li><a href="../orders/index.php">Đơn hàng</a></li>
                 <li><a href="../users/index.php">Người dùng</a></li>
                 <li><a href="../statistics/top-customers.php">Thống kê</a></li>

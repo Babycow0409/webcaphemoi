@@ -146,11 +146,6 @@ if ($orders_exist) {
                             <i class="fas fa-coffee mr-2"></i> Sản phẩm
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../employees/index.php">
-                            <i class="fas fa-employees mr-2"></i> Nhân viên
-                        </a>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="../orders/index.php">

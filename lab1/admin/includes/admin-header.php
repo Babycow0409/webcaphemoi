@@ -83,30 +83,6 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo ($current_dir == 'employees') ? 'active' : ''; ?>"
-                            href="<?php echo str_repeat("../", substr_count($_SERVER['PHP_SELF'], "/", 1) - 2); ?>admin/employees/index.php">
-                            <i class="fas fa-user-tie"></i> Nhân viên
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($_SERVER['PHP_SELF'], 'shifts') !== false && strpos($_SERVER['PHP_SELF'], 'shift-assignments') === false && strpos($_SERVER['PHP_SELF'], 'salary') === false) ? 'active' : ''; ?>"
-                            href="<?php echo str_repeat("../", substr_count($_SERVER['PHP_SELF'], "/", 1) - 2); ?>admin/employees/shifts/index.php">
-                            <i class="fas fa-clock"></i> Ca làm việc
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($_SERVER['PHP_SELF'], 'shift-assignments') !== false) ? 'active' : ''; ?>"
-                            href="<?php echo str_repeat("../", substr_count($_SERVER['PHP_SELF'], "/", 1) - 2); ?>admin/employees/shift-assignments/index.php">
-                            <i class="fas fa-calendar-alt"></i> Phân ca
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($_SERVER['PHP_SELF'], 'salary') !== false) ? 'active' : ''; ?>"
-                            href="<?php echo str_repeat("../", substr_count($_SERVER['PHP_SELF'], "/", 1) - 2); ?>admin/employees/salary/index.php">
-                            <i class="fas fa-money-bill-wave"></i> Tính lương
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link <?php echo ($current_dir == 'statistics') ? 'active' : ''; ?>"
                             href="<?php echo str_repeat("../", substr_count($_SERVER['PHP_SELF'], "/", 1) - 2); ?>admin/statistics/top-customers.php">
                             <i class="fas fa-chart-bar"></i> Thống kê
@@ -122,20 +98,6 @@ $current_dir = basename(dirname($_SERVER['PHP_SELF']));
             </div>
 
             <!-- Main content -->
-            <div class="content">
-                <div class="header">
-                    <h2><?php 
-                        // Chỉ hiển thị icon cho trang nhân viên
-                        if (strpos($_SERVER['PHP_SELF'], 'employees') !== false && isset($header_icon)) {
-                            echo '<i class="fas fa-' . $header_icon . ' mr-2"></i>';
-                        }
-                        echo isset($page_title) ? $page_title : 'Tổng quan'; 
-                    ?></h2>
-                    <div>
-                        <i class="fas fa-user mr-1"></i>
-                        <?php echo $admin["name"]; ?>
-                    </div>
-                </div>
 
 
                 <div class="main-content"><?php

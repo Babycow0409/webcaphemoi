@@ -55,11 +55,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt2->bind_param("issssss", $user_id, $email, $hashed_password_bcrypt, $fullname, $phone, $address, $city);
             
             if ($stmt2->execute()) {
-                $success = "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.";
+                // Set session and redirect to home page
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['username'] = $username;
+                $_SESSION['fullname'] = $fullname;
+                $_SESSION['role'] = 'user';
+                header("Location: index.php");
+                exit();
             } else {
-                // Nếu không thể thêm vào user_details, vẫn cho phép đăng nhập với users
-                $success = "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.";
-                $error = "Lưu ý: Một số thông tin chi tiết có thể không được lưu đầy đủ.";
+                $error = "Có lỗi xảy ra. Vui lòng thử lại sau.";
             }
         } else {
             $error = "Có lỗi xảy ra: " . $conn->error;

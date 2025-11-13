@@ -48,16 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             
             if ($login_success) {
-                // Đăng nhập thành công
+                // Đăng nhập thành công, lưu thông tin vào session
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['email'] = $user['email'];
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['fullname'] = $user['fullname'] ?? $user['username'];
-                $_SESSION['role'] = $user['role'] ?? 'user';
+                $_SESSION['fullname'] = $user['fullname'];
+                $_SESSION['role'] = $user['role'];
                 
-                // Chuyển hướng đến trang chủ
+                // Always redirect to home page after login
                 header("Location: index.php");
-                exit;
+                exit();
             } else {
                 $error = "Mật khẩu không chính xác.";
             }
@@ -76,18 +75,97 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Đăng nhập - Cà Phê Đậm Đà</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        body { 
+            padding-top: 100px; 
+            line-height: 1.6; 
+            min-height: 100vh;
             background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-image: url('images/coffee-bg.jpg');
             background-size: cover;
             background-position: center;
+        }
+        
+        header { 
+            background-color: #3c2f2f; 
+            color: white; 
+            padding: 1rem; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        nav { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8em; 
+            padding: 10px; 
+        }
+        
+        .nav-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            padding: 10px; 
+        }
+        
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            margin: 10px 15px; 
+            font-weight: bold; 
+        }
+        
+        nav a:hover { 
+            color: #d4a373; 
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3c2f2f;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #d4a373;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
         }
         
         .login-container {
@@ -96,8 +174,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             padding: 40px;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
+            margin: 20px 0;
         }
+    align-items: center;
+    min-height: calc(100vh - 200px);
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+}
         
         h1 {
             font-family: 'Playfair Display', serif;
@@ -174,7 +266,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <header>
+        <nav>
+            <div class="logo">Cà Phê Đậm Đà</div>
+            <div class="nav-links">
+                <a href="index.php">Trang chủ</a>
+                <div class="dropdown">
+                    <a href="products.php">Sản phẩm</a>
+                    <div class="dropdown-content">
+                        <a href="products.php">Tất cả</a>
+                        <a href="arabica.php">Arabica</a>
+                        <a href="robusta.php">Robusta</a>
+                        <a href="chon.php">Chồn</a>
+                        <a href="Khac.php">Khác</a>
+                    </div>
+                </div>
+                <a href="index.php#about">Giới thiệu</a>
+                <a href="index.php#contact">Liên hệ</a>
+                <a href="cart.php">Giỏ hàng</a>
+                <a href="login.php">Đăng nhập</a>
+                <a href="register.php">Đăng ký</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="login-container">
         <h1>Đăng Nhập</h1>
         
         <?php if (!empty($error)): ?>
@@ -198,6 +315,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="register-link">
             Chưa có tài khoản? <a href="register.php">Đăng ký ngay</a>
         </div>
+        </div>
     </div>
+    
+    <footer id="contact">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Your existing footer content here -->
+        </div>
+    </footer>
 </body>
 </html> 
