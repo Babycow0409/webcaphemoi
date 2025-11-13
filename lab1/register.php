@@ -55,11 +55,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt2->bind_param("issssss", $user_id, $email, $hashed_password_bcrypt, $fullname, $phone, $address, $city);
             
             if ($stmt2->execute()) {
-                // Set session and redirect to home page
+                // Set session variables
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['username'] = $username;
                 $_SESSION['fullname'] = $fullname;
                 $_SESSION['role'] = 'user';
+                
+                // Clear any output buffer
+                if (ob_get_level()) {
+                    ob_end_clean();
+                }
+                
+                // Ensure no output before header
                 header("Location: index.php");
                 exit();
             } else {
