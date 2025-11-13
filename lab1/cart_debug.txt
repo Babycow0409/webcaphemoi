@@ -14945,3 +14945,25 @@
     [quantity] => 1
 )
 
+2025-11-13 09:30:08 - Cart in cart.php: Array
+(
+    [0] => Array
+        (
+            [id] => 27
+            [name] => Robusta Cameroon
+            [price] => 400000
+            [image] => uploads/products/product_68204e70a7ab8.jpg
+            [quantity] => 1
+        )
+
+)
+
+2025-11-13 09:30:08 - Processing item: Array
+(
+    [id] => 27
+    [name] => Robusta Cameroon
+    [price] => 400000
+    [image] => uploads/products/product_68204e70a7ab8.jpg
+    [quantity] => 1
+)
+
